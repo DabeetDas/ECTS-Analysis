@@ -1,0 +1,26 @@
+[
+  {
+    "company": "SBI",
+    "call_date": "2025-03-24",
+    "quarter": "FY25 Q4",
+    "path": "psb_calls/sbi_1.txt"
+  },
+  {
+    "company": "BOB",
+    "call_date": "2025-03-25",
+    "quarter": "FY25 Q4",
+    "path": "psb_calls/bob_1.txt"
+  },
+  {
+    "company" : "SBI",
+    "call_date": "2024-03-24",
+    "quarter": "FY24 Q4",
+    "path" : "psb_calls/sbi_2.txt"
+  },
+  {
+    "company" : "BOB",
+    "call_date": "2024-03-24",
+    "quarter": "FY24 Q4",
+    "path" : "psb_calls/bob_2.txt"
+  }
+]

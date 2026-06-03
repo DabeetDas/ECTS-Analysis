@@ -1,0 +1,544 @@
+{
+  "input_document": "data/dummy_earnings_call.txt",
+  "retrieved_topics": [
+    {
+      "topic_name": "Guidance",
+      "excerpts": [
+        "We did give guidance last year, not guidance, we expected credit growth to be 14% to 16%.",
+        "We still stick to it. So, we didn't want to show that we can make the similar profit what we have made, when we know for sure these costs are likely to happen."
+      ]
+    },
+    {
+      "topic_name": "Capital Expenditures",
+      "excerpts": [
+        "We have sufficient headroom to take care of business growth requirements.",
+        "Our capital adequacy ratio is at 14.25% and the CET 1 ratio is at 10.81% and are well above the regulatory requirements."
+      ]
+    },
+    {
+      "topic_name": "Dividends",
+      "excerpts": [
+        "We will consistently achieve RoE over 15% through the business cycles."
+      ]
+    },
+    {
+      "topic_name": "Buybacks",
+      "excerpts": [
+        "The board has granted approval to raise equity capital up to \u20b925,000 cores, with the authorization being valid for a period of 12 months."
+      ]
+    },
+    {
+      "topic_name": "M&A",
+      "excerpts": [
+        "Our subsidiaries are consistently performing well and continue to create significant value for all the stakeholders."
+      ]
+    },
+    {
+      "topic_name": "Macroeconomic Conditions",
+      "excerpts": [
+        "Escalation of trade and tariff tensions and the resultant financial market volatility have raised concerns regarding the weakening of global growth in the near term.",
+        "India's CPI headline inflation has now significantly moderated, and we believe average CPI headline forecast for FY26 could stay below 4% now."
+      ]
+    },
+    {
+      "topic_name": "Labor",
+      "excerpts": [
+        "Our extensive investment in workforce training, procedures, and compliance to maintain this level."
+      ]
+    },
+    {
+      "topic_name": "Supply Chain",
+      "excerpts": [
+        "The dampening global economic outlook could impact India's economic growth through weaker external demand even though the domestic growth engines, viz., consumption and investment, are relatively less susceptible to external headwinds."
+      ]
+    },
+    {
+      "topic_name": "Pricing",
+      "excerpts": [
+        "Moderation in treasury yields definitely would help the markets to perform better and I think our treasury will do, while we are not willing to give any guidance on this."
+      ]
+    },
+    {
+      "topic_name": "Consumer Demand",
+      "excerpts": [
+        "Prospects for the farm sector have been boosted by the forecast of an above normal southwest monsoon for 2025, which could augment farm incomes and keep food prices under check."
+      ]
+    },
+    {
+      "topic_name": "Regulatory Developments",
+      "excerpts": [
+        "RBI has deployed a strategic mix of interventions, including open market operations, daily variable rate repo auctions, and dollar/rupee buy-sell swap auctions."
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "topic_id": "f4c23fb8-494e-4310-b003-1504a586ccca",
+      "topic_name": "Guidance",
+      "existed": false,
+      "parent_topic_ids": [
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6"
+      ],
+      "excerpts": [
+        "We did give guidance last year, not guidance, we expected credit growth to be 14% to 16%.",
+        "We still stick to it. So, we didn't want to show that we can make the similar profit what we have made, when we know for sure these costs are likely to happen."
+      ]
+    },
+    {
+      "topic_id": "cd95950b-c66d-4793-a8e9-4f5627f89e12",
+      "topic_name": "Capital Expenditures",
+      "existed": false,
+      "parent_topic_ids": [
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6"
+      ],
+      "excerpts": [
+        "We have sufficient headroom to take care of business growth requirements.",
+        "Our capital adequacy ratio is at 14.25% and the CET 1 ratio is at 10.81% and are well above the regulatory requirements."
+      ]
+    },
+    {
+      "topic_id": "e3dd9e7f-33a5-41ae-a76b-d3a0e3d615ea",
+      "topic_name": "Dividends",
+      "existed": false,
+      "parent_topic_ids": [
+        "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6"
+      ],
+      "excerpts": [
+        "We will consistently achieve RoE over 15% through the business cycles."
+      ]
+    },
+    {
+      "topic_id": "04ed388b-9429-44ce-be1e-f6e56d679267",
+      "topic_name": "Buybacks",
+      "existed": false,
+      "parent_topic_ids": [
+        "2a4f3af2-322c-4fee-ad3e-9c279744aa5c"
+      ],
+      "excerpts": [
+        "The board has granted approval to raise equity capital up to \u20b925,000 cores, with the authorization being valid for a period of 12 months."
+      ]
+    },
+    {
+      "topic_id": "64a31caf-a115-4cb1-bfee-83b0dd3acf52",
+      "topic_name": "M&A",
+      "existed": false,
+      "parent_topic_ids": [
+        "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6"
+      ],
+      "excerpts": [
+        "Our subsidiaries are consistently performing well and continue to create significant value for all the stakeholders."
+      ]
+    },
+    {
+      "topic_id": "0371cc01-f630-4b35-a668-762a5da327d4",
+      "topic_name": "Macroeconomic Conditions",
+      "existed": false,
+      "parent_topic_ids": [
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6"
+      ],
+      "excerpts": [
+        "Escalation of trade and tariff tensions and the resultant financial market volatility have raised concerns regarding the weakening of global growth in the near term.",
+        "India's CPI headline inflation has now significantly moderated, and we believe average CPI headline forecast for FY26 could stay below 4% now."
+      ]
+    },
+    {
+      "topic_id": "8cf63470-b0fa-45f5-a77e-8d4276d36184",
+      "topic_name": "Labor",
+      "existed": false,
+      "parent_topic_ids": [
+        "971d6a71-6ab0-4ff0-a769-df1542023b84"
+      ],
+      "excerpts": [
+        "Our extensive investment in workforce training, procedures, and compliance to maintain this level."
+      ]
+    },
+    {
+      "topic_id": "1c543919-b1cf-4b0c-8bf4-82fad4b847e7",
+      "topic_name": "Supply Chain",
+      "existed": true,
+      "parent_topic_ids": [
+        "971d6a71-6ab0-4ff0-a769-df1542023b84"
+      ],
+      "excerpts": [
+        "The dampening global economic outlook could impact India's economic growth through weaker external demand even though the domestic growth engines, viz., consumption and investment, are relatively less susceptible to external headwinds."
+      ]
+    },
+    {
+      "topic_id": "6f4d4176-532a-435c-a014-eee4365940f3",
+      "topic_name": "Pricing",
+      "existed": false,
+      "parent_topic_ids": [
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "ce05f4ad-6174-47bf-badf-ad0f738a8ca5"
+      ],
+      "excerpts": [
+        "Moderation in treasury yields definitely would help the markets to perform better and I think our treasury will do, while we are not willing to give any guidance on this."
+      ]
+    },
+    {
+      "topic_id": "5fa23c2f-2d5b-42bd-ac5e-03a1fcea7248",
+      "topic_name": "Consumer Demand",
+      "existed": false,
+      "parent_topic_ids": [
+        "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "0371cc01-f630-4b35-a668-762a5da327d4"
+      ],
+      "excerpts": [
+        "Prospects for the farm sector have been boosted by the forecast of an above normal southwest monsoon for 2025, which could augment farm incomes and keep food prices under check."
+      ]
+    },
+    {
+      "topic_id": "95b7574b-9296-46da-8873-69ce93507814",
+      "topic_name": "Regulatory Developments",
+      "existed": true,
+      "parent_topic_ids": [
+        "0b91e138-0dc8-4138-affd-3a76252e308e"
+      ],
+      "excerpts": [
+        "RBI has deployed a strategic mix of interventions, including open market operations, daily variable rate repo auctions, and dollar/rupee buy-sell swap auctions."
+      ]
+    }
+  ],
+  "ontology": {
+    "nodes": [
+      {
+        "topic_id": "bc218d4e-1af9-4163-99ad-0f10101f445d",
+        "name": "Artificial Intelligence",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805214+00:00",
+        "updated_on": "2026-05-31T17:55:38.805249+00:00"
+      },
+      {
+        "topic_id": "a6d1dade-0821-4b7a-a5e3-f267ea01ea1a",
+        "name": "Automotive",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805320+00:00",
+        "updated_on": "2026-05-31T17:55:38.805336+00:00"
+      },
+      {
+        "topic_id": "0308511b-01a8-45dd-a15f-3f08b74809ee",
+        "name": "Autonomous Driving",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805325+00:00",
+        "updated_on": "2026-05-31T17:55:38.805329+00:00"
+      },
+      {
+        "topic_id": "04ed388b-9429-44ce-be1e-f6e56d679267",
+        "name": "Buybacks",
+        "aliases": [],
+        "created_on": "2026-05-31T17:56:46.980622+00:00",
+        "updated_on": "2026-05-31T17:56:46.980638+00:00"
+      },
+      {
+        "topic_id": "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "name": "Capital Allocation",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805312+00:00",
+        "updated_on": "2026-05-31T17:57:04.564441+00:00"
+      },
+      {
+        "topic_id": "cd95950b-c66d-4793-a8e9-4f5627f89e12",
+        "name": "Capital Expenditures",
+        "aliases": [],
+        "created_on": "2026-05-31T17:56:34.498883+00:00",
+        "updated_on": "2026-05-31T17:56:34.498906+00:00"
+      },
+      {
+        "topic_id": "171f34ee-1d4c-49e3-856e-3407862869fe",
+        "name": "Cloud Infrastructure",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805262+00:00",
+        "updated_on": "2026-05-31T17:55:38.805267+00:00"
+      },
+      {
+        "topic_id": "5fa23c2f-2d5b-42bd-ac5e-03a1fcea7248",
+        "name": "Consumer Demand",
+        "aliases": [],
+        "created_on": "2026-05-31T17:57:34.866927+00:00",
+        "updated_on": "2026-05-31T17:57:34.866948+00:00"
+      },
+      {
+        "topic_id": "502db149-a366-4b97-bfa9-20d1671409e7",
+        "name": "Data Center",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805257+00:00",
+        "updated_on": "2026-05-31T17:55:38.805274+00:00"
+      },
+      {
+        "topic_id": "e3dd9e7f-33a5-41ae-a76b-d3a0e3d615ea",
+        "name": "Dividends",
+        "aliases": [],
+        "created_on": "2026-05-31T17:56:45.935108+00:00",
+        "updated_on": "2026-05-31T17:56:45.935329+00:00"
+      },
+      {
+        "topic_id": "cd976a40-bf1e-48b4-a566-de0cbc13e456",
+        "name": "Electric Vehicles",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805333+00:00",
+        "updated_on": "2026-05-31T17:55:38.805337+00:00"
+      },
+      {
+        "topic_id": "b8f2a7ba-d7f9-408b-b190-a1dc5818ea51",
+        "name": "Enterprise Demand",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805270+00:00",
+        "updated_on": "2026-05-31T17:55:38.805275+00:00"
+      },
+      {
+        "topic_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "name": "Financial Performance",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805299+00:00",
+        "updated_on": "2026-05-31T17:57:34.866944+00:00"
+      },
+      {
+        "topic_id": "b628ed32-e94f-4626-9174-49e3a4de0a63",
+        "name": "Generative AI",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805232+00:00",
+        "updated_on": "2026-05-31T17:55:38.805240+00:00"
+      },
+      {
+        "topic_id": "f4c23fb8-494e-4310-b003-1504a586ccca",
+        "name": "Guidance",
+        "aliases": [],
+        "created_on": "2026-05-31T17:56:12.943364+00:00",
+        "updated_on": "2026-05-31T17:56:12.943380+00:00"
+      },
+      {
+        "topic_id": "8cf63470-b0fa-45f5-a77e-8d4276d36184",
+        "name": "Labor",
+        "aliases": [],
+        "created_on": "2026-05-31T17:57:21.873545+00:00",
+        "updated_on": "2026-05-31T17:57:21.873561+00:00"
+      },
+      {
+        "topic_id": "0b91e138-0dc8-4138-affd-3a76252e308e",
+        "name": "Legal and Regulatory",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805341+00:00",
+        "updated_on": "2026-05-31T17:55:38.805348+00:00"
+      },
+      {
+        "topic_id": "64a31caf-a115-4cb1-bfee-83b0dd3acf52",
+        "name": "M&A",
+        "aliases": [],
+        "created_on": "2026-05-31T17:57:04.564422+00:00",
+        "updated_on": "2026-05-31T17:57:04.564442+00:00"
+      },
+      {
+        "topic_id": "a683239a-0bb1-4a48-93b8-c50f4f9286ed",
+        "name": "Machine Learning",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805245+00:00",
+        "updated_on": "2026-05-31T17:55:38.805250+00:00"
+      },
+      {
+        "topic_id": "0371cc01-f630-4b35-a668-762a5da327d4",
+        "name": "Macroeconomic Conditions",
+        "aliases": [],
+        "created_on": "2026-05-31T17:57:11.300358+00:00",
+        "updated_on": "2026-05-31T17:57:34.866947+00:00"
+      },
+      {
+        "topic_id": "b3d75e0a-4690-4e2a-999a-0b079e20d54a",
+        "name": "Manufacturing",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805291+00:00",
+        "updated_on": "2026-05-31T17:55:38.805295+00:00"
+      },
+      {
+        "topic_id": "971d6a71-6ab0-4ff0-a769-df1542023b84",
+        "name": "Operations",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805279+00:00",
+        "updated_on": "2026-05-31T17:57:21.873559+00:00"
+      },
+      {
+        "topic_id": "6f4d4176-532a-435c-a014-eee4365940f3",
+        "name": "Pricing",
+        "aliases": [],
+        "created_on": "2026-05-31T17:57:29.314044+00:00",
+        "updated_on": "2026-05-31T17:57:29.314079+00:00"
+      },
+      {
+        "topic_id": "95b7574b-9296-46da-8873-69ce93507814",
+        "name": "Regulatory Developments",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805345+00:00",
+        "updated_on": "2026-05-31T17:55:38.805349+00:00"
+      },
+      {
+        "topic_id": "ce05f4ad-6174-47bf-badf-ad0f738a8ca5",
+        "name": "Revenue",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805303+00:00",
+        "updated_on": "2026-05-31T17:57:29.314076+00:00"
+      },
+      {
+        "topic_id": "1c543919-b1cf-4b0c-8bf4-82fad4b847e7",
+        "name": "Supply Chain",
+        "aliases": [],
+        "created_on": "2026-05-31T17:55:38.805285+00:00",
+        "updated_on": "2026-05-31T17:55:38.805288+00:00"
+      }
+    ],
+    "edges": [
+      {
+        "parent_id": "0371cc01-f630-4b35-a668-762a5da327d4",
+        "parent_name": "Macroeconomic Conditions",
+        "child_id": "5fa23c2f-2d5b-42bd-ac5e-03a1fcea7248",
+        "child_name": "Consumer Demand"
+      },
+      {
+        "parent_id": "0b91e138-0dc8-4138-affd-3a76252e308e",
+        "parent_name": "Legal and Regulatory",
+        "child_id": "95b7574b-9296-46da-8873-69ce93507814",
+        "child_name": "Regulatory Developments"
+      },
+      {
+        "parent_id": "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "parent_name": "Capital Allocation",
+        "child_id": "04ed388b-9429-44ce-be1e-f6e56d679267",
+        "child_name": "Buybacks"
+      },
+      {
+        "parent_id": "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "parent_name": "Capital Allocation",
+        "child_id": "64a31caf-a115-4cb1-bfee-83b0dd3acf52",
+        "child_name": "M&A"
+      },
+      {
+        "parent_id": "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "parent_name": "Capital Allocation",
+        "child_id": "e3dd9e7f-33a5-41ae-a76b-d3a0e3d615ea",
+        "child_name": "Dividends"
+      },
+      {
+        "parent_id": "502db149-a366-4b97-bfa9-20d1671409e7",
+        "parent_name": "Data Center",
+        "child_id": "171f34ee-1d4c-49e3-856e-3407862869fe",
+        "child_name": "Cloud Infrastructure"
+      },
+      {
+        "parent_id": "502db149-a366-4b97-bfa9-20d1671409e7",
+        "parent_name": "Data Center",
+        "child_id": "b8f2a7ba-d7f9-408b-b190-a1dc5818ea51",
+        "child_name": "Enterprise Demand"
+      },
+      {
+        "parent_id": "971d6a71-6ab0-4ff0-a769-df1542023b84",
+        "parent_name": "Operations",
+        "child_id": "1c543919-b1cf-4b0c-8bf4-82fad4b847e7",
+        "child_name": "Supply Chain"
+      },
+      {
+        "parent_id": "971d6a71-6ab0-4ff0-a769-df1542023b84",
+        "parent_name": "Operations",
+        "child_id": "8cf63470-b0fa-45f5-a77e-8d4276d36184",
+        "child_name": "Labor"
+      },
+      {
+        "parent_id": "971d6a71-6ab0-4ff0-a769-df1542023b84",
+        "parent_name": "Operations",
+        "child_id": "b3d75e0a-4690-4e2a-999a-0b079e20d54a",
+        "child_name": "Manufacturing"
+      },
+      {
+        "parent_id": "a6d1dade-0821-4b7a-a5e3-f267ea01ea1a",
+        "parent_name": "Automotive",
+        "child_id": "0308511b-01a8-45dd-a15f-3f08b74809ee",
+        "child_name": "Autonomous Driving"
+      },
+      {
+        "parent_id": "a6d1dade-0821-4b7a-a5e3-f267ea01ea1a",
+        "parent_name": "Automotive",
+        "child_id": "cd976a40-bf1e-48b4-a566-de0cbc13e456",
+        "child_name": "Electric Vehicles"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "0371cc01-f630-4b35-a668-762a5da327d4",
+        "child_name": "Macroeconomic Conditions"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "2a4f3af2-322c-4fee-ad3e-9c279744aa5c",
+        "child_name": "Capital Allocation"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "5fa23c2f-2d5b-42bd-ac5e-03a1fcea7248",
+        "child_name": "Consumer Demand"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "64a31caf-a115-4cb1-bfee-83b0dd3acf52",
+        "child_name": "M&A"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "6f4d4176-532a-435c-a014-eee4365940f3",
+        "child_name": "Pricing"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "cd95950b-c66d-4793-a8e9-4f5627f89e12",
+        "child_name": "Capital Expenditures"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "ce05f4ad-6174-47bf-badf-ad0f738a8ca5",
+        "child_name": "Revenue"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "e3dd9e7f-33a5-41ae-a76b-d3a0e3d615ea",
+        "child_name": "Dividends"
+      },
+      {
+        "parent_id": "b590ffda-325b-40f8-a4aa-5d7993bc3af6",
+        "parent_name": "Financial Performance",
+        "child_id": "f4c23fb8-494e-4310-b003-1504a586ccca",
+        "child_name": "Guidance"
+      },
+      {
+        "parent_id": "bc218d4e-1af9-4163-99ad-0f10101f445d",
+        "parent_name": "Artificial Intelligence",
+        "child_id": "a683239a-0bb1-4a48-93b8-c50f4f9286ed",
+        "child_name": "Machine Learning"
+      },
+      {
+        "parent_id": "bc218d4e-1af9-4163-99ad-0f10101f445d",
+        "parent_name": "Artificial Intelligence",
+        "child_id": "b628ed32-e94f-4626-9174-49e3a4de0a63",
+        "child_name": "Generative AI"
+      },
+      {
+        "parent_id": "ce05f4ad-6174-47bf-badf-ad0f738a8ca5",
+        "parent_name": "Revenue",
+        "child_id": "6f4d4176-532a-435c-a014-eee4365940f3",
+        "child_name": "Pricing"
+      }
+    ],
+    "roots": [
+      "Artificial Intelligence",
+      "Automotive",
+      "Data Center",
+      "Financial Performance",
+      "Legal and Regulatory",
+      "Operations"
+    ]
+  }
+}

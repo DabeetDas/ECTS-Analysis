@@ -1,0 +1,52 @@
+{
+  "Banking Operations": [
+    "Branch Network",
+    "Customer Acquisition",
+    "Digital Banking",
+    "Technology Transformation"
+  ],
+  "Credit Growth": [
+    "Retail Loans",
+    "Corporate Loans",
+    "MSME Lending",
+    "Agriculture Loans"
+  ],
+  "Deposits": [
+    "CASA",
+    "Term Deposits",
+    "Deposit Growth"
+  ],
+  "Financial Performance": [
+    "Net Interest Income",
+    "Net Interest Margin",
+    "Fee Income",
+    "Operating Profit",
+    "Return on Assets",
+    "Return on Equity"
+  ],
+  "Asset Quality": [
+    "Gross NPA",
+    "Net NPA",
+    "Slippages",
+    "Provisioning",
+    "Credit Cost",
+    "Recovery",
+    "Write-offs"
+  ],
+  "Capital and Liquidity": [
+    "Capital Adequacy",
+    "CET1 Ratio",
+    "Liquidity Coverage Ratio"
+  ],
+  "Risk and Regulation": [
+    "RBI Regulations",
+    "Government Schemes",
+    "Macro Environment",
+    "Interest Rates"
+  ],
+  "Treasury": [
+    "Bond Yields",
+    "Investment Book",
+    "Trading Gains"
+  ]
+}

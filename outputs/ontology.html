@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Topics Ontology</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f7f4;
+      color: #1f2933;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f7f7f4;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      border-bottom: 1px solid #d8ded8;
+      background: rgba(247, 247, 244, 0.94);
+      backdrop-filter: blur(10px);
+      padding: 18px 24px 14px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      color: #50606b;
+      font-size: 13px;
+    }
+    main {
+      overflow: auto;
+      padding: 22px;
+    }
+    svg {
+      display: block;
+      min-width: 100%;
+      background: #ffffff;
+      border: 1px solid #d8ded8;
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(31, 41, 51, 0.08);
+    }
+    .edge {
+      fill: none;
+      stroke: #8a979f;
+      stroke-width: 1.4;
+      opacity: 0.72;
+    }
+    .node rect {
+      fill: #ffffff;
+      stroke: #2f6f5e;
+      stroke-width: 1.4;
+      rx: 8;
+    }
+    .node.multi-parent rect {
+      stroke: #b6543c;
+      stroke-width: 2;
+    }
+    .node.root rect {
+      fill: #edf7f2;
+    }
+    .node:hover rect {
+      fill: #fff8e8;
+      stroke-width: 2.4;
+    }
+    .node:hover text {
+      fill: #0f1d25;
+    }
+    .hover-panel {
+      display: none;
+      pointer-events: none;
+    }
+    .node:hover .hover-panel {
+      display: block;
+    }
+    .hover-panel-box {
+      background: #fffdf7;
+      border: 1px solid #c6d1ca;
+      border-radius: 8px;
+      box-shadow: 0 14px 36px rgba(31, 41, 51, 0.18);
+      color: #1f2933;
+      font-size: 12px;
+      line-height: 1.35;
+      max-height: 260px;
+      overflow: hidden;
+      padding: 12px;
+    }
+    .hover-panel-title {
+      color: #132027;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .hover-panel-label {
+      color: #53616a;
+      font-weight: 700;
+      margin-top: 7px;
+    }
+    .hover-panel-text {
+      color: #27343c;
+      margin-top: 3px;
+    }
+    .node-title {
+      fill: #18242c;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .node-detail {
+      fill: #66747d;
+      font-size: 11px;
+      letter-spacing: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Topics Ontology</h1>
+    <div class="meta">
+      <span>26 topics</span>
+      <span>24 relationships</span>
+      <span>6 root topics</span>
+      <span>hover a topic to read parents and excerpts</span>
+      <span>orange outline = multiple parents</span>
+    </div>
+  </header>
+  <main>
+    <svg width="932" height="1668" viewBox="0 0 932 1668" role="img" aria-label="Topics Ontology DAG visualization">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a979f"></path>
+        </marker>
+      </defs>
+      <g class="edges">
+        <path class="edge" d="M 571 516 C 618 516, 618 410, 658 410" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 1258 C 313 1258, 313 1258, 353 1258" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 571 198 C 618 198, 618 92, 658 92" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 571 198 C 618 198, 618 304, 658 304" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 571 198 C 618 198, 618 198, 658 198" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 834 C 313 834, 313 728, 353 728" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 834 C 313 834, 313 940, 353 940" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 1470 C 313 1470, 313 1576, 353 1576" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 1470 C 313 1470, 313 1364, 353 1364" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 1470 C 313 1470, 313 1470, 353 1470" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 516 C 313 516, 313 410, 353 410" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 516 C 313 516, 313 622, 353 622" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 313 622, 313 516, 353 516" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 313 622, 313 198, 353 198" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 466 622, 466 410, 658 410" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 466 622, 466 304, 658 304" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 466 622, 466 516, 658 516" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 313 622, 313 1046, 353 1046" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 313 622, 313 834, 353 834" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 466 622, 466 198, 658 198" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 622 C 313 622, 313 1152, 353 1152" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 198 C 313 198, 313 304, 353 304" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 266 198 C 313 198, 313 92, 353 92" marker-end="url(#arrow)"></path>
+        <path class="edge" d="M 571 834 C 618 834, 618 516, 658 516" marker-end="url(#arrow)"></path>
+      </g>
+      <g class="nodes">
+        <g class="node root">
+          <title>Artificial Intelligence
+Parents: (root topic)
+Children: Generative AI, Machine Learning</title>
+          <rect x="56" y="162" width="210" height="72"></rect>
+          <text class="node-title" x="70" y="186">Artificial Intelligence</text>
+          <text class="node-detail" x="70" y="220">0 parents</text>
+
+          <foreignObject class="hover-panel" x="280" y="144" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Artificial Intelligence</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">(root topic)</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Generative AI, Machine Learning</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node root">
+          <title>Automotive
+Parents: (root topic)
+Children: Autonomous Driving, Electric Vehicles</title>
+          <rect x="56" y="480" width="210" height="72"></rect>
+          <text class="node-title" x="70" y="504">Automotive</text>
+          <text class="node-detail" x="70" y="538">0 parents</text>
+
+          <foreignObject class="hover-panel" x="280" y="462" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Automotive</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">(root topic)</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Autonomous Driving, Electric Vehicles</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node root">
+          <title>Financial Performance
+Parents: (root topic)
+Children: Capital Allocation, Capital Expenditures, Consumer Demand, Dividends, Guidance, M&amp;A, Macroeconomic Conditions, Pricing, Revenue</title>
+          <rect x="56" y="586" width="210" height="72"></rect>
+          <text class="node-title" x="70" y="610">Financial Performance</text>
+          <text class="node-detail" x="70" y="644">0 parents</text>
+
+          <foreignObject class="hover-panel" x="280" y="568" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Financial Performance</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">(root topic)</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Capital Allocation, Capital Expenditures, Consumer Demand, Dividends, Guidance, M&amp;A, Macroeconomic Conditions, Pricing, Revenue</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node root">
+          <title>Data Center
+Parents: (root topic)
+Children: Cloud Infrastructure, Enterprise Demand</title>
+          <rect x="56" y="798" width="210" height="72"></rect>
+          <text class="node-title" x="70" y="822">Data Center</text>
+          <text class="node-detail" x="70" y="856">0 parents</text>
+
+          <foreignObject class="hover-panel" x="280" y="780" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Data Center</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">(root topic)</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Cloud Infrastructure, Enterprise Demand</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node root">
+          <title>Legal and Regulatory
+Parents: (root topic)
+Children: Regulatory Developments</title>
+          <rect x="56" y="1222" width="210" height="72"></rect>
+          <text class="node-title" x="70" y="1246">Legal and Regulatory</text>
+          <text class="node-detail" x="70" y="1280">0 parents</text>
+
+          <foreignObject class="hover-panel" x="280" y="1204" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Legal and Regulatory</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">(root topic)</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Regulatory Developments</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node root">
+          <title>Operations
+Parents: (root topic)
+Children: Labor, Manufacturing, Supply Chain</title>
+          <rect x="56" y="1434" width="210" height="72"></rect>
+          <text class="node-title" x="70" y="1458">Operations</text>
+          <text class="node-detail" x="70" y="1492">0 parents</text>
+
+          <foreignObject class="hover-panel" x="280" y="1352" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Operations</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">(root topic)</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Labor, Manufacturing, Supply Chain</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Generative AI
+Parents: Artificial Intelligence
+Children: (none)</title>
+          <rect x="361" y="56" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="80">Generative AI</text>
+          <text class="node-detail" x="375" y="114">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="56" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Generative AI</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Artificial Intelligence</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Capital Allocation
+Parents: Financial Performance
+Children: Buybacks, Dividends, M&amp;A</title>
+          <rect x="361" y="162" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="186">Capital Allocation</text>
+          <text class="node-detail" x="375" y="220">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="144" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Capital Allocation</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Buybacks, Dividends, M&amp;A</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Machine Learning
+Parents: Artificial Intelligence
+Children: (none)</title>
+          <rect x="361" y="268" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="292">Machine Learning</text>
+          <text class="node-detail" x="375" y="326">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="250" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Machine Learning</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Artificial Intelligence</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Autonomous Driving
+Parents: Automotive
+Children: (none)</title>
+          <rect x="361" y="374" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="398">Autonomous Driving</text>
+          <text class="node-detail" x="375" y="432">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="356" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Autonomous Driving</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Automotive</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Macroeconomic Conditions
+Parents: Financial Performance
+Children: Consumer Demand
+Excerpts:
+- Escalation of trade and tariff tensions and the resultant financial market volatility have raised concerns regarding the weakening of global growth in the near term.
+- India&#x27;s CPI headline inflation has now significantly moderated, and we believe average CPI headline forecast for FY26 could stay below 4% now.</title>
+          <rect x="361" y="480" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="504">Macroeconomic Conditions</text>
+          <text class="node-detail" x="375" y="538">1 parent | 2 excerpts</text>
+
+          <foreignObject class="hover-panel" x="56" y="462" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Macroeconomic Conditions</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Consumer Demand</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- Escalation of trade and tariff tensions and the resultant financial market volatility have raised concerns regarding the weakening of global growth in the near term.</div><div class="hover-panel-text">- India&#x27;s CPI headline inflation has now significantly moderated, and we believe average CPI headline forecast for FY26 could stay below 4% now.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Electric Vehicles
+Parents: Automotive
+Children: (none)</title>
+          <rect x="361" y="586" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="610">Electric Vehicles</text>
+          <text class="node-detail" x="375" y="644">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="568" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Electric Vehicles</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Automotive</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Cloud Infrastructure
+Parents: Data Center
+Children: (none)</title>
+          <rect x="361" y="692" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="716">Cloud Infrastructure</text>
+          <text class="node-detail" x="375" y="750">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="674" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Cloud Infrastructure</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Data Center</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Revenue
+Parents: Financial Performance
+Children: Pricing</title>
+          <rect x="361" y="798" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="822">Revenue</text>
+          <text class="node-detail" x="375" y="856">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="780" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Revenue</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">Pricing</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Enterprise Demand
+Parents: Data Center
+Children: (none)</title>
+          <rect x="361" y="904" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="928">Enterprise Demand</text>
+          <text class="node-detail" x="375" y="962">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="886" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Enterprise Demand</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Data Center</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Capital Expenditures
+Parents: Financial Performance
+Children: (none)
+Excerpts:
+- We have sufficient headroom to take care of business growth requirements.
+- Our capital adequacy ratio is at 14.25% and the CET 1 ratio is at 10.81% and are well above the regulatory requirements.</title>
+          <rect x="361" y="1010" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="1034">Capital Expenditures</text>
+          <text class="node-detail" x="375" y="1068">1 parent | 2 excerpts</text>
+
+          <foreignObject class="hover-panel" x="56" y="992" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Capital Expenditures</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- We have sufficient headroom to take care of business growth requirements.</div><div class="hover-panel-text">- Our capital adequacy ratio is at 14.25% and the CET 1 ratio is at 10.81% and are well above the regulatory requirements.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Guidance
+Parents: Financial Performance
+Children: (none)
+Excerpts:
+- We did give guidance last year, not guidance, we expected credit growth to be 14% to 16%.
+- We still stick to it. So, we didn&#x27;t want to show that we can make the similar profit what we have made, when we know for sure these costs are likely to happen.</title>
+          <rect x="361" y="1116" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="1140">Guidance</text>
+          <text class="node-detail" x="375" y="1174">1 parent | 2 excerpts</text>
+
+          <foreignObject class="hover-panel" x="56" y="1098" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Guidance</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- We did give guidance last year, not guidance, we expected credit growth to be 14% to 16%.</div><div class="hover-panel-text">- We still stick to it. So, we didn&#x27;t want to show that we can make the similar profit what we have made, when we know for sure these costs are likely to happen.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Regulatory Developments
+Parents: Legal and Regulatory
+Children: (none)
+Excerpts:
+- RBI has deployed a strategic mix of interventions, including open market operations, daily variable rate repo auctions, and dollar/rupee buy-sell swap auctions.</title>
+          <rect x="361" y="1222" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="1246">Regulatory Developments</text>
+          <text class="node-detail" x="375" y="1280">1 parent | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="56" y="1204" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Regulatory Developments</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Legal and Regulatory</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- RBI has deployed a strategic mix of interventions, including open market operations, daily variable rate repo auctions, and dollar/rupee buy-sell swap auctions.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Labor
+Parents: Operations
+Children: (none)
+Excerpts:
+- Our extensive investment in workforce training, procedures, and compliance to maintain this level.</title>
+          <rect x="361" y="1328" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="1352">Labor</text>
+          <text class="node-detail" x="375" y="1386">1 parent | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="56" y="1310" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Labor</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Operations</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- Our extensive investment in workforce training, procedures, and compliance to maintain this level.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Manufacturing
+Parents: Operations
+Children: (none)</title>
+          <rect x="361" y="1434" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="1458">Manufacturing</text>
+          <text class="node-detail" x="375" y="1492">1 parent</text>
+
+          <foreignObject class="hover-panel" x="56" y="1352" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Manufacturing</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Operations</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">(none in current assignment output)</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Supply Chain
+Parents: Operations
+Children: (none)
+Excerpts:
+- The dampening global economic outlook could impact India&#x27;s economic growth through weaker external demand even though the domestic growth engines, viz., consumption and investment, are relatively less susceptible to external headwinds.</title>
+          <rect x="361" y="1540" width="210" height="72"></rect>
+          <text class="node-title" x="375" y="1564">Supply Chain</text>
+          <text class="node-detail" x="375" y="1598">1 parent | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="56" y="1352" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Supply Chain</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Operations</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- The dampening global economic outlook could impact India&#x27;s economic growth through weaker external demand even though the domestic growth engines, viz., consumption and investment, are relatively less susceptible to external headwinds.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node">
+          <title>Buybacks
+Parents: Capital Allocation
+Children: (none)
+Excerpts:
+- The board has granted approval to raise equity capital up to ₹25,000 cores, with the authorization being valid for a period of 12 months.</title>
+          <rect x="666" y="56" width="210" height="72"></rect>
+          <text class="node-title" x="680" y="80">Buybacks</text>
+          <text class="node-detail" x="680" y="114">1 parent | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="272" y="56" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Buybacks</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Capital Allocation</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- The board has granted approval to raise equity capital up to ₹25,000 cores, with the authorization being valid for a period of 12 months.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node multi-parent">
+          <title>Dividends
+Parents: Capital Allocation, Financial Performance
+Children: (none)
+Excerpts:
+- We will consistently achieve RoE over 15% through the business cycles.</title>
+          <rect x="666" y="162" width="210" height="72"></rect>
+          <text class="node-title" x="680" y="186">Dividends</text>
+          <text class="node-detail" x="680" y="220">2 parents | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="272" y="144" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Dividends</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Capital Allocation, Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- We will consistently achieve RoE over 15% through the business cycles.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node multi-parent">
+          <title>M&amp;A
+Parents: Capital Allocation, Financial Performance
+Children: (none)
+Excerpts:
+- Our subsidiaries are consistently performing well and continue to create significant value for all the stakeholders.</title>
+          <rect x="666" y="268" width="210" height="72"></rect>
+          <text class="node-title" x="680" y="292">M&amp;A</text>
+          <text class="node-detail" x="680" y="326">2 parents | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="272" y="250" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">M&amp;A</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Capital Allocation, Financial Performance</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- Our subsidiaries are consistently performing well and continue to create significant value for all the stakeholders.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node multi-parent">
+          <title>Consumer Demand
+Parents: Financial Performance, Macroeconomic Conditions
+Children: (none)
+Excerpts:
+- Prospects for the farm sector have been boosted by the forecast of an above normal southwest monsoon for 2025, which could augment farm incomes and keep food prices under check.</title>
+          <rect x="666" y="374" width="210" height="72"></rect>
+          <text class="node-title" x="680" y="398">Consumer Demand</text>
+          <text class="node-detail" x="680" y="432">2 parents | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="272" y="356" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Consumer Demand</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance, Macroeconomic Conditions</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- Prospects for the farm sector have been boosted by the forecast of an above normal southwest monsoon for 2025, which could augment farm incomes and keep food prices under check.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+        <g class="node multi-parent">
+          <title>Pricing
+Parents: Financial Performance, Revenue
+Children: (none)
+Excerpts:
+- Moderation in treasury yields definitely would help the markets to perform better and I think our treasury will do, while we are not willing to give any guidance on this.</title>
+          <rect x="666" y="480" width="210" height="72"></rect>
+          <text class="node-title" x="680" y="504">Pricing</text>
+          <text class="node-detail" x="680" y="538">2 parents | 1 excerpt</text>
+
+          <foreignObject class="hover-panel" x="272" y="462" width="380" height="260">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="hover-panel-box">
+              <div class="hover-panel-title">Pricing</div>
+              <div class="hover-panel-label">Parents</div>
+              <div class="hover-panel-text">Financial Performance, Revenue</div>
+              <div class="hover-panel-label">Children</div>
+              <div class="hover-panel-text">(none)</div>
+              
+              
+          <div class="hover-panel-label">Excerpts</div>
+          <div class="hover-panel-text">- Moderation in treasury yields definitely would help the markets to perform better and I think our treasury will do, while we are not willing to give any guidance on this.</div>
+
+            </div>
+          </foreignObject>
+        </g>
+      </g>
+    </svg>
+  </main>
+</body>
+</html>
