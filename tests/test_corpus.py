@@ -9,6 +9,7 @@ from ects_analysis.corpus import (
     compute_trends,
     jaccard_similarity,
     kendall_tau_trend,
+    recompute_existing_analysis,
     retrieve_chunked_topics,
 )
 from ects_analysis.ontology import TopicsOntology
@@ -134,6 +135,37 @@ class CorpusAnalysisTests(unittest.TestCase):
         self.assertEqual(analysis["common_topics"]["PNB__SBI"][0]["topic_name"], "Deposit Growth")
         self.assertEqual(analysis["unique_topics"]["SBI"][0]["topic_name"], "Digital Banking")
         self.assertEqual(analysis["unique_topics"]["PNB"][0]["topic_name"], "Asset Quality")
+
+    def test_recompute_existing_analysis_reuses_observations_without_llm(self) -> None:
+        payload = {
+            "parameters": {"top_n": 2, "alpha": 1.0, "min_periods": 4},
+            "observations": [
+                {
+                    "company": "SBI",
+                    "call_date": "2024-01-01",
+                    "quarter": "Q1",
+                    "topic_id": "deposit",
+                    "topic_name": "Deposit Growth",
+                    "mention_count": 1,
+                    "excerpts": ["Deposit growth was discussed."],
+                },
+                {
+                    "company": "SBI",
+                    "call_date": "2024-04-01",
+                    "quarter": "Q2",
+                    "topic_id": "deposit",
+                    "topic_name": "Deposit Growth",
+                    "mention_count": 3,
+                    "excerpts": ["Deposit growth improved."],
+                },
+            ],
+        }
+
+        output = recompute_existing_analysis(payload, min_periods=2, alpha=1.0)
+
+        self.assertEqual(output["parameters"]["min_periods"], 2)
+        self.assertTrue(output["parameters"]["recomputed_from_existing_observations"])
+        self.assertEqual(output["trend_analysis"]["SBI"][0]["topic_name"], "Deposit Growth")
 
 
 if __name__ == "__main__":

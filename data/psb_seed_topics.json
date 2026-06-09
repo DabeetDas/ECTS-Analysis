@@ -1,52 +1,82 @@
 {
-  "Banking Operations": [
-    "Branch Network",
-    "Customer Acquisition",
-    "Digital Banking",
-    "Technology Transformation"
-  ],
-  "Credit Growth": [
-    "Retail Loans",
-    "Corporate Loans",
-    "MSME Lending",
-    "Agriculture Loans"
-  ],
-  "Deposits": [
-    "CASA",
-    "Term Deposits",
-    "Deposit Growth"
-  ],
   "Financial Performance": [
     "Net Interest Income",
     "Net Interest Margin",
     "Fee Income",
     "Operating Profit",
-    "Return on Assets",
-    "Return on Equity"
+    "Profit After Tax",
+    "Shareholder Returns"
+  ],
+  "Balance Sheet Growth": [
+    "Total Business",
+    "Advances Growth",
+    "Deposit Growth",
+    "Loan Mix",
+    "Credit Deposit Ratio",
+    "Market Share"
+  ],
+  "Deposits and Funding": [
+    "CASA",
+    "Retail Term Deposits",
+    "Bulk Deposits",
+    "Deposit Pricing",
+    "Funding Cost",
+    "Liability Franchise"
+  ],
+  "Loan Portfolio": [
+    "Retail Loans",
+    "Corporate Loans",
+    "MSME Lending",
+    "Agriculture Loans",
+    "Personal Loans",
+    "International Book"
   ],
   "Asset Quality": [
     "Gross NPA",
     "Net NPA",
     "Slippages",
     "Provisioning",
-    "Credit Cost",
     "Recovery",
-    "Write-offs"
+    "Credit Cost"
   ],
   "Capital and Liquidity": [
     "Capital Adequacy",
     "CET1 Ratio",
-    "Liquidity Coverage Ratio"
+    "Tier 1 Capital",
+    "Liquidity Coverage Ratio",
+    "Capital Raising",
+    "Risk Weighted Assets"
   ],
   "Risk and Regulation": [
     "RBI Regulations",
     "Government Schemes",
     "Macro Environment",
-    "Interest Rates"
+    "Interest Rates",
+    "Credit Risk",
+    "Compliance"
   ],
   "Treasury": [
     "Bond Yields",
     "Investment Book",
-    "Trading Gains"
+    "Trading Gains",
+    "Recoveries From Written Off Accounts",
+    "Non Interest Income",
+    "ALM Management"
+  ],
+  "Digital and Operations": [
+    "Digital Banking",
+    "Technology Transformation",
+    "Branch Network",
+    "Customer Acquisition",
+    "Operational Efficiency",
+    "Cash Management"
+  ],
+  "Strategy and Management": [
+    "Management Commentary",
+    "Guidance",
+    "Business Model",
+    "Brand Positioning",
+    "Investor Relations",
+    "Human Resources"
   ]
 }

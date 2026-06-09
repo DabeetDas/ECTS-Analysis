@@ -53,15 +53,47 @@ The Qwen loader uses local files only by default. You can tune it with environme
 PYTHONPATH=src python3 -m unittest discover -s tests
 ```
 
-## Visualize
+## Frontend Dashboard
 
-After generating `outputs/ontology.json`, render a standalone HTML/SVG view:
+The dashboard UI now lives in a modern Next.js app under [frontend](frontend). The Python `visualize` module no longer renders raw HTML/CSS; it packages analysis output, the topic hierarchy, bank branding, and financial CSV data into JSON for the React frontend.
+
+Export the dashboard data:
 
 ```bash
-PYTHONPATH=src python3 -m ects_analysis.visualize --input outputs/ontology.json --output outputs/ontology.html
+PYTHONPATH=src python3 -m ects_analysis.visualize \
+  --input outputs/psb_corpus_analysis.json \
+  --output frontend/public/data/dashboard-data.json \
+  --view corpus \
+  --profile-bank BOB \
+  --financials data/psb_financials_dummy.csv \
+  --topic-hierarchy data/psb_seed_topics.json
 ```
 
-Hover over a topic node in the HTML view to see its direct parents, children, aliases, and any excerpts from the demo assignments.
+Run the frontend locally:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000`.
+
+Frontend routes:
+
+- `/` is the dashboard index.
+- `/competitors/` contains only peer comparison views such as overlap matrix, shared topics, top-topic comparison, and comparison parameters.
+- `/banks/BOB/`, `/banks/SBI/`, and other generated bank pages contain only individual bank insights such as financials, transcript themes, trends, top topics, and observations.
+
+Create a static production build for Netlify:
+
+```bash
+cd frontend
+npm install
+npm run build
+```
+
+The static export is written to `frontend/out`. The root [netlify.toml](netlify.toml) is configured with `base = "frontend"`, `command = "npm run build"`, and `publish = "out"`.
 
 ## PSB Corpus Analysis
 
@@ -78,7 +110,7 @@ To reproduce the paper's Section 5.1 and 5.2 style analyses for Indian public se
 ]
 ```
 
-Paths in the manifest are resolved relative to the manifest file. The analysis uses [psb_seed_topics.json](data/psb_seed_topics.json) by default, which contains banking-oriented ontology anchors such as Asset Quality, Deposits, Credit Growth, NIM, Capital Adequacy, Treasury, and Digital Banking.
+Paths in the manifest are resolved relative to the manifest file. The analysis uses [psb_seed_topics.json](data/psb_seed_topics.json) by default, which contains 10 broad banking topics with 5-6 canonical subtopics under each topic. This keeps the ontology anchored around a topic/subtopic hierarchy while still allowing extracted transcript themes to be grouped back into a compact management view.
 
 Run:
 
@@ -134,13 +166,28 @@ The output contains:
 - `competitor_analysis.common_topics`: shared topics for each bank pair with sample excerpts.
 - `competitor_analysis.unique_topics`: topics prominent for one bank but absent from peer top-topic sets.
 
-Render the frontend dashboard:
+Export the frontend dashboard data:
 
 ```bash
 PYTHONPATH=src python3 -m ects_analysis.visualize \
   --input outputs/psb_corpus_analysis.json \
-  --output outputs/psb_dashboard.html \
-  --view corpus
+  --output frontend/public/data/dashboard-data.json \
+  --view corpus \
+  --profile-bank BOB \
+  --financials data/psb_financials_dummy.csv \
+  --topic-hierarchy data/psb_seed_topics.json
 ```
 
-The dashboard displays summary metrics, trend tables, the competitor Jaccard matrix, common topics, unique topics, top topics, and raw topic observations with excerpts.
+The React dashboard displays summary metrics, the topic/subtopic hierarchy, a featured bank profile, trend tables, the competitor Jaccard matrix, common topics, unique topics, top topics, and raw topic observations with excerpts. The featured profile defaults to BOB and overlays qualitative transcript summaries with the 3-year dummy financial CSV at [psb_financials_dummy.csv](data/psb_financials_dummy.csv).
+
+To point the profile at another bank or a replacement financial file:
+
+```bash
+PYTHONPATH=src python3 -m ects_analysis.visualize \
+  --input outputs/psb_corpus_analysis.json \
+  --output frontend/public/data/dashboard-data.json \
+  --view corpus \
+  --profile-bank SBI \
+  --financials data/psb_financials_dummy.csv \
+  --topic-hierarchy data/psb_seed_topics.json
+```

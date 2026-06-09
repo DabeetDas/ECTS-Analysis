@@ -4,4 +4,6 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 src/ects_analysis/.env
-
+frontend/.next/
+frontend/out/
+frontend/node_modules/

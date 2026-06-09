@@ -634,6 +634,76 @@ def jaccard_similarity(left: set[str], right: set[str]) -> float:
     return len(left & right) / len(union)
 
 
+def observations_from_analysis(payload: dict[str, object]) -> list[TopicObservation]:
+    rows = payload.get("observations")
+    if not isinstance(rows, list):
+        raise ValueError("Analysis JSON must contain an `observations` list")
+
+    observations: list[TopicObservation] = []
+    for index, row in enumerate(rows, start=1):
+        if not isinstance(row, dict):
+            raise ValueError(f"Observation row {index} must be an object")
+        raw_date = row.get("call_date")
+        if not isinstance(raw_date, str):
+            raise ValueError(f"Observation row {index} must contain string `call_date`")
+        observations.append(
+            TopicObservation(
+                company=_required_observation_string(row, "company", index),
+                call_date=date.fromisoformat(raw_date),
+                quarter=row.get("quarter") if isinstance(row.get("quarter"), str) else None,
+                topic_id=_required_observation_string(row, "topic_id", index),
+                topic_name=_required_observation_string(row, "topic_name", index),
+                mention_count=int(row.get("mention_count") or 0),
+                excerpts=[
+                    str(excerpt)
+                    for excerpt in row.get("excerpts", [])
+                    if isinstance(excerpt, str)
+                ],
+            )
+        )
+    return observations
+
+
+def _required_observation_string(row: dict[str, object], field: str, index: int) -> str:
+    value = row.get(field)
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"Observation row {index} is missing string field `{field}`")
+    return value
+
+
+def recompute_existing_analysis(
+    payload: dict[str, object],
+    *,
+    top_n: int | None = None,
+    alpha: float | None = None,
+    min_periods: int | None = None,
+) -> dict[str, object]:
+    parameters = payload.get("parameters")
+    parameter_map = dict(parameters) if isinstance(parameters, dict) else {}
+    resolved_top_n = int(top_n if top_n is not None else parameter_map.get("top_n", 100))
+    resolved_alpha = float(alpha if alpha is not None else parameter_map.get("alpha", 0.05))
+    resolved_min_periods = int(
+        min_periods if min_periods is not None else parameter_map.get("min_periods", 4)
+    )
+
+    observations = observations_from_analysis(payload)
+    output = dict(payload)
+    output["parameters"] = {
+        **parameter_map,
+        "top_n": resolved_top_n,
+        "alpha": resolved_alpha,
+        "min_periods": resolved_min_periods,
+        "recomputed_from_existing_observations": True,
+    }
+    output["trend_analysis"] = compute_trends(
+        observations,
+        min_periods=resolved_min_periods,
+        alpha=resolved_alpha,
+    )
+    output["competitor_analysis"] = compute_competitor_analysis(observations, top_n=resolved_top_n)
+    return output
+
+
 def load_exclude_topics(path: Path | None) -> list[str]:
     if path is None:
         return []
@@ -648,8 +718,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Run Section 5.1 trend analysis and Section 5.2 competitor analysis on earnings calls."
     )
-    parser.add_argument("--manifest", required=True, help="JSON manifest of call documents")
+    parser.add_argument("--manifest", help="JSON manifest of call documents")
     parser.add_argument("--output", default="outputs/corpus_analysis.json", help="Output analysis JSON")
+    parser.add_argument(
+        "--recompute-existing",
+        help="Existing corpus analysis JSON to recompute trends/competitors from without LLM calls",
+    )
     parser.add_argument(
         "--model",
         default=DEFAULT_OPENROUTER_MODEL,
@@ -724,8 +798,27 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    manifest_path = Path(args.manifest)
     output_path = Path(args.output)
+    if args.recompute_existing:
+        payload = json.loads(Path(args.recompute_existing).read_text(encoding="utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError("Existing analysis JSON must be an object")
+        analysis = recompute_existing_analysis(
+            payload,
+            top_n=args.top_n,
+            alpha=args.alpha,
+            min_periods=args.min_periods,
+        )
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
+        print(f"Recomputed existing analysis from {args.recompute_existing}")
+        print(f"Wrote corpus analysis to {output_path}")
+        return
+
+    if not args.manifest:
+        parser.error("--manifest is required unless --recompute-existing is provided")
+
+    manifest_path = Path(args.manifest)
     documents = load_manifest(manifest_path)
     seed_topics = load_seed_topics(Path(args.seed_topics) if args.seed_topics else None)
     exclude_topics = load_exclude_topics(Path(args.exclude_topics) if args.exclude_topics else None)
