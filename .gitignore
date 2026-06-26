@@ -7,3 +7,6 @@ src/ects_analysis/.env
 frontend/.next/
 frontend/out/
 frontend/node_modules/
+pipeline_backend/.env
+pipeline_backend/runs
+pipeline_backend/tests

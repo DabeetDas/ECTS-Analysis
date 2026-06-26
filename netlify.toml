@@ -5,3 +5,6 @@ publish = "out"
 
 [build.environment]
 NODE_VERSION = "20"
+
+[functions]
+directory = "frontend/netlify/functions"

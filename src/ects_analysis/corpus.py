@@ -4,7 +4,9 @@ import argparse
 import json
 import math
 import os
+import subprocess
 import sys
+import tempfile
 import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -796,6 +798,20 @@ def main() -> None:
         action="store_true",
         help="Disable the corpus progress bar",
     )
+    parser.add_argument(
+        "--gpu-split",
+        action="store_true",
+        help=(
+            "Split documents across GPU 0 and GPU 1 in two parallel sub-processes. "
+            "Each half loads its own model copy pinned via CUDA_VISIBLE_DEVICES."
+        ),
+    )
+    parser.add_argument(
+        "--gpu-split-index",
+        type=int,
+        default=None,
+        help=argparse.SUPPRESS,  # internal: which half to run (0 or 1)
+    )
     args = parser.parse_args()
 
     output_path = Path(args.output)
@@ -830,6 +846,23 @@ def main() -> None:
         args.ontology_mode == "auto" and args.provider != "qwen"
     )
 
+    # ── GPU-split mode: spawn two sub-processes, one per GPU ──────────
+    if args.gpu_split and args.gpu_split_index is None:
+        _run_gpu_split(args, documents, output_path)
+        return
+
+    # If this is a sub-process for one half of the split, trim documents.
+    if args.gpu_split_index is not None:
+        mid = len(documents) // 2
+        if args.gpu_split_index == 0:
+            documents = documents[:mid]
+        else:
+            documents = documents[mid:]
+        print(
+            f"[GPU {args.gpu_split_index}] Processing {len(documents)} documents",
+            file=sys.stderr,
+        )
+
     analysis = run_corpus_analysis(
         documents,
         model=args.model,
@@ -851,6 +884,107 @@ def main() -> None:
     output_path.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
     print(f"Analyzed {len(documents)} earnings-call documents")
     print(f"Wrote corpus analysis to {output_path}")
+
+
+def _run_gpu_split(args: argparse.Namespace, documents: list[CallDocument], output_path: Path) -> None:
+    """Spawn two sub-processes, one per GPU, each processing half the documents."""
+    n_docs = len(documents)
+    mid = n_docs // 2
+    print(f"GPU-split: {n_docs} documents → GPU 0 gets {mid}, GPU 1 gets {n_docs - mid}")
+
+    # Locate the src/ directory so sub-processes can find ects_analysis
+    src_dir = str(Path(__file__).resolve().parent.parent)  # .../src
+    existing_pythonpath = os.environ.get("PYTHONPATH", "")
+    merged_pythonpath = f"{src_dir}:{existing_pythonpath}" if existing_pythonpath else src_dir
+
+    # Build the base command from the original sys.argv, stripping --gpu-split
+    base_cmd = [sys.executable, "-m", "ects_analysis.corpus"]
+    # Forward all original args except --gpu-split and --output
+    skip_next = False
+    for i, arg in enumerate(sys.argv[1:]):
+        if skip_next:
+            skip_next = False
+            continue
+        if arg == "--gpu-split":
+            continue
+        if arg == "--output":
+            skip_next = True
+            continue
+        if arg.startswith("--output="):
+            continue
+        base_cmd.append(arg)
+
+    tmp_dir = tempfile.mkdtemp(prefix="corpus_gpu_split_")
+    out0 = os.path.join(tmp_dir, "gpu0_result.json")
+    out1 = os.path.join(tmp_dir, "gpu1_result.json")
+
+    cmd0 = base_cmd + ["--output", out0, "--gpu-split-index", "0"]
+    cmd1 = base_cmd + ["--output", out1, "--gpu-split-index", "1"]
+
+    env0 = {**os.environ, "CUDA_VISIBLE_DEVICES": "0", "PYTHONPATH": merged_pythonpath}
+    env1 = {**os.environ, "CUDA_VISIBLE_DEVICES": "1", "PYTHONPATH": merged_pythonpath}
+
+    print(f"  GPU 0 → {' '.join(cmd0)}")
+    print(f"  GPU 1 → {' '.join(cmd1)}")
+
+    proc0 = subprocess.Popen(cmd0, env=env0)
+    proc1 = subprocess.Popen(cmd1, env=env1)
+
+    rc0 = proc0.wait()
+    rc1 = proc1.wait()
+
+    if rc0 != 0:
+        print(f"ERROR: GPU 0 sub-process exited with code {rc0}", file=sys.stderr)
+    if rc1 != 0:
+        print(f"ERROR: GPU 1 sub-process exited with code {rc1}", file=sys.stderr)
+    if rc0 != 0 or rc1 != 0:
+        sys.exit(1)
+
+    # ── Merge the two partial results ─────────────────────────────────
+    result0 = json.loads(Path(out0).read_text(encoding="utf-8"))
+    result1 = json.loads(Path(out1).read_text(encoding="utf-8"))
+
+    merged_observations = result0.get("observations", []) + result1.get("observations", [])
+    merged_documents = result0.get("documents", []) + result1.get("documents", [])
+
+    # Merge ontologies: combine nodes from both halves
+    ontology0 = result0.get("ontology", {})
+    ontology1 = result1.get("ontology", {})
+    merged_ontology_nodes = {**ontology0.get("nodes", {}), **ontology1.get("nodes", {})}
+    merged_ontology = {
+        **ontology0,
+        "nodes": merged_ontology_nodes,
+    }
+
+    # Build a merged payload and recompute trends + competitor analysis
+    merged_payload: dict[str, object] = {
+        "parameters": result0.get("parameters", {}),
+        "documents": merged_documents,
+        "observations": merged_observations,
+        "ontology": merged_ontology,
+    }
+    merged_analysis = recompute_existing_analysis(
+        merged_payload,
+        top_n=args.top_n,
+        alpha=args.alpha,
+        min_periods=args.min_periods,
+    )
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(merged_analysis, indent=2), encoding="utf-8")
+    print(f"Merged results from both GPUs ({len(merged_observations)} observations)")
+    print(f"Wrote corpus analysis to {output_path}")
+
+    # Cleanup temp files
+    for f in (out0, out1):
+        try:
+            os.remove(f)
+        except OSError:
+            pass
+    try:
+        os.rmdir(tmp_dir)
+    except OSError:
+        pass
 
 
 if __name__ == "__main__":

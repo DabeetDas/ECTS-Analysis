@@ -65,7 +65,7 @@ PYTHONPATH=src python3 -m ects_analysis.visualize \
   --output frontend/public/data/dashboard-data.json \
   --view corpus \
   --profile-bank BOB \
-  --financials data/psb_financials_dummy.csv \
+  --financials data_new.xlsx \
   --topic-hierarchy data/psb_seed_topics.json
 ```
 
@@ -156,7 +156,7 @@ PYTHONPATH=src python3 -m ects_analysis.corpus \
   --provider qwen \
   --model /path/to/qwen-checkpoint-dir \
   --chunk-chars 3000 \
-  --request-delay-seconds 3
+  --request-delay-seconds 3 
 ```
 
 The output contains:
@@ -174,11 +174,11 @@ PYTHONPATH=src python3 -m ects_analysis.visualize \
   --output frontend/public/data/dashboard-data.json \
   --view corpus \
   --profile-bank BOB \
-  --financials data/psb_financials_dummy.csv \
+  --financials data_new.xlsx \
   --topic-hierarchy data/psb_seed_topics.json
 ```
 
-The React dashboard displays summary metrics, the topic/subtopic hierarchy, a featured bank profile, trend tables, the competitor Jaccard matrix, common topics, unique topics, top topics, and raw topic observations with excerpts. The featured profile defaults to BOB and overlays qualitative transcript summaries with the 3-year dummy financial CSV at [psb_financials_dummy.csv](data/psb_financials_dummy.csv).
+The React dashboard displays summary metrics, the topic/subtopic hierarchy, a featured bank profile, trend tables, the competitor Jaccard matrix, common topics, unique topics, top topics, and raw topic observations with excerpts. The featured profile defaults to BOB and overlays qualitative transcript summaries with SBI and BOB financial data from [data_new.xlsx](data_new.xlsx). CSV financial files with `bank` and `fiscal_year` columns are still supported.
 
 To point the profile at another bank or a replacement financial file:
 
@@ -188,6 +188,6 @@ PYTHONPATH=src python3 -m ects_analysis.visualize \
   --output frontend/public/data/dashboard-data.json \
   --view corpus \
   --profile-bank SBI \
-  --financials data/psb_financials_dummy.csv \
+  --financials data_new.xlsx \
   --topic-hierarchy data/psb_seed_topics.json
 ```

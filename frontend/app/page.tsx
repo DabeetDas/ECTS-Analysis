@@ -31,6 +31,12 @@ export default function HomePage() {
           <p>Peer overlap matrix, comparison parameters, common topics, and bank-vs-bank topic signals.</p>
         </Link>
 
+        <Link className="index-card peer-analysis-card" href="/peer-analysis/">
+          <p className="eyebrow">Custom Analysis</p>
+          <h2>Financial Peer Workspace</h2>
+          <p>Select banks, years, and financial metrics to create peer graphs or comparison tables.</p>
+        </Link>
+
         {banks.map((bank) => (
           <Link
             className="index-card"

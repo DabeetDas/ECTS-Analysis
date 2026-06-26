@@ -8,7 +8,7 @@ export function AppShell({
   bank
 }: {
   children: ReactNode;
-  active?: "home" | "competitors" | string;
+  active?: "home" | "competitors" | "peer-analysis" | "upload" | string;
   bank?: Bank;
 }) {
   const brand = bank?.brand ?? fallbackBrand;
@@ -36,6 +36,12 @@ export function AppShell({
           </Link>
           <Link className={active === "competitors" ? "active" : ""} href="/competitors/">
             Competitors
+          </Link>
+          <Link className={active === "peer-analysis" ? "active" : ""} href="/peer-analysis/">
+            Peer Analysis
+          </Link>
+          <Link className={active === "upload" ? "active" : ""} href="/upload/">
+            ⬆ Upload & Analyze
           </Link>
           {banks.map((item) => (
             <Link
@@ -116,7 +122,7 @@ export function Metric({
 export function DataStamp() {
   return (
     <p className="data-stamp">
-      Source: {data.metadata.generated_from ?? "dashboard-data.json"} | Financials are currently dummy CSV values.
+      Made with ❤️ for financial analysis
     </p>
   );
 }

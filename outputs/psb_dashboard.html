@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PSB Corpus Analysis</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f7f8;
+      color: #18232b;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f6f7f8;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      border-bottom: 1px solid #d8dde3;
+      background: rgba(246, 247, 248, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 18px 24px 14px;
+    }
+    h1 {
+      margin: 0;
+      color: #101820;
+      font-size: 22px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    nav a {
+      border: 1px solid #c5ced6;
+      border-radius: 8px;
+      color: #253746;
+      font-size: 13px;
+      font-weight: 650;
+      padding: 7px 10px;
+      text-decoration: none;
+      background: #ffffff;
+    }
+    nav a:hover {
+      border-color: #327266;
+      color: #153d37;
+    }
+    main {
+      padding: 22px 24px 48px;
+    }
+    section {
+      border-top: 1px solid #d8dde3;
+      padding: 22px 0 8px;
+    }
+    section:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 18px 0 10px;
+      color: #263640;
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+    .metric {
+      border: 1px solid #d8dde3;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 12px;
+    }
+    .metric-label {
+      color: #5e6b76;
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .metric-value {
+      margin-top: 6px;
+      color: #101820;
+      font-size: 24px;
+      font-weight: 780;
+    }
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #d8dde3;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      border-bottom: 1px solid #e6e9ed;
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      background: #eef2f5;
+      color: #263640;
+      font-size: 12px;
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .matrix th:first-child {
+      left: 0;
+      z-index: 1;
+    }
+    .matrix td:first-child {
+      position: sticky;
+      left: 0;
+      background: #ffffff;
+      font-weight: 750;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 750;
+      padding: 3px 8px;
+      white-space: nowrap;
+    }
+    .pill-up {
+      background: #dff2eb;
+      color: #145246;
+    }
+    .pill-down {
+      background: #f8e4dc;
+      color: #82412d;
+    }
+    .excerpt-list {
+      margin: 0;
+      padding-left: 17px;
+      color: #40505c;
+    }
+    .excerpt-list li {
+      margin: 0 0 5px;
+    }
+    details {
+      border: 1px solid #d8dde3;
+      border-radius: 8px;
+      background: #ffffff;
+      margin: 10px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 750;
+      padding: 11px 12px;
+    }
+    details > .details-body {
+      border-top: 1px solid #e6e9ed;
+      padding: 12px;
+    }
+    .empty {
+      border: 1px dashed #c5ced6;
+      border-radius: 8px;
+      color: #667580;
+      background: #ffffff;
+      padding: 14px;
+      font-size: 13px;
+    }
+    .small {
+      color: #667580;
+      font-size: 12px;
+    }
+    @media (max-width: 720px) {
+      header, main {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      h1 {
+        font-size: 19px;
+      }
+      table {
+        min-width: 640px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PSB Corpus Analysis</h1>
+    <nav aria-label="Dashboard sections">
+      <a href="#summary">Summary</a>
+      <a href="#trends">Trends</a>
+      <a href="#competitors">Competitors</a>
+      <a href="#common">Common Topics</a>
+      <a href="#unique">Unique Topics</a>
+      <a href="#top">Top Topics</a>
+      <a href="#observations">Observations</a>
+    </nav>
+  </header>
+  <main>
+    <section id="summary">
+      <h2>Summary</h2>
+      <div class="metric-grid">
+        
+        <div class="metric">
+          <div class="metric-label">Companies</div>
+          <div class="metric-value">2</div>
+        </div>
+        
+        <div class="metric">
+          <div class="metric-label">Documents</div>
+          <div class="metric-value">2</div>
+        </div>
+        
+        <div class="metric">
+          <div class="metric-label">Topic Observations</div>
+          <div class="metric-value">32</div>
+        </div>
+        
+        <div class="metric">
+          <div class="metric-label">Unique Topics</div>
+          <div class="metric-value">20</div>
+        </div>
+        
+        <div class="metric">
+          <div class="metric-label">Trending Up</div>
+          <div class="metric-value">0</div>
+        </div>
+        
+        <div class="metric">
+          <div class="metric-label">Trending Down</div>
+          <div class="metric-value">0</div>
+        </div>
+      </div>
+      
+      <h3>Parameters</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+          <tbody><tr><td>Alpha</td><td>0.05</td></tr><tr><td>Excluded Topics</td><td></td></tr><tr><td>Min Periods</td><td>4</td></tr><tr><td>Model</td><td>llama-3.3-70b-versatile</td></tr><tr><td>Top N</td><td>100</td></tr></tbody>
+        </table>
+      </div>
+      
+      <h3>Documents</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Company</th><th>Quarter</th><th>Call Date</th><th>Path</th></tr></thead>
+          <tbody><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>data/psb_calls/bob_1.txt</td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>data/psb_calls/sbi_1.txt</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section id="trends">
+      <h2>Trend Analysis</h2>
+      <details><summary>BOB: no significant trends</summary><div class="details-body small">No topics passed the configured Kendall tau threshold.</div></details>
+<details><summary>SBI: no significant trends</summary><div class="details-body small">No topics passed the configured Kendall tau threshold.</div></details>
+    </section>
+    <section id="competitors">
+      <h2>Competitor Analysis</h2>
+      
+      <div class="table-wrap">
+        <table class="matrix">
+          <thead><tr><th>Bank</th><th>BOB</th><th>SBI</th></tr></thead>
+          <tbody><tr><td>BOB</td><td class="num" style="background: rgb(171, 200, 159)">1.0000</td><td class="num" style="background: rgb(209, 225, 202)">0.5500</td></tr><tr><td>SBI</td><td class="num" style="background: rgb(209, 225, 202)">0.5500</td><td class="num" style="background: rgb(171, 200, 159)">1.0000</td></tr></tbody>
+        </table>
+      </div>
+      <p class="small">Higher values mean stronger overlap between each bank's top topics.</p>
+    </section>
+    <section id="common">
+      <h2>Common Topics Between Banks</h2>
+      
+        <details>
+          <summary>BOB and SBI: 11 shared topics</summary>
+          <div class="details-body">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Topic</th><th>Mentions And Excerpts</th></tr></thead>
+                <tbody><tr><td>Buybacks</td><td><strong>BOB</strong>: 1<span class="small">(none)</span><strong>SBI</strong>: 1<ul class="excerpt-list"><li>The board has granted approval to raise equity capital up to ₹25,000 cores, with the authorization being valid for a period of 12 months.</li></ul></td></tr><tr><td>Capital Expenditures</td><td><strong>BOB</strong>: 2<ul class="excerpt-list"><li>We have announced that we will be raising Rs. 6,000 crores. But in case you don&#x27;t raise, then it can also go to the subsequent year because we have huge award, if expedient on that.</li><li>We can raise that money in any year up to 2028. So, almost Rs. 14,500 crores is the planned raise of capital, both from the equity and also on the AT-1 and Tier 2, which is slightly, I mean, it can be on this year or subsequent year.</li></ul><strong>SBI</strong>: 2<ul class="excerpt-list"><li>We have sufficient headroom to take care of business growth requirements.</li><li>Our capital adequacy ratio is at 14.25% and the CET 1 ratio is at 10.81% and are well above the regulatory requirements.</li></ul></td></tr><tr><td>Consumer Demand</td><td><strong>BOB</strong>: 1<span class="small">(none)</span><strong>SBI</strong>: 1<ul class="excerpt-list"><li>Prospects for the farm sector have been boosted by the forecast of an above normal southwest monsoon for 2025, which could augment farm incomes and keep food prices under check.</li></ul></td></tr><tr><td>Dividends</td><td><strong>BOB</strong>: 1<span class="small">(none)</span><strong>SBI</strong>: 1<ul class="excerpt-list"><li>We have consistently delivered superior, sustainable returns over the long run.</li></ul></td></tr><tr><td>Guidance</td><td><strong>BOB</strong>: 3<ul class="excerpt-list"><li>All four quarters together, I think we should not be breaching this lower threshold of 2.75%.</li><li>We have some estimate of the IT refund for the full year based on the orders and the seasonal or whatever the past trend. So, based on that is the guidance.</li></ul><strong>SBI</strong>: 2<ul class="excerpt-list"><li>We did give guidance last year, not guidance, we expected credit growth to be 14% to 16%.</li><li>We still stick to our RoE guidance.</li></ul></td></tr><tr><td>Labor</td><td><strong>BOB</strong>: 2<ul class="excerpt-list"><li>No, the AS-15 impact already articulated by CFO, I think CFO can you just go ahead with your AS-15 impact.</li><li>The mortality tables which we have adopted are the latest tables. With that the one-time increment in the AS-15 obligation is around Rs. 520 crores that we have fully absorbed in this quarter.</li></ul><strong>SBI</strong>: 1<ul class="excerpt-list"><li>Our extensive investment in workforce training, procedures, and compliance to maintain this level.</li></ul></td></tr><tr><td>M&amp;A</td><td><strong>BOB</strong>: 3<ul class="excerpt-list"><li>We have announced that we will be raising Rs. 6,000 crores. But in case you don&#x27;t raise, then it can also go to the subsequent year because we have huge award, if expedient on that.</li><li>We can raise that money in any year up to 2028. So, almost Rs. 14,500 crores is the planned raise of capital, both from the equity and also on the AT-1 and Tier 2, which is slightly, I mean, it can be on this year or subsequent year.</li></ul><strong>SBI</strong>: 1<ul class="excerpt-list"><li>Our subsidiaries are consistently performing well and continue to create significant value for all the stakeholders.</li></ul></td></tr><tr><td>Macro Environment</td><td><strong>BOB</strong>: 2<ul class="excerpt-list"><li>The geopolitical issue, what has happened, there was a liquidity possibility.</li><li>The liquidity scenario in March quarter is always a different scenario because of the geopolitical inducing bit of a liquidity tightness.</li></ul><strong>SBI</strong>: 3<ul class="excerpt-list"><li>Escalation of trade and tariff tensions and the resultant financial market volatility have raised concerns regarding the weakening of global growth in the near term.</li><li>The dampening global economic outlook could impact India&#x27;s economic growth through weaker external demand.</li></ul></td></tr><tr><td>Pricing</td><td><strong>BOB</strong>: 2<ul class="excerpt-list"><li>The pricing impact also will be mindful when doing this.</li><li>I&#x27;m not predicting any increase in deposit rate. But one thing I have said that the cost of deposit, which we are one of the lowest in the system, if you look at the numbers of 4.78%, that&#x27;s going to be sticky in the Q1.</li></ul><strong>SBI</strong>: 1<ul class="excerpt-list"><li>Moderation in treasury yields definitely would help the markets to perform better.</li></ul></td></tr><tr><td>RBI Regulations</td><td><strong>BOB</strong>: 2<ul class="excerpt-list"><li>The final guidelines, it would not be proper to without really running computation transaction wise difficult to say with regard to any quantification.</li><li>We will do that, but we will do it slightly, once we implement and then have a number, possibly one quarter number coming very clear on that.</li></ul><strong>SBI</strong>: 2<ul class="excerpt-list"><li>RBI has deployed a strategic mix of interventions, including open market operations, daily variable rate repo auctions, and dollar/rupee buy-sell swap auctions.</li><li>RBI has given a clarification that if you have SRs which are governed guaranteed by the government guarantee, we can revalue.</li></ul></td></tr><tr><td>Supply Chain</td><td><strong>BOB</strong>: 1<span class="small">(none)</span><strong>SBI</strong>: 1<ul class="excerpt-list"><li>We have prioritized our liability franchise, refined our processes, continued to improve our underwriting standards.</li></ul></td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+    </section>
+    <section id="unique">
+      <h2>Unique Topics By Bank</h2>
+      
+        <details>
+          <summary>BOB: 6 unique topics</summary>
+          <div class="details-body">
+            
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Topic</th><th class="num">Mentions</th><th>Sample Excerpts</th></tr></thead>
+                <tbody><tr><td>Credit Cost</td><td class="num">2</td><td><ul class="excerpt-list"><li>The credit cost, which is as per the, clearly as per the accounting, but can be volatile, yes.</li><li>So, my sense is that it is not going to overshoot significantly.</li></ul></td></tr><tr><td>Deposits</td><td class="num">2</td><td><ul class="excerpt-list"><li>The bulk deposits, which have been there and I think the earlier question on cost of deposits, I think it would be also the factor of bulk deposits getting raised, which was almost like say 14% quarter on quarter and 25-26% year on year.</li><li>We have a component of CD in the bulk, the number that we see Rs. 3,20,000 or 3,21,000 crores.</li></ul></td></tr><tr><td>Interest on IT Refund</td><td class="num">2</td><td><ul class="excerpt-list"><li>The interest on IT refund, earlier also I said, yes, it is a line item, which is as per the, clearly as per the accounting, but can be volatile, yes.</li><li>I do not estimate with regard to what is the year this year, what is going to be the year next year.</li></ul></td></tr><tr><td>Liquidity Coverage Ratio</td><td class="num">2</td><td><ul class="excerpt-list"><li>It is 127%.</li><li>We like to operate at a safety, I mean, a threshold of maybe 3-3.5% at all point of time.</li></ul></td></tr><tr><td>Provisioning</td><td class="num">2</td><td><ul class="excerpt-list"><li>The provision has been created typically to go for the balance sheet for any extraordinary scenario, not for tagging with any ECL provision per se.</li><li>The final guidelines, it would not be proper to without really running computation transaction wise difficult to say with regard to any quantification.</li></ul></td></tr><tr><td>Statutory Liquidity Ratio (SLR)</td><td class="num">2</td><td><ul class="excerpt-list"><li>The treasury management, the Bank is running one of the largest, actually. We are amongst the top three or four in terms of holding.</li><li>So, at some point of time, the SLR holding was almost 26-27%. But subsequently, as of today, it is around 22.5% or 23%.</li></ul></td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>SBI: 3 unique topics</summary>
+          <div class="details-body">
+            
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Topic</th><th class="num">Mentions</th><th>Sample Excerpts</th></tr></thead>
+                <tbody><tr><td>Risk Management</td><td class="num">2</td><td><ul class="excerpt-list"><li>We have maintained stellar asset quality with slippage ratio of 0.55%, retail personal slippage ratio at 0.48% and credit cost at 0.38%.</li><li>Our risk-adjusted return on capital is one of the best in the industry.</li></ul></td></tr><tr><td>Treasury</td><td class="num">2</td><td><ul class="excerpt-list"><li>Our treasury will do well, while we are not willing to give any guidance on this.</li><li>With the rate cut cycle kicking in, the yields will definitely moderate, providing an opportunity for us both on the MTM side as well as on the trading profit.</li></ul></td></tr><tr><td>Digital Banking</td><td class="num">1</td><td><ul class="excerpt-list"><li>More than 8.77 crore customers have been registered on YONO with 64% of regular savings bank accounts opened through YONO in FY25.</li></ul></td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+    </section>
+    <section id="top">
+      <h2>Top Topics By Bank</h2>
+      
+        <details>
+          <summary>BOB: top 17 topics</summary>
+          <div class="details-body">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Topic</th><th class="num">Mentions</th></tr></thead>
+                <tbody><tr><td>Guidance</td><td class="num">3</td></tr><tr><td>M&amp;A</td><td class="num">3</td></tr><tr><td>Capital Expenditures</td><td class="num">2</td></tr><tr><td>Macro Environment</td><td class="num">2</td></tr><tr><td>Labor</td><td class="num">2</td></tr><tr><td>Pricing</td><td class="num">2</td></tr><tr><td>RBI Regulations</td><td class="num">2</td></tr><tr><td>Liquidity Coverage Ratio</td><td class="num">2</td></tr><tr><td>Statutory Liquidity Ratio (SLR)</td><td class="num">2</td></tr><tr><td>Credit Cost</td><td class="num">2</td></tr><tr><td>Provisioning</td><td class="num">2</td></tr><tr><td>Interest on IT Refund</td><td class="num">2</td></tr><tr><td>Deposits</td><td class="num">2</td></tr><tr><td>Dividends</td><td class="num">1</td></tr><tr><td>Buybacks</td><td class="num">1</td></tr><tr><td>Supply Chain</td><td class="num">1</td></tr><tr><td>Consumer Demand</td><td class="num">1</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>SBI: top 14 topics</summary>
+          <div class="details-body">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Topic</th><th class="num">Mentions</th></tr></thead>
+                <tbody><tr><td>Macro Environment</td><td class="num">3</td></tr><tr><td>Guidance</td><td class="num">2</td></tr><tr><td>Capital Expenditures</td><td class="num">2</td></tr><tr><td>RBI Regulations</td><td class="num">2</td></tr><tr><td>Risk Management</td><td class="num">2</td></tr><tr><td>Treasury</td><td class="num">2</td></tr><tr><td>Dividends</td><td class="num">1</td></tr><tr><td>Buybacks</td><td class="num">1</td></tr><tr><td>M&amp;A</td><td class="num">1</td></tr><tr><td>Labor</td><td class="num">1</td></tr><tr><td>Supply Chain</td><td class="num">1</td></tr><tr><td>Pricing</td><td class="num">1</td></tr><tr><td>Consumer Demand</td><td class="num">1</td></tr><tr><td>Digital Banking</td><td class="num">1</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+    </section>
+    <section id="observations">
+      <h2>Raw Topic Observations</h2>
+      
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Company</th><th>Quarter</th><th>Date</th><th>Topic</th><th class="num">Mentions</th><th>Excerpts</th></tr></thead>
+          <tbody><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Guidance</td><td class="num">3</td><td><ul class="excerpt-list"><li>All four quarters together, I think we should not be breaching this lower threshold of 2.75%.</li><li>We have some estimate of the IT refund for the full year based on the orders and the seasonal or whatever the past trend. So, based on that is the guidance.</li><li>I am giving a guidance of 2.75 to 2.95%. Accounting for the same amount of money which you got this year, possibly may or may not be in the next year, based on the available, what is the refund that we expect.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Capital Expenditures</td><td class="num">2</td><td><ul class="excerpt-list"><li>We have announced that we will be raising Rs. 6,000 crores. But in case you don&#x27;t raise, then it can also go to the subsequent year because we have huge award, if expedient on that.</li><li>We can raise that money in any year up to 2028. So, almost Rs. 14,500 crores is the planned raise of capital, both from the equity and also on the AT-1 and Tier 2, which is slightly, I mean, it can be on this year or subsequent year.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Dividends</td><td class="num">1</td><td><span class="small">(none)</span></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Buybacks</td><td class="num">1</td><td><span class="small">(none)</span></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>M&amp;A</td><td class="num">1</td><td><span class="small">(none)</span></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Macro Environment</td><td class="num">2</td><td><ul class="excerpt-list"><li>The geopolitical issue, what has happened, there was a liquidity possibility.</li><li>The liquidity scenario in March quarter is always a different scenario because of the geopolitical inducing bit of a liquidity tightness.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Labor</td><td class="num">2</td><td><ul class="excerpt-list"><li>No, the AS-15 impact already articulated by CFO, I think CFO can you just go ahead with your AS-15 impact.</li><li>The mortality tables which we have adopted are the latest tables. With that the one-time increment in the AS-15 obligation is around Rs. 520 crores that we have fully absorbed in this quarter.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Supply Chain</td><td class="num">1</td><td><span class="small">(none)</span></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Pricing</td><td class="num">2</td><td><ul class="excerpt-list"><li>The pricing impact also will be mindful when doing this.</li><li>I&#x27;m not predicting any increase in deposit rate. But one thing I have said that the cost of deposit, which we are one of the lowest in the system, if you look at the numbers of 4.78%, that&#x27;s going to be sticky in the Q1.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Consumer Demand</td><td class="num">1</td><td><span class="small">(none)</span></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>RBI Regulations</td><td class="num">2</td><td><ul class="excerpt-list"><li>The final guidelines, it would not be proper to without really running computation transaction wise difficult to say with regard to any quantification.</li><li>We will do that, but we will do it slightly, once we implement and then have a number, possibly one quarter number coming very clear on that.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Liquidity Coverage Ratio</td><td class="num">2</td><td><ul class="excerpt-list"><li>It is 127%.</li><li>We like to operate at a safety, I mean, a threshold of maybe 3-3.5% at all point of time.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Statutory Liquidity Ratio (SLR)</td><td class="num">2</td><td><ul class="excerpt-list"><li>The treasury management, the Bank is running one of the largest, actually. We are amongst the top three or four in terms of holding.</li><li>So, at some point of time, the SLR holding was almost 26-27%. But subsequently, as of today, it is around 22.5% or 23%.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Credit Cost</td><td class="num">2</td><td><ul class="excerpt-list"><li>The credit cost, which is as per the, clearly as per the accounting, but can be volatile, yes.</li><li>So, my sense is that it is not going to overshoot significantly.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Provisioning</td><td class="num">2</td><td><ul class="excerpt-list"><li>The provision has been created typically to go for the balance sheet for any extraordinary scenario, not for tagging with any ECL provision per se.</li><li>The final guidelines, it would not be proper to without really running computation transaction wise difficult to say with regard to any quantification.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Interest on IT Refund</td><td class="num">2</td><td><ul class="excerpt-list"><li>The interest on IT refund, earlier also I said, yes, it is a line item, which is as per the, clearly as per the accounting, but can be volatile, yes.</li><li>I do not estimate with regard to what is the year this year, what is going to be the year next year.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>Deposits</td><td class="num">2</td><td><ul class="excerpt-list"><li>The bulk deposits, which have been there and I think the earlier question on cost of deposits, I think it would be also the factor of bulk deposits getting raised, which was almost like say 14% quarter on quarter and 25-26% year on year.</li><li>We have a component of CD in the bulk, the number that we see Rs. 3,20,000 or 3,21,000 crores.</li></ul></td></tr><tr><td>BOB</td><td>FY25 Q4</td><td>2025-03-25</td><td>M&amp;A</td><td class="num">2</td><td><ul class="excerpt-list"><li>We have announced that we will be raising Rs. 6,000 crores. But in case you don&#x27;t raise, then it can also go to the subsequent year because we have huge award, if expedient on that.</li><li>We can raise that money in any year up to 2028. So, almost Rs. 14,500 crores is the planned raise of capital, both from the equity and also on the AT-1 and Tier 2, which is slightly, I mean, it can be on this year or subsequent year.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Guidance</td><td class="num">2</td><td><ul class="excerpt-list"><li>We did give guidance last year, not guidance, we expected credit growth to be 14% to 16%.</li><li>We still stick to our RoE guidance.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Capital Expenditures</td><td class="num">2</td><td><ul class="excerpt-list"><li>We have sufficient headroom to take care of business growth requirements.</li><li>Our capital adequacy ratio is at 14.25% and the CET 1 ratio is at 10.81% and are well above the regulatory requirements.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Dividends</td><td class="num">1</td><td><ul class="excerpt-list"><li>We have consistently delivered superior, sustainable returns over the long run.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Buybacks</td><td class="num">1</td><td><ul class="excerpt-list"><li>The board has granted approval to raise equity capital up to ₹25,000 cores, with the authorization being valid for a period of 12 months.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>M&amp;A</td><td class="num">1</td><td><ul class="excerpt-list"><li>Our subsidiaries are consistently performing well and continue to create significant value for all the stakeholders.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Macro Environment</td><td class="num">3</td><td><ul class="excerpt-list"><li>Escalation of trade and tariff tensions and the resultant financial market volatility have raised concerns regarding the weakening of global growth in the near term.</li><li>The dampening global economic outlook could impact India&#x27;s economic growth through weaker external demand.</li><li>India&#x27;s CPI headline inflation has now significantly moderated, and we believe average CPI headline forecast for FY26 could stay below 4% now.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Labor</td><td class="num">1</td><td><ul class="excerpt-list"><li>Our extensive investment in workforce training, procedures, and compliance to maintain this level.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Supply Chain</td><td class="num">1</td><td><ul class="excerpt-list"><li>We have prioritized our liability franchise, refined our processes, continued to improve our underwriting standards.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Pricing</td><td class="num">1</td><td><ul class="excerpt-list"><li>Moderation in treasury yields definitely would help the markets to perform better.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Consumer Demand</td><td class="num">1</td><td><ul class="excerpt-list"><li>Prospects for the farm sector have been boosted by the forecast of an above normal southwest monsoon for 2025, which could augment farm incomes and keep food prices under check.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>RBI Regulations</td><td class="num">2</td><td><ul class="excerpt-list"><li>RBI has deployed a strategic mix of interventions, including open market operations, daily variable rate repo auctions, and dollar/rupee buy-sell swap auctions.</li><li>RBI has given a clarification that if you have SRs which are governed guaranteed by the government guarantee, we can revalue.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Risk Management</td><td class="num">2</td><td><ul class="excerpt-list"><li>We have maintained stellar asset quality with slippage ratio of 0.55%, retail personal slippage ratio at 0.48% and credit cost at 0.38%.</li><li>Our risk-adjusted return on capital is one of the best in the industry.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Digital Banking</td><td class="num">1</td><td><ul class="excerpt-list"><li>More than 8.77 crore customers have been registered on YONO with 64% of regular savings bank accounts opened through YONO in FY25.</li></ul></td></tr><tr><td>SBI</td><td>FY25 Q4</td><td>2025-03-24</td><td>Treasury</td><td class="num">2</td><td><ul class="excerpt-list"><li>Our treasury will do well, while we are not willing to give any guidance on this.</li><li>With the rate cut cycle kicking in, the yields will definitely moderate, providing an opportunity for us both on the MTM side as well as on the trading profit.</li></ul></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

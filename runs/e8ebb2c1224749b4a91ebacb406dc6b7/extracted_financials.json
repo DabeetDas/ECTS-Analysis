@@ -1,0 +1,942 @@
+{
+  "bank_name": "Bank of India",
+  "periods": [
+    "FY24",
+    "FY25"
+  ],
+  "metrics": [
+    {
+      "metric_key": "casa_pct",
+      "label": "CASA",
+      "period": "FY24",
+      "value": 269872.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 8,
+        "slide": 7,
+        "chunk_id": null,
+        "text": "CASA (Amount)\n2,69,872\n2,77,190\n2,80,284"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "casa_pct",
+      "label": "CASA",
+      "period": "FY24",
+      "value": 43.21,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 8,
+        "slide": 7,
+        "chunk_id": null,
+        "text": "CASA (%)\n43.21\n41.05\n40.28"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "casa_pct",
+      "label": "CASA",
+      "period": "FY25",
+      "value": 280284.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 8,
+        "slide": 7,
+        "chunk_id": null,
+        "text": "CASA (Amount)\n2,69,872\n2,77,190\n2,80,284"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "casa_pct",
+      "label": "CASA",
+      "period": "FY25",
+      "value": 40.28,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 8,
+        "slide": 7,
+        "chunk_id": null,
+        "text": "CASA (%)\n43.21\n41.05\n40.28"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "crar_pct",
+      "label": "CRAR",
+      "period": "FY24",
+      "value": 69907.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 32,
+        "slide": 31,
+        "chunk_id": null,
+        "text": "Total Capital (CRAR)\n69,907\n71,824\n79,240"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "crar_pct",
+      "label": "CRAR",
+      "period": "FY25",
+      "value": 79240.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 32,
+        "slide": 31,
+        "chunk_id": null,
+        "text": "Total Capital (CRAR)\n69,907\n71,824\n79,240"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "efficiency_ratio_pct",
+      "label": "Efficiency Ratio",
+      "period": "FY24",
+      "value": 51.73,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Cost to Income Ratio (%)\n51.73\n50.84"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "efficiency_ratio_pct",
+      "label": "Efficiency Ratio",
+      "period": "FY25",
+      "value": 50.84,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Cost to Income Ratio (%)\n51.73\n50.84"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "gnpa_pct",
+      "label": "GNPA",
+      "period": "FY24",
+      "value": 29183.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Gross NPA\n29,183\n21,749"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "gnpa_pct",
+      "label": "GNPA",
+      "period": "FY24",
+      "value": 4.98,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Gross NPA (%)\n4.98\n3.27"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "gnpa_pct",
+      "label": "GNPA",
+      "period": "FY25",
+      "value": 21749.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Gross NPA\n29,183\n21,749"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "gnpa_pct",
+      "label": "GNPA",
+      "period": "FY25",
+      "value": 3.27,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Gross NPA (%)\n4.98\n3.27"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "interest_expended_cr",
+      "label": "Interest Expended",
+      "period": "FY24",
+      "value": 37657.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 19,
+        "slide": 18,
+        "chunk_id": null,
+        "text": "Interest Expended\n37,657\n46,432"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "interest_expended_cr",
+      "label": "Interest Expended",
+      "period": "FY25",
+      "value": 46432.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 19,
+        "slide": 18,
+        "chunk_id": null,
+        "text": "Interest Expended\n37,657\n46,432"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "interest_income_cr",
+      "label": "Interest Income",
+      "period": "FY24",
+      "value": 60710.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 19,
+        "slide": 18,
+        "chunk_id": null,
+        "text": "Interest Income\n60,710\n70,826"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "interest_income_cr",
+      "label": "Interest Income",
+      "period": "FY24",
+      "value": 2.97,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Net Interest Margin (NIM) (%)\n2.97\n2.82"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "interest_income_cr",
+      "label": "Interest Income",
+      "period": "FY25",
+      "value": 70826.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 19,
+        "slide": 18,
+        "chunk_id": null,
+        "text": "Interest Income\n60,710\n70,826"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "interest_income_cr",
+      "label": "Interest Income",
+      "period": "FY25",
+      "value": 2.82,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Net Interest Margin (NIM) (%)\n2.97\n2.82"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "nnpa_pct",
+      "label": "NNPA",
+      "period": "FY24",
+      "value": 6845.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Net NPA\n6,845\n5,359"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "nnpa_pct",
+      "label": "NNPA",
+      "period": "FY24",
+      "value": 122.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Net NPA (%)\n1.22\n0.82"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "nnpa_pct",
+      "label": "NNPA",
+      "period": "FY25",
+      "value": 5359.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Net NPA\n6,845\n5,359"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "nnpa_pct",
+      "label": "NNPA",
+      "period": "FY25",
+      "value": 82.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 30,
+        "slide": 29,
+        "chunk_id": null,
+        "text": "Net NPA (%)\n1.22\n0.82"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "operating_expenses_cr",
+      "label": "Operating Expenses",
+      "period": "FY24",
+      "value": 15079.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 21,
+        "slide": 20,
+        "chunk_id": null,
+        "text": "Total Operating Expenses\n15,079\n16,975"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "operating_expenses_cr",
+      "label": "Operating Expenses",
+      "period": "FY25",
+      "value": 16975.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 21,
+        "slide": 20,
+        "chunk_id": null,
+        "text": "Total Operating Expenses\n15,079\n16,975"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "other_income_cr",
+      "label": "Other Income",
+      "period": "FY24",
+      "value": 6095.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 20,
+        "slide": 19,
+        "chunk_id": null,
+        "text": "Non Interest Income\n6,095\n8,994"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "other_income_cr",
+      "label": "Other Income",
+      "period": "FY25",
+      "value": 8994.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 20,
+        "slide": 19,
+        "chunk_id": null,
+        "text": "Non Interest Income\n6,095\n8,994"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "profit_after_tax_cr",
+      "label": "PAT",
+      "period": "FY24",
+      "value": 6318.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 22,
+        "slide": 21,
+        "chunk_id": null,
+        "text": "Net Profit\n6,318\n9,219"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "profit_after_tax_cr",
+      "label": "PAT",
+      "period": "FY25",
+      "value": 9219.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 22,
+        "slide": 21,
+        "chunk_id": null,
+        "text": "Net Profit\n6,318\n9,219"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "provisions_contingencies_cr",
+      "label": "Provisions and Contingencies",
+      "period": "FY24",
+      "value": 3970.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 22,
+        "slide": 21,
+        "chunk_id": null,
+        "text": "Provisions before Tax\n3,970\n3,978"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "provisions_contingencies_cr",
+      "label": "Provisions and Contingencies",
+      "period": "FY25",
+      "value": 3978.0,
+      "unit": "crore",
+      "source": {
+        "document_type": "presentation",
+        "page": 22,
+        "slide": 21,
+        "chunk_id": null,
+        "text": "Provisions before Tax\n3,970\n3,978"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "roa_pct",
+      "label": "ROA",
+      "period": "FY24",
+      "value": 70.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Return on Assets (%)\n0.70\n0.90"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "roa_pct",
+      "label": "ROA",
+      "period": "FY25",
+      "value": 90.0,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Return on Assets (%)\n0.70\n0.90"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "roe_pct",
+      "label": "ROE",
+      "period": "FY24",
+      "value": 13.13,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Return on Equity (%)\n13.13\n15.27"
+      },
+      "confidence": 1.0
+    },
+    {
+      "metric_key": "roe_pct",
+      "label": "ROE",
+      "period": "FY25",
+      "value": 15.27,
+      "unit": "percent",
+      "source": {
+        "document_type": "presentation",
+        "page": 23,
+        "slide": 22,
+        "chunk_id": null,
+        "text": "Return on Equity (%)\n13.13\n15.27"
+      },
+      "confidence": 1.0
+    }
+  ],
+  "warnings": [
+    "Invalid value for Interest Income FY22: None",
+    "Invalid value for Interest Income FY23: None",
+    "Invalid value for Other Income FY22: None",
+    "Invalid value for Other Income FY23: None",
+    "Invalid value for Interest Expended FY22: None",
+    "Invalid value for Interest Expended FY23: None",
+    "Invalid value for Operating Expenses FY22: None",
+    "Invalid value for Operating Expenses FY23: None",
+    "Invalid value for Provisions and Contingencies FY22: None",
+    "Invalid value for Provisions and Contingencies FY23: None",
+    "Invalid value for PAT FY22: None",
+    "Invalid value for PAT FY23: None",
+    "Invalid value for Interest Income FY22: None",
+    "Invalid value for Interest Income FY23: None",
+    "Invalid value for ROA FY22: None",
+    "Invalid value for ROA FY23: None",
+    "Invalid value for ROE FY22: None",
+    "Invalid value for ROE FY23: None",
+    "Invalid value for Efficiency Ratio FY22: None",
+    "Invalid value for Efficiency Ratio FY23: None",
+    "Invalid value for GNPA FY22: None",
+    "Invalid value for GNPA FY23: None",
+    "Invalid value for NNPA FY22: None",
+    "Invalid value for NNPA FY23: None",
+    "Invalid value for GNPA FY22: None",
+    "Invalid value for GNPA FY23: None",
+    "Invalid value for NNPA FY22: None",
+    "Invalid value for NNPA FY23: None",
+    "Invalid value for CASA FY22: None",
+    "Invalid value for CASA FY23: None",
+    "Invalid value for CASA FY22: None",
+    "Invalid value for CASA FY23: None",
+    "Invalid value for CRAR FY22: None",
+    "Invalid value for CRAR FY23: None",
+    "Unmapped metric: Capital Adequacy Basel III (%) (incl CCB)",
+    "profit_after_tax_cr is usually FY25-only in data_new.xlsx but extracted periods are ['FY24', 'FY25']"
+  ],
+  "raw_payload": {
+    "bank_name": "Bank of India",
+    "financials": {
+      "Interest Income": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "60,710",
+        "FY25": "70,826"
+      },
+      "Non Interest Income": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "6,095",
+        "FY25": "8,994"
+      },
+      "Interest Expended": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "37,657",
+        "FY25": "46,432"
+      },
+      "Operating Expenses": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "15,079",
+        "FY25": "16,975"
+      },
+      "Provisions before Tax": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "3,970",
+        "FY25": "3,978"
+      },
+      "Net Profit": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "6,318",
+        "FY25": "9,219"
+      },
+      "Net Interest Margin (NIM) (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "2.97",
+        "FY25": "2.82"
+      },
+      "Return on Assets (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "0.70",
+        "FY25": "0.90"
+      },
+      "Return on Equity (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "13.13",
+        "FY25": "15.27"
+      },
+      "Cost to Income Ratio (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "51.73",
+        "FY25": "50.84"
+      },
+      "Gross NPA": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "29,183",
+        "FY25": "21,749"
+      },
+      "Net NPA": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "6,845",
+        "FY25": "5,359"
+      },
+      "Gross NPA (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "4.98",
+        "FY25": "3.27"
+      },
+      "Net NPA (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "1.22",
+        "FY25": "0.82"
+      },
+      "CASA (Amount)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "2,69,872",
+        "FY25": "2,80,284"
+      },
+      "CASA (%)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "43.21",
+        "FY25": "40.28"
+      },
+      "Total Capital (CRAR)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "69,907",
+        "FY25": "79,240"
+      },
+      "Capital Adequacy Basel III (%) (incl CCB)": {
+        "FY22": null,
+        "FY23": null,
+        "FY24": "16.96",
+        "FY25": "17.77"
+      }
+    },
+    "metrics": [
+      {
+        "metric": "Interest Income",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "60,710",
+          "FY25": "70,826"
+        },
+        "source": {
+          "page": 19,
+          "slide": 18,
+          "source_text": "Interest Income\n60,710\n70,826"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Non Interest Income",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "6,095",
+          "FY25": "8,994"
+        },
+        "source": {
+          "page": 20,
+          "slide": 19,
+          "source_text": "Non Interest Income\n6,095\n8,994"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Interest Expended",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "37,657",
+          "FY25": "46,432"
+        },
+        "source": {
+          "page": 19,
+          "slide": 18,
+          "source_text": "Interest Expended\n37,657\n46,432"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Operating Expenses",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "15,079",
+          "FY25": "16,975"
+        },
+        "source": {
+          "page": 21,
+          "slide": 20,
+          "source_text": "Total Operating Expenses\n15,079\n16,975"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Provisions before Tax",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "3,970",
+          "FY25": "3,978"
+        },
+        "source": {
+          "page": 22,
+          "slide": 21,
+          "source_text": "Provisions before Tax\n3,970\n3,978"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Net Profit",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "6,318",
+          "FY25": "9,219"
+        },
+        "source": {
+          "page": 22,
+          "slide": 21,
+          "source_text": "Net Profit\n6,318\n9,219"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Net Interest Margin (NIM) (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "2.97",
+          "FY25": "2.82"
+        },
+        "source": {
+          "page": 23,
+          "slide": 22,
+          "source_text": "Net Interest Margin (NIM) (%)\n2.97\n2.82"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Return on Assets (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "0.70",
+          "FY25": "0.90"
+        },
+        "source": {
+          "page": 23,
+          "slide": 22,
+          "source_text": "Return on Assets (%)\n0.70\n0.90"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Return on Equity (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "13.13",
+          "FY25": "15.27"
+        },
+        "source": {
+          "page": 23,
+          "slide": 22,
+          "source_text": "Return on Equity (%)\n13.13\n15.27"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Cost to Income Ratio (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "51.73",
+          "FY25": "50.84"
+        },
+        "source": {
+          "page": 23,
+          "slide": 22,
+          "source_text": "Cost to Income Ratio (%)\n51.73\n50.84"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Gross NPA",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "29,183",
+          "FY25": "21,749"
+        },
+        "source": {
+          "page": 30,
+          "slide": 29,
+          "source_text": "Gross NPA\n29,183\n21,749"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Net NPA",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "6,845",
+          "FY25": "5,359"
+        },
+        "source": {
+          "page": 30,
+          "slide": 29,
+          "source_text": "Net NPA\n6,845\n5,359"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Gross NPA (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "4.98",
+          "FY25": "3.27"
+        },
+        "source": {
+          "page": 30,
+          "slide": 29,
+          "source_text": "Gross NPA (%)\n4.98\n3.27"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Net NPA (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "1.22",
+          "FY25": "0.82"
+        },
+        "source": {
+          "page": 30,
+          "slide": 29,
+          "source_text": "Net NPA (%)\n1.22\n0.82"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "CASA (Amount)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "2,69,872",
+          "FY25": "2,80,284"
+        },
+        "source": {
+          "page": 8,
+          "slide": 7,
+          "source_text": "CASA (Amount)\n2,69,872\n2,77,190\n2,80,284"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "CASA (%)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "43.21",
+          "FY25": "40.28"
+        },
+        "source": {
+          "page": 8,
+          "slide": 7,
+          "source_text": "CASA (%)\n43.21\n41.05\n40.28"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Total Capital (CRAR)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "69,907",
+          "FY25": "79,240"
+        },
+        "source": {
+          "page": 32,
+          "slide": 31,
+          "source_text": "Total Capital (CRAR)\n69,907\n71,824\n79,240"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric": "Capital Adequacy Basel III (%) (incl CCB)",
+        "values": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "16.96",
+          "FY25": "17.77"
+        },
+        "source": {
+          "page": 32,
+          "slide": 31,
+          "source_text": "Capital Adequacy\nBasel III (%) (incl CCB)\n16.96\n16.00\n17.77"
+        },
+        "confidence": 1.0
+      }
+    ]
+  }
+}

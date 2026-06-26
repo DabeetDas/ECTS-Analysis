@@ -1,0 +1,2079 @@
+{
+  "run_id": "e8ebb2c1224749b4a91ebacb406dc6b7",
+  "plan": [
+    "E1: Parse uploaded investor presentation and earnings-call transcript.",
+    "E2: Use Gemini to extract financial metrics into the data_new.xlsx-aligned schema.",
+    "E3: Normalize units, metric names, periods, and validate FY25-only versus multi-year coverage.",
+    "E4: Chunk transcript and retrieve metric-specific commentary using exact, adjacent, and keyword tools.",
+    "E5: Link each extracted metric to ranked transcript evidence and numeric decomposition notes.",
+    "E6: Use LLaMA-3.3-70B via Groq to synthesize grounded analyst insights.",
+    "E7: Verify the output for unsupported claims, invented numbers, and invalid YoY language."
+  ],
+  "financials": {
+    "bank_name": "Bank of India",
+    "periods": [
+      "FY24",
+      "FY25"
+    ],
+    "metrics": [
+      {
+        "metric_key": "casa_pct",
+        "label": "CASA",
+        "period": "FY24",
+        "value": 269872.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 8,
+          "slide": 7,
+          "chunk_id": null,
+          "text": "CASA (Amount)\n2,69,872\n2,77,190\n2,80,284"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "casa_pct",
+        "label": "CASA",
+        "period": "FY24",
+        "value": 43.21,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 8,
+          "slide": 7,
+          "chunk_id": null,
+          "text": "CASA (%)\n43.21\n41.05\n40.28"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "casa_pct",
+        "label": "CASA",
+        "period": "FY25",
+        "value": 280284.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 8,
+          "slide": 7,
+          "chunk_id": null,
+          "text": "CASA (Amount)\n2,69,872\n2,77,190\n2,80,284"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "casa_pct",
+        "label": "CASA",
+        "period": "FY25",
+        "value": 40.28,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 8,
+          "slide": 7,
+          "chunk_id": null,
+          "text": "CASA (%)\n43.21\n41.05\n40.28"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "crar_pct",
+        "label": "CRAR",
+        "period": "FY24",
+        "value": 69907.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 32,
+          "slide": 31,
+          "chunk_id": null,
+          "text": "Total Capital (CRAR)\n69,907\n71,824\n79,240"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "crar_pct",
+        "label": "CRAR",
+        "period": "FY25",
+        "value": 79240.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 32,
+          "slide": 31,
+          "chunk_id": null,
+          "text": "Total Capital (CRAR)\n69,907\n71,824\n79,240"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "efficiency_ratio_pct",
+        "label": "Efficiency Ratio",
+        "period": "FY24",
+        "value": 51.73,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Cost to Income Ratio (%)\n51.73\n50.84"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "efficiency_ratio_pct",
+        "label": "Efficiency Ratio",
+        "period": "FY25",
+        "value": 50.84,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Cost to Income Ratio (%)\n51.73\n50.84"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "gnpa_pct",
+        "label": "GNPA",
+        "period": "FY24",
+        "value": 29183.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Gross NPA\n29,183\n21,749"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "gnpa_pct",
+        "label": "GNPA",
+        "period": "FY24",
+        "value": 4.98,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Gross NPA (%)\n4.98\n3.27"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "gnpa_pct",
+        "label": "GNPA",
+        "period": "FY25",
+        "value": 21749.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Gross NPA\n29,183\n21,749"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "gnpa_pct",
+        "label": "GNPA",
+        "period": "FY25",
+        "value": 3.27,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Gross NPA (%)\n4.98\n3.27"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "interest_expended_cr",
+        "label": "Interest Expended",
+        "period": "FY24",
+        "value": 37657.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 19,
+          "slide": 18,
+          "chunk_id": null,
+          "text": "Interest Expended\n37,657\n46,432"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "interest_expended_cr",
+        "label": "Interest Expended",
+        "period": "FY25",
+        "value": 46432.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 19,
+          "slide": 18,
+          "chunk_id": null,
+          "text": "Interest Expended\n37,657\n46,432"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "interest_income_cr",
+        "label": "Interest Income",
+        "period": "FY24",
+        "value": 60710.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 19,
+          "slide": 18,
+          "chunk_id": null,
+          "text": "Interest Income\n60,710\n70,826"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "interest_income_cr",
+        "label": "Interest Income",
+        "period": "FY24",
+        "value": 2.97,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Net Interest Margin (NIM) (%)\n2.97\n2.82"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "interest_income_cr",
+        "label": "Interest Income",
+        "period": "FY25",
+        "value": 70826.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 19,
+          "slide": 18,
+          "chunk_id": null,
+          "text": "Interest Income\n60,710\n70,826"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "interest_income_cr",
+        "label": "Interest Income",
+        "period": "FY25",
+        "value": 2.82,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Net Interest Margin (NIM) (%)\n2.97\n2.82"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "nnpa_pct",
+        "label": "NNPA",
+        "period": "FY24",
+        "value": 6845.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Net NPA\n6,845\n5,359"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "nnpa_pct",
+        "label": "NNPA",
+        "period": "FY24",
+        "value": 122.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Net NPA (%)\n1.22\n0.82"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "nnpa_pct",
+        "label": "NNPA",
+        "period": "FY25",
+        "value": 5359.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Net NPA\n6,845\n5,359"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "nnpa_pct",
+        "label": "NNPA",
+        "period": "FY25",
+        "value": 82.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 30,
+          "slide": 29,
+          "chunk_id": null,
+          "text": "Net NPA (%)\n1.22\n0.82"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "operating_expenses_cr",
+        "label": "Operating Expenses",
+        "period": "FY24",
+        "value": 15079.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 21,
+          "slide": 20,
+          "chunk_id": null,
+          "text": "Total Operating Expenses\n15,079\n16,975"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "operating_expenses_cr",
+        "label": "Operating Expenses",
+        "period": "FY25",
+        "value": 16975.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 21,
+          "slide": 20,
+          "chunk_id": null,
+          "text": "Total Operating Expenses\n15,079\n16,975"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "other_income_cr",
+        "label": "Other Income",
+        "period": "FY24",
+        "value": 6095.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 20,
+          "slide": 19,
+          "chunk_id": null,
+          "text": "Non Interest Income\n6,095\n8,994"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "other_income_cr",
+        "label": "Other Income",
+        "period": "FY25",
+        "value": 8994.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 20,
+          "slide": 19,
+          "chunk_id": null,
+          "text": "Non Interest Income\n6,095\n8,994"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "profit_after_tax_cr",
+        "label": "PAT",
+        "period": "FY24",
+        "value": 6318.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 22,
+          "slide": 21,
+          "chunk_id": null,
+          "text": "Net Profit\n6,318\n9,219"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "profit_after_tax_cr",
+        "label": "PAT",
+        "period": "FY25",
+        "value": 9219.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 22,
+          "slide": 21,
+          "chunk_id": null,
+          "text": "Net Profit\n6,318\n9,219"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "provisions_contingencies_cr",
+        "label": "Provisions and Contingencies",
+        "period": "FY24",
+        "value": 3970.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 22,
+          "slide": 21,
+          "chunk_id": null,
+          "text": "Provisions before Tax\n3,970\n3,978"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "provisions_contingencies_cr",
+        "label": "Provisions and Contingencies",
+        "period": "FY25",
+        "value": 3978.0,
+        "unit": "crore",
+        "source": {
+          "document_type": "presentation",
+          "page": 22,
+          "slide": 21,
+          "chunk_id": null,
+          "text": "Provisions before Tax\n3,970\n3,978"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "roa_pct",
+        "label": "ROA",
+        "period": "FY24",
+        "value": 70.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Return on Assets (%)\n0.70\n0.90"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "roa_pct",
+        "label": "ROA",
+        "period": "FY25",
+        "value": 90.0,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Return on Assets (%)\n0.70\n0.90"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "roe_pct",
+        "label": "ROE",
+        "period": "FY24",
+        "value": 13.13,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Return on Equity (%)\n13.13\n15.27"
+        },
+        "confidence": 1.0
+      },
+      {
+        "metric_key": "roe_pct",
+        "label": "ROE",
+        "period": "FY25",
+        "value": 15.27,
+        "unit": "percent",
+        "source": {
+          "document_type": "presentation",
+          "page": 23,
+          "slide": 22,
+          "chunk_id": null,
+          "text": "Return on Equity (%)\n13.13\n15.27"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "warnings": [
+      "Invalid value for Interest Income FY22: None",
+      "Invalid value for Interest Income FY23: None",
+      "Invalid value for Other Income FY22: None",
+      "Invalid value for Other Income FY23: None",
+      "Invalid value for Interest Expended FY22: None",
+      "Invalid value for Interest Expended FY23: None",
+      "Invalid value for Operating Expenses FY22: None",
+      "Invalid value for Operating Expenses FY23: None",
+      "Invalid value for Provisions and Contingencies FY22: None",
+      "Invalid value for Provisions and Contingencies FY23: None",
+      "Invalid value for PAT FY22: None",
+      "Invalid value for PAT FY23: None",
+      "Invalid value for Interest Income FY22: None",
+      "Invalid value for Interest Income FY23: None",
+      "Invalid value for ROA FY22: None",
+      "Invalid value for ROA FY23: None",
+      "Invalid value for ROE FY22: None",
+      "Invalid value for ROE FY23: None",
+      "Invalid value for Efficiency Ratio FY22: None",
+      "Invalid value for Efficiency Ratio FY23: None",
+      "Invalid value for GNPA FY22: None",
+      "Invalid value for GNPA FY23: None",
+      "Invalid value for NNPA FY22: None",
+      "Invalid value for NNPA FY23: None",
+      "Invalid value for GNPA FY22: None",
+      "Invalid value for GNPA FY23: None",
+      "Invalid value for NNPA FY22: None",
+      "Invalid value for NNPA FY23: None",
+      "Invalid value for CASA FY22: None",
+      "Invalid value for CASA FY23: None",
+      "Invalid value for CASA FY22: None",
+      "Invalid value for CASA FY23: None",
+      "Invalid value for CRAR FY22: None",
+      "Invalid value for CRAR FY23: None",
+      "Unmapped metric: Capital Adequacy Basel III (%) (incl CCB)",
+      "profit_after_tax_cr is usually FY25-only in data_new.xlsx but extracted periods are ['FY24', 'FY25']"
+    ],
+    "raw_payload": {
+      "bank_name": "Bank of India",
+      "financials": {
+        "Interest Income": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "60,710",
+          "FY25": "70,826"
+        },
+        "Non Interest Income": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "6,095",
+          "FY25": "8,994"
+        },
+        "Interest Expended": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "37,657",
+          "FY25": "46,432"
+        },
+        "Operating Expenses": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "15,079",
+          "FY25": "16,975"
+        },
+        "Provisions before Tax": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "3,970",
+          "FY25": "3,978"
+        },
+        "Net Profit": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "6,318",
+          "FY25": "9,219"
+        },
+        "Net Interest Margin (NIM) (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "2.97",
+          "FY25": "2.82"
+        },
+        "Return on Assets (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "0.70",
+          "FY25": "0.90"
+        },
+        "Return on Equity (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "13.13",
+          "FY25": "15.27"
+        },
+        "Cost to Income Ratio (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "51.73",
+          "FY25": "50.84"
+        },
+        "Gross NPA": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "29,183",
+          "FY25": "21,749"
+        },
+        "Net NPA": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "6,845",
+          "FY25": "5,359"
+        },
+        "Gross NPA (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "4.98",
+          "FY25": "3.27"
+        },
+        "Net NPA (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "1.22",
+          "FY25": "0.82"
+        },
+        "CASA (Amount)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "2,69,872",
+          "FY25": "2,80,284"
+        },
+        "CASA (%)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "43.21",
+          "FY25": "40.28"
+        },
+        "Total Capital (CRAR)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "69,907",
+          "FY25": "79,240"
+        },
+        "Capital Adequacy Basel III (%) (incl CCB)": {
+          "FY22": null,
+          "FY23": null,
+          "FY24": "16.96",
+          "FY25": "17.77"
+        }
+      },
+      "metrics": [
+        {
+          "metric": "Interest Income",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "60,710",
+            "FY25": "70,826"
+          },
+          "source": {
+            "page": 19,
+            "slide": 18,
+            "source_text": "Interest Income\n60,710\n70,826"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Non Interest Income",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "6,095",
+            "FY25": "8,994"
+          },
+          "source": {
+            "page": 20,
+            "slide": 19,
+            "source_text": "Non Interest Income\n6,095\n8,994"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Interest Expended",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "37,657",
+            "FY25": "46,432"
+          },
+          "source": {
+            "page": 19,
+            "slide": 18,
+            "source_text": "Interest Expended\n37,657\n46,432"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Operating Expenses",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "15,079",
+            "FY25": "16,975"
+          },
+          "source": {
+            "page": 21,
+            "slide": 20,
+            "source_text": "Total Operating Expenses\n15,079\n16,975"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Provisions before Tax",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "3,970",
+            "FY25": "3,978"
+          },
+          "source": {
+            "page": 22,
+            "slide": 21,
+            "source_text": "Provisions before Tax\n3,970\n3,978"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Net Profit",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "6,318",
+            "FY25": "9,219"
+          },
+          "source": {
+            "page": 22,
+            "slide": 21,
+            "source_text": "Net Profit\n6,318\n9,219"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Net Interest Margin (NIM) (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "2.97",
+            "FY25": "2.82"
+          },
+          "source": {
+            "page": 23,
+            "slide": 22,
+            "source_text": "Net Interest Margin (NIM) (%)\n2.97\n2.82"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Return on Assets (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "0.70",
+            "FY25": "0.90"
+          },
+          "source": {
+            "page": 23,
+            "slide": 22,
+            "source_text": "Return on Assets (%)\n0.70\n0.90"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Return on Equity (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "13.13",
+            "FY25": "15.27"
+          },
+          "source": {
+            "page": 23,
+            "slide": 22,
+            "source_text": "Return on Equity (%)\n13.13\n15.27"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Cost to Income Ratio (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "51.73",
+            "FY25": "50.84"
+          },
+          "source": {
+            "page": 23,
+            "slide": 22,
+            "source_text": "Cost to Income Ratio (%)\n51.73\n50.84"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Gross NPA",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "29,183",
+            "FY25": "21,749"
+          },
+          "source": {
+            "page": 30,
+            "slide": 29,
+            "source_text": "Gross NPA\n29,183\n21,749"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Net NPA",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "6,845",
+            "FY25": "5,359"
+          },
+          "source": {
+            "page": 30,
+            "slide": 29,
+            "source_text": "Net NPA\n6,845\n5,359"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Gross NPA (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "4.98",
+            "FY25": "3.27"
+          },
+          "source": {
+            "page": 30,
+            "slide": 29,
+            "source_text": "Gross NPA (%)\n4.98\n3.27"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Net NPA (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "1.22",
+            "FY25": "0.82"
+          },
+          "source": {
+            "page": 30,
+            "slide": 29,
+            "source_text": "Net NPA (%)\n1.22\n0.82"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "CASA (Amount)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "2,69,872",
+            "FY25": "2,80,284"
+          },
+          "source": {
+            "page": 8,
+            "slide": 7,
+            "source_text": "CASA (Amount)\n2,69,872\n2,77,190\n2,80,284"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "CASA (%)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "43.21",
+            "FY25": "40.28"
+          },
+          "source": {
+            "page": 8,
+            "slide": 7,
+            "source_text": "CASA (%)\n43.21\n41.05\n40.28"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Total Capital (CRAR)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "69,907",
+            "FY25": "79,240"
+          },
+          "source": {
+            "page": 32,
+            "slide": 31,
+            "source_text": "Total Capital (CRAR)\n69,907\n71,824\n79,240"
+          },
+          "confidence": 1.0
+        },
+        {
+          "metric": "Capital Adequacy Basel III (%) (incl CCB)",
+          "values": {
+            "FY22": null,
+            "FY23": null,
+            "FY24": "16.96",
+            "FY25": "17.77"
+          },
+          "source": {
+            "page": 32,
+            "slide": 31,
+            "source_text": "Capital Adequacy\nBasel III (%) (incl CCB)\n16.96\n16.00\n17.77"
+          },
+          "confidence": 1.0
+        }
+      ]
+    }
+  },
+  "transcript_chunks": [
+    {
+      "chunk_id": "chunk_1",
+      "text": "Q4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 1 of 24\n\u201cBank of India\nQ4 FY\u201925 Earnings Call\u201d\nMay 09, 2025\nManagement Team Represented by\nShri Rajneesh Karnatak, Managing Director & CEO\nShri P R Rajagopal, Executive Director\nShri Subrat Kumar, Executive Director\nShri Rajiv Mishra, Executive Director\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 2 of 24\nModerator\nLadies and gentlemen,\nGood evening. I welcome all the Analysts who have joined us today in this auditorium\nas well as those who have joined virtually from different cities across India. We are\npleased to announce Bank of India's financial results for Q4 FY25. As you all can see,\nour Top Management, represented by our Managing Director, Shri Rajneesh Karnatak\nji, and all our Executive Directors, Shri P R Rajagopal, Sri Subrat Kumar and Sri Rajiv\nMishra all have joined us on the stage. Thank you all gentlemen for joining us. We will\nnow begin this Analyst\u2019s briefing.\nTo start with, I'd like to invite Sri Rajnish Karnatak ji, our MD Sir, to please address this\ngathering, after which we will be taking on the Question & Answer session. Thank you,\nSir.\nShri Rajneesh Karnatak, MD & CEO\nThank you, madam. Ladies and gentlemen, good evening, and welcome to today's\nAnalyst Meet, both physically and virtually. I'm told that that there are certain Analysts\nwho are there virtually also.\nAs I share with you, the financial results of the Bank for Q4 FY25, as well as for the\nfull year FY 2025, it is my pleasure to welcome each one of you for the interaction\ntoday. Thank you for joining us in spite of your busy schedules. While we continue to\nbrace ourselves for the global trade dynamics and the recent tariff measures and the\ngeopolitical tension comes as a pressure on demand, moderating consumer\nsentiments and reversing market trends. However, IMF growth projection of 6.2% for\nIndia's GDP, rising forex reserves, record GST collections, and lower inflations have\ngiven hope. The shifting of customer basis from traditional to digital natives, easy\ncredit access, digitized financial services, dissemination are few of the many areas\nwhich are now defining the prospects.\nThe key focus area of our Bank will be enhancing customer experience through all\nchannels and acquisition of new customers consistently by providing innovative and\nniche services. This will lead to fortification of low cost deposits like CASA and retail\nterm deposits for sustainable credit growth. My speech would be in four parts for this\ncoverage today. The first part being the new initiatives that the Bank has taken over\nthe last quarter.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 3 of 24\nSo we have started the Star Digital Business Loan for the MSME borrowers, a digital\nproduct which has been rolled out for underwriting loans up to Rs. 1 crore in MSME\nspace for borrowers based on the GST turnover. The second is a new scheme, Udyami\nVanita, has been introduced for women entrepreneurs with embedded benefits. The\nthird is the Star Yuva Udyami, which is a scheme which has been started to provide\nloan assistance up to Rs. 1 crore for young entrepreneurs for age up to 35 years.\nGreen deposit scheme has also been introduced for raising green deposit funds under\nthe scheme, which will be deployed for financing of green assets. Renewable energy\nhas also been identified as a champion sector within the Bank.",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_2",
+      "text": "The second part is with respect to the IT and Cyber Security. Cyber security centre of\nexcellence, we have developed the centre to foster collaboration, training, and\ncontinuous improvement in cyber resilience. Proactive attack surface management,\nwhich is the ASM, has also been done up. It identifies unknown vulnerabilities, shadow\nIT and misconfigurations before attackers do so. Centralized threat intelligence\nplatform also has been set up. It enables automated correlation, real time alerts, and\ncontextual threat analysis. As part of our NexTech, Bank has opened 24 x 7 resiliency\noperating centre, which is the ROC, for quick response and recovery from disruptions\nof Bank\u2019s applications, including the CBS platform, e platform, mobile banking\napplications, etc., due to natural disasters, system outages, cyber attacks, etc.,\nThe third part is with respect to business. Here, global business of the Bank has grown\nby 12.02% on a YoY basis from Rs.13.23 lakh crores in March \u201824 to Rs.14.82 lakh\ncrores in March \u201825 with the incremental growth of nearly Rs.1,59,000 crores. Global\nadvances of the Bank have increased by 13.74% on a YoY basis from Rs. 5.85 lakh\ncrores in March \u201824 to Rs.6,66,000 crores in March \u201825 with the incremental growth of\nmore than Rs.80,000 crore\nGlobal deposits, they have increased by 10.65% on a YoY basis from Rs.7,37,000\ncrores in March \u201824 to Rs.8,16,000 crores in March \u201825 with the incremental growth of\nRs.78,000 crore plus. Domestic gross advances have increased by 14.45% on a YoY\nbasis from Rs.4.92 lakh crores in March \u201824 to Rs.5.64 lakh crores in March \u201825. RAM\nadvances have increased by a good number of 18.37% on a YoY basis from Rs.2.73\nlakh crores in March \u201824 to Rs.3.23 lakh crores in March \u201825, constituting 57% of our\ntotal advance book of the bank. Domestic deposits have increased by 11.21% on a\nYoY basis from Rs.6.30 lakh crores in March \u201824 to Rs.7 lakh crores in March \u201825. Our\nCASA has increased on a YoY basis from Rs.2.70 lakh crores in March \u201824 to Rs.2.80\nlakh crores in March \u201825 with the incremental growth of more than Rs.10,000 crores in\nMarch \u201825, and the CASA ratio stood at a healthy number of more than 40%.\nNow with respect to profitability and asset quality, our operating profit has improved by\n17% on a YoY basis and stood at more than Rs.16,000 crores in FY '25 as against\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 4 of 24\nRs.14,000 crores plus as on FY '24. And in Q4 FY 25, it stood at Rs.4,885 crores,\nwitnessing a YoY growth of 37%. Net profit has increased by 46% on a YoY basis and\nstood at Rs.9,219 crores for FY25 against Rs.6,318 crores in FY24. And for Q4 FY25,\nit was at Rs.2,626 crores, witnessing a growth of nearly 82% in the net profit. Global\nNIM of the Bank is now at 2.82% as against 2.97% in FY24.\nSlippage ratio stood at 1.36% in FY25 as against 1.58% in FY24. Slippage ratio was\nat 0.32% in Q4 of FY25. Credit cost has improved to 0.76% in FY25 as against 0.78%\nin FY24. Net interest income has increased by 6% on a YoY basis and stood at\nRs.24,000 crore plus in FY25 as against Rs.23,000 crore plus in FY24. In Q4, the NII\nstood at Rs.6,063 crores as against Rs.5,937 crore in Q4 of FY24.\nAs regards to non-interest income is concerned, it has increased by 48% on a YoY\nbasis and stood at Rs.8,994 crores in FY '25 as against Rs.6,095 crores in FY24. And\nfor Q4 FY25 it stood at Rs.3,400 crore plus witnessing a YoY growth of nearly 96% as",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_3",
+      "text": "against Rs.1,700 crores in Q4 of the last financial year. There has also been\nimprovement in the asset quality in the Bank in both gross NPA ratio and also the net\nNPA ratio. Gross NPA ratio has improved by 171 basis points to 3.27% in FY25, and\nnet NPA ratio has improved by 40 basis point on a YoY basis to 0.82% only in FY25.\nAs regards the PCR is there, the provision coverage ratio, it has improved to 92.39%\nin FY 25 as against 90.59%.\nAs on March 2025, Bank's CRAR has improved to 17.77% as against 16.96% in March\n\u201824. In tune with the growth of the global economy, the guidance for global advances\ngrowth will be at around 12% to 13%. The global deposit growth would be at around\n11% to 12% for FY26. The key focus area will remain low cost deposit mobilization for\nprotecting our NIM and increasing high yielding advances for consistent growth in\nbusiness with emphasis on digital initiatives, improvement in the asset quality, and\narresting the fresh slippages. The endeavour of the Bank will be in increasing\nefficiency and profitability along with focus on compliance and better corporate\ngovernance.\nI would like to thank you all for your continued support. The floor is now open for\ndiscussions and Question and Answers. Thank you so much.\nModerator:\nThank you very much, Sir. We would like to proceed towards our Questions and\nAnswers session.\nJust, the instructions part, that is mandatory. Before we proceed, we would request\nyou to kindly raise hands for the queries. One of our representatives shall hand over\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 5 of 24\na mic to you. Also kindly restrict questions to two at a time, allowing, everyone to\ninteract. For subsequent questions, we'll come back to you later if time permits.\nPlease identify / introduce yourself, your organization before asking a question. For\noutstation Analyst\u2019s, those who have joined virtually, please send in your questions to\nour Adfactors team. Yes. Ajmera ji, kindly begin.\nMr. Ashok Ajmera:\nI thought, first is always a compliment. So let the mic be there. Otherwise, it will not\nmay not be heard to everyone.\nCompliments to you, Sir, for a fantastic set of numbers and really a very good results\nbecause even in this difficult time where there was pressure on both deposit and credit\nside to most of the other Banks, you have performed much better, and maintained your\nguidance, what you had given rather little more on some of the fronts. I mean, if you\ntalk about the asset growth side I mean, the credit side, you talk about the profitability\nside. Everywhere, the performance is fantastic. Having said that, I want some data\npoints and some clarifications so as to now assess properly what is going to happen\nin FY26.\nSo, Sir, one is that on the credit side, credit growth, you know, our personal loan has\nbeen quite good. I mean, though in percentage terms, it may be small. So now with\nthis, so many checks and balances coming on the personal loans, what are your plans\nand what kind of loans do we have? I mean, and what is the delinquency ratio on that\npersonal loan book of Rs.12,670 crore?\nAnd similarly on the NBFC front also, as compared to the last quarter, we have grown\nby Rs.6,000 crore. So there also whether they are all AAA, AA rated or we are moving\ndown towards A or maybe BBB. BBB, I think, not there much. So on that and then on\nthe profitability front, in order to assess the consistency, how much profit, has accrued",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_4",
+      "text": "because of the revaluation of NARCL SRs, which now is permitted to be valued at the\nfair market value. So because that may not be available to us in the current quarter or\nmaybe next quarter that was something how much has been added to the profit.\nAnd then overall on the other income side, I think it has grown, it is almost, doubled\nfrom Rs.1,747 crore to Rs.3,428 crore in this quarter. So whether this momentum is\ngoing to be maintained, like, on the recovery from written off accounts is Rs.1,143\ncrore as against Rs.391 crore in the last quarter. Similarly profit on the sale and\nrevaluation of the investment coming to Rs.711 crore against Rs.266 crore. So of\ncourse, the investment book of every Bank is doing well, But going forward and with\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 6 of 24\nthis further two rate cuts, which are expected, I think we should have a bumper profit.\nHow much is going to be added to the bottom line?\nSome light if you can throw on that? And the last in this round, is on the I mean, we\nare just, whisker away from Rs.15 lakh crore business. I think it may be even achieved\nin this, April, June quarter also. So how much is the technology upgradation can be\nattributed to this growth and how far we have reached on our various models or\ndelivery models on technology, and what kind of budget still do we have for that for\nfurther improvement and upgradation. So some colour on the technology side, Sir.\nAnd if time permits, some information on the recovery as I had asked. Thank you, Sir.\nShri Rajneesh Karnatak, MD & CEO\nThank you so much, Ajmera ji. Five questions you have asked. So most of the things\nare covered in the presentation.\nSo as regards to the personal loan book is concerned, you are right that the growth is\nmore than 30% which you see over here. But, I would just like to clarify and give some\ndata points on the personal loan book. One thing is as I've said last time also in the\nlast Analyst presentation, that lot of guardrails we have already placed in the personal\nloan book where the CIC score is more than 760 where we are giving only to salary\ncustomer where we are also ensuring that the salary is coming into the Bank of India\nSaving account. Those kinds of guardrails we have already placed in, such kind of,\nloaning when we are doing that. With respect to the book is concerned, overall, as you\nknow, the growth is 30%, right, as you rightly observed. But the base is low because\nof which the growth is also showing at 30%. So our outstanding is only Rs.12,000\ncrore plus. If you see the entire retail book of the Bank, it is Rs.1,33,000 crore. And\nthe personal loan book is only 9% of that book, which is less than 10%. That is one\npoint.\nSecond thing is that our global loan book is Rs.6,66,000 crores as on March \u201825. If you\nsee the personal loan book out of that, it is less than 2%. In fact, it is at 1.80%. Now,\nif you see the stress within that, our NPA in the personal loan book as on 31st March\nis only Rs.136 crore, which is only 1.10% of the personal loan book. So that is the kind\nof NPA which is there.\nFurther, if I give you the colour on the SMA number also within the personal loan book,\nSMA 1, 2, both aggregate is only Rs.435 crore, which in percentage terms of this book\nis only 3.43%. So in a way, the personal loan book is behaving very healthy. The yield\nis also very good. The asset quality is also, as on date, is good and we are comfortable\nQ4 FY25 Earnings Call Transcript",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_5",
+      "text": "May 09, 2025\nClassification: Public\nPage 7 of 24\nwith the present growth, which is happening in the personal loan book. Now, coming\nto the next point, which is the NBFC book.\nAgain, as you rightly said that, we have increased our portfolio. So our NBFC book,\nwhich was Rs.78,000 crore plus as on March \u201824, has increased to Rs.88,000 crore\nas on March \u201825 as per the presentation. So let me clarify with one data point. This\nRs.88,000 crore constitutes three components. One is the domestic NBFC book,\nwhich is Rs.71,000 crore. Then there is international NBFC book, which is Rs.9,600\ncrores. And then there is a Treasury book of NBFC, which is Rs.7,600 crores,\ncontributing total Rs.88,000 crores. And this NBFC book is constituting only 13% of\nour global loan book, wherein our global advances are Rs.6,66,000 crores. And if I\ngive you the colour on the rating part of this entire NBFC book, A rated and above,\naccounts constitute 98% of the outstanding. So that is the colour.\nThe second thing that I would like to give on the NBFC book is with respect to the PSU\nand the Bank backed NBFC like PNB Housing Finance or LIC Housing Finance or\nCAN Housing Finance, that kind of thing. Here, if you see the total PSU and the bank\nbacked NBFC's total exposure is 51%, which means that only 49% of our NBFC book\nis to the actual NBFCs. Remaining is either to the PSU NBFCs or the Bank backed\nNBFCs. So that kind of security and comfort level available is there with the Bank as\nfar as the NBFC is concerned. Now, with respect to the profitability that we have taken,\ndue to the RBI circular on the NARCL, that figure is at around, Rs.350 crore. How\nmuch it is Mr. Kumar?\nShri B. Kumar, General Manager & CFO\nSir, it is Rs.397.76 crore. It is mentioned in point no. 3 in Notes to Accounts.\nShri Rajneesh Karnatak, MD & CEO\nOK. It is near to Rs.400 crore. Exactly, so entire money has not been taken into the\nP&L. It's a 50:50 ratio which is there. As regards to what will be the future in FY '26\non this NARCL, there are lot of discussions within our NPA book, which we are having\nwith NARCL for shifting these accounts to NARCL. So this year also, in FY '26, we'll\nsee good traction of accounts shifting into the NARCL and some, booking coming\nunder that also. So next point was with respect to the other income growth.\nOther income as you rightly observe that the major components of the other income\nfor us have been with respect to the recovery in the written off accounts. Here, we\nhave improved the recovery on a YoY basis by 61% from Rs.1,400 crore in FY '24 to\nnow Rs.2,300 crore in this year. And the other thing is from profit on sale of and the\nrevaluation of the investments, there the increase is more than 200%. From Rs.628\ncrore, it has gone up to Rs.1,800 crore. So on the Treasury front, Ajmera ji, at the time\nwhen the interest rates were high, we have kept a good book with us in the Treasury.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 8 of 24\nSo now in this falling interest rate scenario, we are able to book profits out of that\nwhenever we are selling. So this income is also accruing with respect to that. And the\nwritten off account, again, we have a specific scheme now in the Bank with respect to\nrecovery in written off accounts, and the entire Bank is working on that OTS scheme\nwith recovery of written off accounts. And we expect that more recoveries, the same",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_6",
+      "text": "way it has happened in FY '25. Similarly, it will happen in FY '26 for recovery in written\noff accounts.\nSee, Ajmera ji, at the present situation where there is so much global volatility and\nacross the board issues, so we have decided that we will not be giving any guidance\napart from the top line guidance, which I've already given in my speech with respect\nto the global deposit and the global advances. All other guidance we are keeping at a\npause at present till there is more clarity on the emerging situation which is happening.\nSo, nonetheless, I would only say on the recovery in written off accounts, whatever\nthe number we have taken this year, Rs.2,300 crore plus, we have done that. That\nkind of number we would like to maintain in this financial year also. So as you are\naware, being an Analyst yourself, there is lot of pressure on the NIMs and margins of\nthe Bank. Not only for us, for the entire banking system. So as a banker from the Top\nManagement side, we are very clear that in this financial year, only those banks will\ndo well in FY '26 who do better non-interest income and who do better recoveries.\nBecause, margins will be under pressure as far as net interest income and net interest\nmargins overall are concerned. So, we have to concentrate as a strategy on non-\ninterest income and also on the recoveries, not only in written off account, but overall\nrecoveries so that the overall profitability of the Bank improves in FY26. So as regards\nthe business and technology part, you are right that, technology, we have invested a\nlot. Last year, we had taken a budget of around Rs.2,100 crores. Out of which, we\nhave already spent up to 31st March 2025, nearly Rs.1,700 crores. And this year also,\nwe have taken a budget for IT, digital and cyber security, a budget of Rs.2,000 crores.\nIf I tell you the numbers which are there, so our digital loan book now has touched at\naround Rs.80,000 crores. That is another number which is now available with us. As\non March \u201825, our digital book is around Rs.80,000 crore, which is 12% of our global\nadvances. In retail, it is at around Rs.27,000 crores. In Agri, it is Rs.39,000 crore. This\nalso includes the gold loans, which we are sanctioning through the digital method.\nOnly the pledge of gold happens in the physical way. MSME, again, Rs.13,000 crore\nof book we have already built up over there. And as regard the journeys which are\nthere, 22 journeys were there in the last year, which were digital.\nAnd in this financial year, we have been able to have 29 journeys on the IT side, which\nare now digital, which is there in part of the presentation also, page number 39. It is\nthere. So if you see the presentation also, last year, we had 22 journeys. This year,\nwe are having 29 journeys. And, in liability side, there are 5 journeys which are digital.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 9 of 24\nIf you remove them, then 24 journeys are there in Agriculture, Retail, and MSME. So\nin Agriculture, we have 6 journeys which are digital. In Retail, there are 10 journeys\nwhich are digital.\nIn MSME, there are eight journeys which are digital. All these kinds of automation are\nhelping us in the Bank in not only operational efficiency, but also reducing the cost and\nfreeing the staff at the branch level from all these kind of mundane works which used\nto happen and which is now being taken care by the digital platforms which are there",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_7",
+      "text": "and branches are now focusing more on, number one, marketing for liability and loan\nproducts. And number two, on the collection efficiency for recovering installment and\nother kinds of things. So we are very clear that the automation, whatever we are doing,\nleads to finally operational efficiency in the Bank and finally more income to the Bank.\nAnd one more data point that I would like to give you over here is with respect to our\ndigital, that we have started earning income with respect to our Transactions Banking\nand the debit mandates which we are taking from NBFCs and Corporates and PSUs.\nThrough that also in this financial year, we have already earned more than Rs.300\ncrores. So that is the kind of income we have started getting through the automation\nwhich we have done in the last two years. So we are very much cognizant of the fact\nthat whatever the investment that we are making in technology for IT and digital, we\nget back the returns by way of business and finally the other income and the incomes\nwhich come for the P&L of the Bank. Thank you.\nModerator:\nThank you very much, Sir. Thank you very much, Ajmera ji.\nMr. Arjun, Baroda BNP Parbias MF\nArjun from Baroda BNP Paribas Mutual Fund. So I actually wanted to check on the,\nAdvances growth and, guidance on that, but I do understand you are holding that back,\nBut just on the corporate front, if you could share a little bit more on the pipeline that\nwe have there, and, what is the nature of entities that are broadly looking for that, and\nmaybe is it greenfield or brownfield or how exactly is that?\nShri Rajneesh Karnatak, MD & CEO\nSo as far as the corporate credit growth is concerned, so overall, global credit growth,\nwe have already said that it will be around 12% to 13%. That is the guidance we are\ngiving. So as regards the pipeline is concerned, we have a pipeline as on 31st March\nwhen we speak. The pipeline is at around Rs.74,000 crore, which includes not only\ncorporate, but also RAM Advances. So RAM Advances pipeline is around Rs.12,000\ncrores.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 10 of 24\nAnd international and corporate book, it is around Rs.62,000 crore. So this Rs.74,000\ncrore constitutes around 11% of our total global loan book. So that is the kind of\npipeline that we are having. And we are very confident. This year, we have grown at\naround 9.50% on a YOY basis in the corporate book.\nSo in this financial year also, we are, very much confident that we'll be able to grow in\na double digit as far as the corporate book is concerned. So lot of sectors we are\nfunding, we are totally agnostic to any sector. If the promoter is good and if, the entity\nis fine and the industry is doing fine, we are going and lending in that industry.\nHowever, I can say that there are a lot of emerging segments and sectors where we\nare lending, particularly with respect to data centers, with respect to warehousing,\nfacilities, with respect to solar, PV modules, with respect to renewable energy also,\nand battery manufacturing also and also Electric Vehicles. So, these are the new\nemerging areas where we have started funding apart from the traditional industry,\nwhich is steel, textile and all those kinds of things where normal expansions,\nbrownfield projects are coming and either we are the sole lender or we are part of the\nconsortium or under multiple banking. So quite good traction now Bank of India is",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_8",
+      "text": "having through our Large Corporate Branches. Apart from that, one more data point\nis that we have already opened Emerging Corporate Branches, which are now 20 in\nnumber where, again, we are focusing on advances up to Rs.250 crores. There also,\nwe are seeing lot of traction and proposals have started coming. And margins are also\nbetter over there. The fact is that the emerging corporates typically borrow because\nthey are normally BBB rated. So we are lending them on MCLR rate. So the margins\nare better over there. Processing fee also, we are able to get better. LC BG charges\nare also better over there. Forex income is also better over there.\nSo there also, we are targeting to focus on new emerging corporate clients who get\nadded to the Bank of India portfolio.\nMr. Arjun, Baroda BNP Parbias MF\nGot it. Sir, Thank you. Well understood. Secondly, I just wanted to check. I think the\nMSME GNPAs have gone down from around some Rs.10,000 crore to around\nRs.7,500 crore. If you could share what has been driving this improvement. Is there\nany regional or maybe sectoral colour to this?\nShri Rajneesh Karnatak, MD & CEO\nSo sectoral GNPAs in MSME, frankly speaking, it is a combination of two things. One\nis the advances which is growing in MSME book because the denominator is growing.\nRight? So we have grown our advances in the MSME book, number one.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 11 of 24\nNumber two, we have been able to curtail our SMAs in this book and the delinquencies\nwhich are there. So both the things together have contributed to the lower GNPA\nnumber in the MSME book. That is, frankly, the reason why. And lot of underwriting,\nguardrails we have already placed in our MSME book right from sourcing of the MSME\naccount until the underwriting which happens and, till the monitoring which happens\nand the collection efficiency for the term loans in MSME which happen. So we have\nunderwriting centers, more than 150 underwriting centers in the Bank for MSME\nadvance, which we call the SMECC's underwriting centers, where Credit Officers are\nnow placed.\nSo credit underwriting has improved, number one. Number two, we are doing lot of\nDSA activities for MSME also through one of our subsidiaries, which is Bank of India\nShareholding. We have got the RBI approval. So that marketing is happening through\nthat, our own subsidiary.\nThird is the collection efficiency. For that, we have now put Zonal Collection Centers\nin our 69 Zones who take care of the collection efficiencies for these MSME term loans\nwhenever they are not getting due installments. So that also good traction we are\nseeing so that the delinquency does not happen. So all these things together, the ring\nfencing that we have done on this MSME portfolio, we are seeing a good traction, not\nonly with respect to growth, but also on the asset quality side.\nMr. Arjun, Baroda BNP Parbias MF\nSo just, lastly, again, on the asset quality front, there's been recently a judgment on\nthis Bhushan Power and Steel account. With regards to that, how do we look at this\nNCLT and, recoveries horizon changing? Would there be a material impact? And if so,\nhow is the Bank placed over there?\nShri Rajneesh Karnatak, MD & CEO\nSo, specifically, on this account, if I could say for Bank of India, see, we had sold this\naccount to ARC. So there is no impact of the judgment, per se on Bank of India\nBalance Sheet and P&L.",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_9",
+      "text": "So that is one clarification that I would like to give, number one. Number two, with\nrespect to the judgment which has come, all the COC lenders which are there, we are\nnot part of that, but I am told that all the lenders together are working on it, and, they\nwould be filing some Review Petition with the court.\nModerator:\nThank you very much. Gauri, can you just put in through Mr. Aditya Vikram? He has\njoined virtually.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 12 of 24\nMr. Aditya Vikram\nSir thank you for taking my question, Sir. The first part of the question is that\nsequentially, the credit cost has increased this particular quarter. Can you through give\nsome colour as to why that has happened? Is this seasonal in nature?\nShri Rajneesh Karnatak, MD & CEO\nYes. Credit cost, if you see the year on year basis, our credit cost was 0.78% in March\n\u201924, it has come down to 0.76% in March \u201825, it has come down by two basis points.\nHowever, I agree that the credit cost has gone up on a quarterly basis, sequential\nquarter basis, and it was 0.84%. But overall, the credit cost has come down, to 0.76%\nas on March \u201825.\nMr. Aditya Vikram\nSo but this has nothing to do with any seasonal stuff. Right? It has no seasonality\nattached to it.\nShri Rajneesh Karnatak, MD & CEO\nNo. It is not linked to any seasonality attached to it because that was a normal\nprovisioning in the NPA accounts which has happened.\nAnd in this slippage also, our slippage ratio is also at 1.36%. That includes one lumpy,\nPSU account, which had happened in this financial year in Q2 of this Financial Year.\nHad it not been there, both the credit cost and the slippage ratios would have been\nmuch, much better.\nModerator:\nNext in line, virtually, is, Mr. Nitin S, Dharmawat. He's got a volley of questions. Nitin,\nI'll request you to restrict yourselves to only two questions, please.\nMr. Nitin Dharmawat, Aurum Capital:\nThank you for the opportunity. Thank you, Congratulations for an excellent set of\nnumbers. My first question is, can you give a guidance? You said that you would like\nto give guidance only on the top line, but just wanted to understand, on Return on\nAssets, where do you see next year, because it still remains, below 1%. So that's my\nfirst question.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 13 of 24\nShri Rajneesh Karnatak, MD & CEO\nSo Return on Assets, if you see our numbers, our ROA was 0.70% in March \u201824, which\nhas now improved to 0.90%. Right? And, as far as the quarterly numbers on ROA is\nconcerned, we have touched the number of 0.98% in March \u201825 on the ROA side.\nSo we wanted to touch 1%. We narrowly missed that number, but, nonetheless, we\nare well in target to that. And if you see sequentially, our ROA, it has been improving\nin the last four quarters. And, in December, it was 0.96%, now touching at 0.98%.\nDefinitely, within the Top Management side, we are targeting that we should touch the\nROA of 1% as soon as possible and sustain it at that number in the ensuing quarters.\nMr. Nitin Dharmawat, Aurum Capital:\nPerfect, Sir. My next question is, Sir, Bank of India's name appeared in MTNL default\nlist. So can you please clarify if we have done the complete provisioning for this or\nnot? And what are the chances of recovery over here? Because last time, we\ndiscussed about it, and we mentioned that, there is a possibility that this will not go",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_10",
+      "text": "into a default list. But, nonetheless, it has gone. So what are the chances of recovery\nover there?\nShri Rajneesh Karnatak, MD & CEO\nFor this account, MTNL, we have already marked NPA in this account like all other\nlenders in the system. And, as regards, the resolution is concerned, yes, a lot of senior\nlevel talks are going on with respect to this account on resolution of the asset.\nAnd we are expecting that in this financial year, FY26, some resolution in MTNL will\ncome. And as regards the provision, we have made adequate provision as per the RBI\nIRAC norms, for the asset.\nMr. Nitin Dharmawat, Aurum Capital:\nMy next question is about CASA percentage. It has gone down to 40% now. So what\nis the trajectory you see, over here?\nShri Rajneesh Karnatak, MD & CEO\nAs regards CASA is concerned, you have rightly observed that it has gone down to\n40%, and we were at 43% in March \u201824. As you are aware that there is lot of pressure\non the resources and even more pressure on the CASA numbers. Nonetheless, we\nhave been able to increase our CASA by nearly Rs.10,000 crores on YoY basis. And\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 14 of 24\nas regards, from the Top Management side, I can only say that, we are very cognizant\nof the fact that we need to have a healthy CASA number, and we would like to protect\nour CASA percentage at around 40% in FY26 also.\nAnd if you see our breakup slide on the domestic deposit, our bulk deposit is only\n13.82%, which is less than 14%, which means that 86% of our domestic deposits, is\neither CASA or retail term deposits. So we would like to continue to maintain this\nnumber in this financial year also so that, we are able to get deposits at a lower rate\nand reduce the cost of deposit, thus protect our net interest income and net interest\nmargins in FY '26.\nMr. Nitin Dharmawat, Aurum Capital:\nSir, my final question is about the corporate loan growth which continues to be lower.\nYou mentioned about, new sectors where we are lending now.\nSo, any specific reason why it is lower? Do we see risk of NPAs and, that is why we\nare not growing in that sector aggressively or there is general slowdown or lower\nrequirements of funds by the corporates? Can you elaborate that?\nShri Rajneesh Karnatak, MD & CEO\nIf you can see our credit number in slide No.8, you have rightly observed that the\ngrowth is on a lower side when compared to RAM advances. Retail, Agriculture and\nMSME, which are growing in double digit, and this one is growing at around single\ndigit at around 9.60%.\nWe are very consciously trying to pace our corporate advances for the simple reason\nthat all AAA and AA rated advances are asking for EBLR rates, which are external\nbenchmark, where the yields are very less. And we want to build portfolio under MCLR\nkind of lending in corporate book where the yields are better and margins are better.\nSo it's a conscious decision from us not to build that book to a large extent, in so that\nwe protect our margins because AAA and AA rated corporates are getting very fine\nrates and that too at the EBLR linked rates.\nModerator:\nThank you, Nitin. Can we have next speaker?\nMr.Ashlesh, Kotak Securities\nFirst question is, Sir, on the margin side, your yield on loans reported number has\ndeclined by some 28 basis points QoQ. Can you explain what is the reason? Because\nwe have not seen such a sharp decline in any of the PSBs.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 15 of 24",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_11",
+      "text": "Shri Rajneesh Karnatak, MD & CEO\nYield on Advances. See, Yield on Advances, if you see on a YoY basis, they have\nimproved. See, in FY '24, our yield on advances were 8.38%. It has improved to 8.46%\nin March \u201825. So it has improved by nearly, I would say around eight basis points. But\nyou are right that, if you see on the quarter basis, sequentially, it has come down from\n8.55% in December 24 to 8.27% in March \u201825. The simple reason for that is, again,\nbecause of the fact that, from February onwards, the Repo rate cut happened. You are\naware.\nAnd in this Q4 itself, immediately after the Repo cut, our book, which is nearly 50% of\nour book, which is external benchmark against the Repo, immediately on the next day,\nthe 25 basis cut came, for our book. So two months, there the interest income went\ndown by 25 basis points straight away. So that is a simple reason why the yield on\nadvances came down in Q4. However, in overall during the year, we were able to\nprotect it, and, we were able to be at around 8.46%. Another data point that I would\nlike to give you over here is our weighted average lending rate, for the whole year, was\n9.74%.\nAnd our weighted average term deposit rate, the term deposit that we have taken\nduring the year was at 7.09%. So if you see the difference between the two, the\ndifference is around 2.65%. So that's a healthy difference we are trying to maintain,\nand this does not include CASA cost of deposit. This is only term deposit weighted\naverage cost. So there again, as I said that by taking more of retail term deposits, we\nare trying to maintain, the cost of deposit at a lower side so that we are able to protect\nour margins, the net interest income, and the NIM in the ensuing quarters.\nMr.Ashlesh, Kotak Securities\nSo to follow-up on the yield question, even if we account for this 25 basis points rate\ncut on 50% of the loan book, that can only explain about eight, nine basis points of\ndecline. But the decline which you have reported is some 28 basis points. So, it seems\nlike there might be a few other, variables also.\nShri Rajneesh Karnatak, MD & CEO\nThe variables in the sense that, see, 55% of the book is the EBLR. Right? So the\noutstanding that percentage we are seeing, this is the outstanding as on 31st March\n2025, the chart we have prepared. But majority of the period, the outstanding loans\nwere there in the external book only and not in the MCLR book. So MCLR book, in this\nquarter we had in the Q4 of this financial year, we had been able to grow in the month\nof March only where the interest income accrued. So majority of the interest income\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 16 of 24\nin the loan book was coming from the external bench mark rates only where the cut\nhappened, actually.\nMr. Ashlesh, Kotak Securities\nSecondly, can you just explain again the accounting of the SR revaluation which you\nhave done? You said 50% - 50%. But why would the entire revaluation not go under\nTreasury entirely? Just explain that.\nShri Rajneesh Karnatak, MD & CEO\nMr. Kumar, would you be able to explain this one? Why we have taken 50:50 while\naccounting SR revaluation?\nShri B. Kumar, General Manager & CFO\nSir, we will take it on a one to one basis.\nMr. Ashlesh, Kotak Securities\nLastly, can you elaborate on the status of a few of the State Government accounts\nwhich were under SMA last quarter? I believe they are from, Telangana.\nShri Rajneesh Karnatak, MD & CEO",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_12",
+      "text": "If you see our SMA slide again, those SMA accounts are still there of that State\nGovernment. There are four accounts in that, which are there. The slide number is 24.\nSo here, if you see, the number is, Rs.4,599 crores. Our, corporate SMA, which is\nthere, which constitute four State Government accounts. And, either they are in SMA-\n1 or SMA-0. None of them is SMA-2 also as on 31st March 2025, and we are very\nconfident that they would not slip. And this is the assurance which have been given to\nus by the Corporations. Number two, all of them are secured loans. And another\nadditional point is that all the four accounts which are there of that State Government,\nthey are all State Government guaranteed. So, we do not foresee any delinquency\ncoming in those accounts, though they are having some cash flows issues and they\nare under SMA. But, we don't foresee any delinquencies coming there.\nModerator:\nI'll ask one question, which has come from one analyst from UTI MF. Sir. He has\ncongratulated you for the good results. His question is that the Bank has booked\nRs.1,800 crore plus from sale of securities. What is the estimate for current year, and\nwhat is the plan to protect portfolio yield?\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 17 of 24\nShri Subrat Kumar, Executive Director\nSo, basically, this Treasury profit is dependent on the market conditions, which it was\nat, during that point of time. Yes, our endeavour will be to take advantage of the market\nand book the profit. I think, it's very difficult to give any guidance on the Treasury profit,\nbecause it is totally dependent on market conditions.\nMr. Sushil Choksey\nCongratulations to Team Bank of India for a very stable numbers. So I understand you\nmay not give any guidance on various parameters like ROA, etc. ROA, it's done fine.\nWhen country stabilizes and the market stabilizes.\nNow all the challenges which you've taken on in the last twelve, twenty four months\nby rolling out products, technology, adoption of new practices, needs lot of challenges\nby human resources concerned. Now, what have we done in the Bank that emerges\nas a winner to adopt all the new technologies and new products that they show the\nprofitability path and the gains fructified from all the initiatives.\nShri Rajneesh Karnatak, MD & CEO\nSo we have done lot of things as far as the PPT is concerned with respect to the\nprocess, people and the technology. So a lot of enablement and enablers have been\ndone within the Bank with respect of lot of processes. Where we have lot of processes,\nwe have streamlined them to make it business easy, not only for the customers, but\nalso for doing the business at the branch level for the staff also. That is the first part.\nSecond part is with respect to the people, we have done lot of reskilling and upskilling\nof the staff, given them lot of trainings and other kinds of things. And we have also\ntried to now post them at the right person at the right place so that the entire\nproductivity we are able to capture as far as the business is concerned from the people\nside of it. Technology, as I already said that we have invested lot of money in\ntechnology from the last two, three years.\nNearly Rs.2,000 crore, we are investing every year. And out of which, we are spending\nnearly 80% to 85% of that technology part. So it is going not only for IT hardware and\nsoftware, but also going for digital and also going for the cybersecurity part or even",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_13",
+      "text": "giving cyber protection and other kinds of protection to the customers in case they are\nour liability partners also. So that is one part. Other thing is that, now that we have\nestablished all that thing, so the three segmentation of our verticals, whether it is the\nbusiness vertical, the support vertical, and control vertical, we have all made them\nbusiness centers.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 18 of 24\nThat is another thing which has been done. To just give you example, our Audit\nDepartment, which takes care of the audit of the branches, they have now also been\ngiven a task of finding the revenue leakage at the branch levels. Small, small charges,\nwhich are not debited in the loan accounts, and other kinds of things. So this year, we\nhave been able to recover nearly Rs.200 crores through our audit department through\nrevenue leakages, which happen in normal course of business. So this kind of Rs.200\ncrore has directly gone into the P&L of the Bank.\nSo this is another thing. And how we did that was, say, very simple that we gave more\nstaff to the Audit Department. They had more resources available with them so that\nthey had more manpower available with them when they were doing audit in the\nbranches. So they were able to find those kinds of things. Another small thing on the\ntechnology part, just for example, I would put through transaction banking and direct\ndebits mandates, which we are taking from the corporates and also from NBFCs for\ntheir collection. So there also, we have started getting charges for collections. This\nyear, we have been able to earn nearly Rs.300 crores from such kind of activity. So\nthis is another kind of income we have built up for the Bank, and we want to scale it\nup now in this financial year in FY26. So with all these kinds of things and as I said\nthat all the business verticals, support and control verticals being in a way business\ncenters for us. So everyone is now contributing either by way of profitability through\nincome or by way of reducing the cost through controllable cost.\nSo both the sides it's happening, which is helping us improve not only the interest\nincome, but also the other income. And on the third side, the third dimension being the\ncontrolling the cost also, which is overall helping us improve the profitability of the\nBank, which you see in this Balance Sheet, we have been able to give operational\nprofit, which is on a YoY basis. It has jumped by 17%, which is a very healthy number\nin this market. And net profit, we are touching Rs.9,000 crore of figure with a jump of\nYoY nearly 45%.\nMr. Sushil Choksey\nAll your answers are well accepted. Entire plan which you have rolled out is supporting\nyour operational numbers. Now the balance sheet may grow, profit will grow. The\nhuman resource incentive, whether it's Top Management or the executives and the\nlower. If they work in tandem, it may grow at a higher number. Correct. So what is that\naspirational side where the Bank is concerned?\nShri Rajneesh Karnatak, MD & CEO\nCorrect. We have a very structured PLI scheme in the system being a Public Sector\nBank, which is a Performant Linked Incentive. So there are now two PLI schemes\ngoing on in the system, which is PLI-1 and PLI-2. Under PLI-1, it is for staff, which is\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 19 of 24\nup to Scale 3. That is based on the operational profit and up to 15 days of salary they",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_14",
+      "text": "get. So this year, we have got, 17% of operational profit, which means that 15 days of\nthe salary, they will get as a PLI up to Scale 3 staff. Means Officers up to Scale 3,\nclerical staff, and the sub staff, which is there. So that they will be getting. We have\nprovided that number in this balance sheet.\nThe other part is that DFS has already come out with a PLI-2 scheme, which is for\nScale 4 and above up to the level of MD & CEO. Scale 4 and up to MD are mapped\nunder that same structure, same scheme. There also, once the numbers are approved\nand everything is finalized by the DFS, that PLI will also be getting. So both the things\ntogether, we have already provided for in the balance sheet. In the P & L, you can see\nin the staff expenses because of which it has risen also.\nSo that kind of provision already we have taken and that kind of incentive will be\ncoming to the staff. As you said that we should take care of the staff, that we have\nalready provided.\nMr. Sushil Choksey\nSir, in view of the global trade related situation earlier. Then April has been a smart\nrecovery where stock market was concerned. Now we are coming up with a new\ninternal issues where India is concerned. This may end towards smart CASA balances\nemerging in May with the stress, which is visible, what is gonna happen whether it's a\n24 hour event or a 2 week event, we are not aware. This may lead to a lot of CASA.\nBecause people may stop consumption for some time. How we will take some\ninitiatives where we garner higher CASA numbers or deposits to get a better market\nshare.\nShri Rajneesh Karnatak, MD & CEO\nSee, in the COVID time also, when the COVID struck, everyone thought, even the\nbankers thought, where we will get the deposit and how we will get the deposit\nbecause COVID is there, lockdown is there. In fact, it worked to the contrary. The\nCASA balances, of the banking system just shot up in FY21 and the early part of FY22\nin one or two quarters because of the fact that everyone started keeping their money\nin Saving and Current account for any kind of emergency and the CASA shot up in the\nsystem. So similarly, in this kind of situation, war like situation, everyone will keep their\nbalances with Banks.\nAnd as you rightly said, the CASA will shoot up. We have done lot of enablers within\nthe system. Now, if I can tell you that, now we have additional one more GM in our\nResources Department. So now in our Resources Department, which is the liability\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 20 of 24\ndepartment, is headed by a CGM, and now we have three General Managers sitting\nover there. One GM is taking care of the entire CASA piece.\nOne General Manager is taking care of the entire Government business, which\nincludes the Central Government, State Government, and the PSU business, with\nrespect to CASA, and term deposits and also the salary accounts which have to be\ndone. And the third General Manager in the resource department is our CEBB\ndepartment, which is the Customer Excellence and Branch Banking. So there, we are\ntaking care of the customer service at the branch level and how better service can be\ngiven to the customers, particularly to the Saving and Current account holders. So if\nwe are able to take care of this piece, where we are able to give better customer\nservice and we become a differentiator among all other banks in giving better customer\nservice and personalized customer service. There is no reason why the CASA",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_15",
+      "text": "balances of our Bank will not improve.\nMr. Sushil Choksey\nHaving known Bank of India presence well accepted in the trade community in the\nWestern States led by Mumbai, the touch point was very high. Then we went down\nfor various reasons - ten, twelve years back. We are showing a sign of recovery. Bank\nof India Stock Exchange Branch was very popular in early days. Cross selling was\nvery well accepted for various things. In those time products were not existing.\nBut now today's world, every customer looking for cross sell. Correct. They want\nfacilities, and they want support. Somebody may Bank with HDFC, but Bank of India\nis forgotten for various aspects. How are we emerging from those areas which Bank\nof India used to champion about?\nShri Rajneesh Karnatak, MD & CEO\nSo as you rightly said, we have been doing lot of activities as far as the product per\ncustomer is concerned. So we are very much at the Top Management side, whichever\nis, our GM, CGM's, whole time directors who are sitting in this room. We are very clear\nthat we need to improve product per customer. That we are very clear. So our product\nper customer, if I share with you the number, it has increased by 46 basis point in the\nlast two years. Through sale of various kinds of products that we are doing, not only\nthrough the physical banking which is happening, but also through the digital banking\nof mobile and Internet banking.\nAnd now that we have our own Subsidiaries with respect to Mutual Fund and also SUD\nLife, which is selling insurance products. So lot of new traction is happening, and our\nMarketing Officers at each of the Zonal Office and the FGM Office are now clearly\nfocused, and RMs are also there. And we are selling lot of products whether it is the\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 21 of 24\ndemat account, whether it is Mutual Fund, whether it is the NPS scheme, all kinds of\nproducts we are selling to our customers, and the product per customer has now\nstarted increasing. And with this engagement with the customer, we are now clearly\nable to see there are more balances in the saving accounts. And already, as I was\ntelling earlier in the Press Meet also that we have identified 1,000 branches as HNI\nbranches and also designated RMs to them. HNI customer, as a customer which has\nan average quarterly balance of 5 lakhs and we have given RM to them. So that kind\nof thing is there. So all these things are combining together and helping us improve\nour CASA balances, and it has grown last year, as I said, by nearly Rs.10,000 crore\non a YoY basis at a time which was very challenging for the entire banking industry. If\nyou see numbers of some of the Bank, the CASA is in fact has degrown in some of\nthe Banks in absolute numbers. But for us, we have grown our CASA by nearly\nRs.10,000 crore on a YoY basis.\nMr. Sushil Choksey\nI wish that your Rs.10,000 crore is at least Rs.25,000 crore this year. And I hope all\nyour initiatives support. But one recommendation that rather than only focusing for\nincome from Bank of India led entity products, if all other products are sold, the\ncustomer may not Bank at two, three places and may bank with Bank of India. Correct.\nThank you for answering all my questions, and good luck for the year.\nModerator:\nThank you very much, Sir. There are good number of questions coming up on\nWhatsApp, but most of them are answered by you at one point or the other, so I'm not",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_16",
+      "text": "taking it. Gauri and team to let them know that those are answered.\nOnly two questions. One, by Mr.Vinay, an independent analyst. SMA one bucket for\ncorporate loan is Rs. 3,357 crore. Has this been recovered since then? Has anything\nmoved to NPA as of now?\nShri Rajneesh Karnatak, MD & CEO\nAs regards the SMA numbers as concerned, in the Corporate SMA book, it is Rs.4599\ncrores total number. Out of which, in the SMA-1 book, it is Rs.3,357 crore, and it\nconstitutes, the, four accounts which are of state PSUs only. None of them has,\nbecome NPA, and as on date when we speak, they continue to be in the SMA category\nat SMA-0 or SMA-1.\nModerator\nThank you, Sir. Another one coming up from Mr. Jay.\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 22 of 24\nHe's also an independent analyst. His question is that there seems some mismatch\non specific provisions. Is there any contingent or non specific provisions in Rs. 13.47\nbn? Yields on advance, why such sharp dip of 28 basis points quarter on quarter? And,\nthird is riskiness of corporate SMA-0, 1, 2 book.\nShri Rajneesh Karnatak, MD & CEO\nOn the SMA book, if I can continue with that, as I said in my earlier question also, while\nanswering the question, all these SMA numbers of this State PSU are all secured\nadvances, number one. And number two, all of them are covered through a State\nGovernment guarantee. And as I clarified earlier, none of them we foresee in this\nfinancial year to be slipping or become delinquent. That is as far as the SMA number\nis concerned. As regards the number on the Yield on advances side, why such a sharp\ndip of 28 bps? That has already been responded, by me.\nModerator\nAnd, mismatch on specific provisions. Is there any contingent or nonspecific\nprovisions.\nShri Rajneesh Karnatak, MD & CEO\nFor this, we will be responding to that separately on a one to one basis.\nModerator\nAlright, Sir. If Mr., Bhavik Shah and Ashok Shah are there, we'll take them. Otherwise,\none last question from the Analyst if anybody else is, there. Ajmera ji, do you want to\nsay something?\nMr. Ashok Ajmera\nSir, just, again on the composition of, corporate and retail. We have come from\n55.36% in 31st March 2024 to now 57.26% in Retail. So combination now is 58 : 42,\nas against 45 : 55. So going forward because we are one Bank which is still having a\ngood corporate, presence. So and looking at the scenario when there is so much of\ncompetition, everybody is running for RAM for Retail and there are lot of competition.\nAre we open to look at increasing our Corporate book, you said it will be touching 10%\nor double digit. But, really, by focusing without thinking of the percentage, like, even\ngoes up. Are we open for that to increase our corporate book with, of course, good\nrated accounts and this thing, or we are just close to bring it to 40 : 60 or 35 : 65 like\nothers?\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 23 of 24\nShri Rajneesh Karnatak, MD & CEO\nNo. This ratio is just a benchmark number. So internally, we have kept that, RAM\nshould be at around 58%, and, the corporate should be at around 42%. But we are\ntotally open while we are doing corporate advances. If the yields are good, corporate\nis good, and we are able to get good profit out of that account and good income out of\nthat account, we are totally open to funding that corporate. We have no issues with\nthat. So when we are saying that we'll have a credit growth of a global credit growth of",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_17",
+      "text": "around 12% to 13% in this Financial Year, obviously, we have to grow credit. So we\nhave to even take care of the repayments which will be happening in this financial\nyear. So if you see our book, nearly 45% of our books are term loan also, in which\nthere will be repayments. So, when the repayments are there, we not only have to\ntake care of the incremental growth in credit, but also the payments which will come\nin the term loans. So, we are totally open to corporates wherever the opportunity is\nthere, where margins are good. We'll be funding the corporates.\nMr. Ashok Ajmera\nWhy I am more specific about it is that because of the change of the definition of\nMSME. Many of the corporates have come down into some Mid corporates in the\nMSME, which go in your other than corporate percentage. So more efforts are required\nthere to recoup even that loss of I mean, not loss of business, but going to the other\ncategory.\nShri Rajneesh Karnatak, MD & CEO\nYes. We are totally open to the building of that corporate book. You can, get that thing.\nAlready we have opened 20 Emerging Corporate Credit Branches. That is for that\nspecific reason only we have started those branches to have a portfolio in Bank of\nIndia with respect to Mid Corporate or Emerging Corporate customers who can be\nfuture corporates. So there we clearly see that there are good margins for the Bank,\nand we can go for sole banking and earn the entire income for ourselves by having\ntheir promoters\u2019 Saving accounts, CASA accounts, and even the employees' accounts,\neverything. So lot of opportunities of third party selling and cross selling is available\nwith such kind of emerging corporates, and it is definitely part of our strategy.\nMr. Ashok Ajmera\nAnd just last, sort of a point of information that based on its Supreme Court recent\njudgment on Bushan Steel. I mean, what is our status and, what is our quantum which\nwe had recovered? And what are your views on that going forward?\nQ4 FY25 Earnings Call Transcript\nMay 09, 2025\nClassification: Public\nPage 24 of 24\nShri Rajneesh Karnatak, MD & CEO\nI have already, answered this question. See, in Bhushan Steel, we had the exposure\nin this account, and Bank of India had sold this account to ARC. So we are not at all\nimpacted by this judgment because it's already sold, with no recourse basis. So we\nhave nothing to say on this. But what I understand from the industry and the system\nis that, banks would be, who are under COC, meeting will be held shortly. Whoever is\nthis COC members, and they may be going for some petition.\nModerator:\nSir, one last question from the virtual world also. It is from SBI Mutual Fund. The name\nis not being displayed. The question, first of all, he has congratulated you on the good\nset of numbers. And, the question is that, is the Bank having an offshore branch in\nGIFT City? What is Bank's plan for relative growth of GIFT City branch vis a vis other\noverseas branches? And how active is Bank in terms of non-deliverable products\npermitted by RBI to Entities operating in offshore locations?\nShri Rajneesh Karnatak, MD & CEO\nWe are very much having a GIFT city IBU branch. And if you see our presentation on\npage number 41, our IBU branch is having an advance composition of nearly 8% of\nour global advance book. So it's a very significant number, and it is the fourth largest\nbranch for us in the international operations.\nSo lot of advances we are giving mostly to the Indian corporates through our IBU GIFT",
+      "source_name": "transcript.txt",
+      "period": null
+    },
+    {
+      "chunk_id": "chunk_18",
+      "text": "City branch. And a lot of other cross functional products also we are now looking at,\nfrom our IBU GIFT City branch, which ISKA is now approving for either for insurance\nor for mutual fund and other kind of things. So a lot of traction, we are having for our\nIBU GIFT City branch.\nModerator:\nThank you very much, Sir. Due to time constraint, we are not able to take further\nquestions either from the virtual world or from here. I think nobody is here. Thank you\nvery much, gentlemen, for, joining us this evening and for this enlightening session.\nRefreshments are outside, kindly join. The Press Release will be shared to you shortly\nby our Adfactor team. Thank you all. Thank you very much, and good day.",
+      "source_name": "transcript.txt",
+      "period": null
+    }
+  ],
+  "insights": [
+    {
+      "metric_key": "casa_pct",
+      "label": "CASA",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 40.28,
+      "previous_period": "FY25",
+      "previous_value": 280284.0,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "casa_pct",
+          "topic": "current account",
+          "excerpt": "The CASA balances, of the banking system just shot up in FY21 and the early part of FY22 in one or two quarters because of the fact that everyone started keeping their money in Saving and Current account for any kind of emergency and the CASA shot up in the system",
+          "source_chunk_id": "chunk_14",
+          "score": 14.2,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "deposit",
+          "excerpt": "One General Manager is taking care of the entire Government business, which includes the Central Government, State Government, and the PSU business, with respect to CASA, and term deposits and also the salary accounts which have to be done",
+          "source_chunk_id": "chunk_14",
+          "score": 13.99,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "deposit",
+          "excerpt": "This will lead to fortification of low cost deposits like CASA and retail term deposits for sustainable credit growth",
+          "source_chunk_id": "chunk_1",
+          "score": 12.97,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "deposit",
+          "excerpt": "82%, which is less than 14%, which means that 86% of our domestic deposits, is either CASA or retail term deposits",
+          "source_chunk_id": "chunk_10",
+          "score": 12.95,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "deposit",
+          "excerpt": "How we will take some initiatives where we garner higher CASA numbers or deposits to get a better market share",
+          "source_chunk_id": "chunk_14",
+          "score": 12.92,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "deposit",
+          "excerpt": "So that's a healthy difference we are trying to maintain, and this does not include CASA cost of deposit",
+          "source_chunk_id": "chunk_11",
+          "score": 12.87,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "casa",
+          "excerpt": "And Q4 FY25 Earnings Call Transcript May 09, 2025 Classification: Public Page 14 of 24 as regards, from the Top Management side, I can only say that, we are very cognizant of the fact that we need to have a healthy CASA number, and we would like to protect our CASA percentage at around 40% in FY26 also",
+          "source_chunk_id": "chunk_10",
+          "score": 12.53,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "casa_pct",
+          "topic": "casa",
+          "excerpt": "So there we clearly see that there are good margins for the Bank, and we can go for sole banking and earn the entire income for ourselves by having their promoters\u2019 Saving accounts, CASA accounts, and even the employees' accounts, everything",
+          "source_chunk_id": "chunk_17",
+          "score": 12.01,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "CASA declined from 280284.0 in FY25 to 40.28 in FY25."
+      ],
+      "analyst_takeaway": "The Bank of India's CASA (Current Account Savings Account) metric is reported at 40.28 in FY25, with a previous value of 280284.0 in the same fiscal year. This suggests a significant decline in CASA, although the exact nature of this decline is not immediately clear due to the lack of year-over-year comparison.\n\nManagement has discussed the importance of CASA in various contexts, including its role in providing low-cost deposits for sustainable credit growth, as mentioned in [3]. Additionally, the bank has emphasized its efforts to garner higher CASA numbers to improve market share, as noted in [5]. However, the decline in CASA from 280284.0 to 40.28 in FY25 is not directly addressed by management commentary.\n\nThe explanation for the CASA decline is based mainly on numeric decomposition, as there is no direct management commentary on this specific issue. However, it is worth noting that the banking system as a whole experienced an increase in CASA balances in FY21 and early FY22 due to individuals keeping their money in savings and current accounts for emergency purposes, as mentioned in [1]. The bank's strategy for managing government business, including CASA and term deposits, is overseen by a General Manager, as noted in [2].",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "crar_pct",
+      "label": "CRAR",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 79240.0,
+      "previous_period": "FY24",
+      "previous_value": 69907.0,
+      "evidence_strength": "keyword",
+      "evidence": [
+        {
+          "metric_key": "crar_pct",
+          "topic": "rwa",
+          "excerpt": "I mean, what is our status and, what is our quantum which we had recovered? And what are your views on that going forward? Q4 FY25 Earnings Call Transcript May 09, 2025 Classification: Public Page 24 of 24 Shri Rajneesh Karnatak, MD & CEO I have already, answered this question",
+          "source_chunk_id": "chunk_17",
+          "score": 4.31,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "rwa",
+          "excerpt": "So of course, the investment book of every Bank is doing well, But going forward and with Q4 FY25 Earnings Call Transcript May 09, 2025 Classification: Public Page 6 of 24 this further two rate cuts, which are expected, I think we should have a bumper profit",
+          "source_chunk_id": "chunk_4",
+          "score": 4.15,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "capital",
+          "excerpt": "Nitin Dharmawat, Aurum Capital: Sir, my final question is about the corporate loan growth which continues to be lower",
+          "source_chunk_id": "chunk_10",
+          "score": 2.98,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "rwa",
+          "excerpt": "So going forward because we are one Bank which is still having a good corporate, presence",
+          "source_chunk_id": "chunk_16",
+          "score": 2.74,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "capital",
+          "excerpt": "Nitin Dharmawat, Aurum Capital: My next question is about CASA percentage",
+          "source_chunk_id": "chunk_10",
+          "score": 2.61,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "capital",
+          "excerpt": "Nitin Dharmawat, Aurum Capital: Thank you for the opportunity",
+          "source_chunk_id": "chunk_9",
+          "score": 2.51,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "crar",
+          "excerpt": "As on March 2025, Bank's CRAR has improved to 17",
+          "source_chunk_id": "chunk_3",
+          "score": 2.4,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "crar_pct",
+          "topic": "capital",
+          "excerpt": "Nitin Dharmawat, Aurum Capital: Perfect, Sir",
+          "source_chunk_id": "chunk_9",
+          "score": 2.37,
+          "match_type": "keyword"
+        }
+      ],
+      "numeric_notes": [
+        "CRAR increased from 69907.0 in FY24 to 79240.0 in FY25."
+      ],
+      "analyst_takeaway": "The Bank of India's CRAR (Capital to Risk-Weighted Assets Ratio) stood at 79240.0 in FY25, indicating the bank's capital adequacy. This metric is crucial in assessing a bank's ability to withstand potential losses. The CRAR value suggests that the bank has a significant amount of capital to cover its risk-weighted assets.\n\nThe increase in CRAR from 69907.0 in FY24 to 79240.0 in FY25 may be attributed to various factors, including changes in risk-weighted assets (RWA) and capital levels. Although the transcript evidence does not provide direct commentary on CRAR, discussions around RWA [1] and capital [3] suggest that the bank is focused on managing its risk exposure and capital levels. However, the explanation is based mainly on numeric decomposition due to the lack of direct evidence.\n\nManagement's views on the bank's performance and outlook, as expressed in the Q4 FY25 Earnings Call Transcript [2], suggest optimism about future profits, potentially driven by a strong investment book and expected rate cuts. While this commentary does not directly address CRAR, it implies a positive outlook for the bank's overall financial health. Nevertheless, without more specific commentary on CRAR, the analysis relies on numeric trends and indirect evidence.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "efficiency_ratio_pct",
+      "label": "Efficiency Ratio",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 50.84,
+      "previous_period": "FY24",
+      "previous_value": 51.73,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "operational efficiency",
+          "excerpt": "All these kinds of automation are helping us in the Bank in not only operational efficiency, but also reducing the cost and freeing the staff at the branch level from all these kind of mundane works which used to happen and which is now being taken care by the digital platforms which are there",
+          "source_chunk_id": "chunk_6",
+          "score": 16.45,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "operational efficiency",
+          "excerpt": "So we are very clear that the automation, whatever we are doing, leads to finally operational efficiency in the Bank and finally more income to the Bank",
+          "source_chunk_id": "chunk_7",
+          "score": 11.27,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "branch",
+          "excerpt": "And, the question is that, is the Bank having an offshore branch in GIFT City? What is Bank's plan for relative growth of GIFT City branch vis a vis other overseas branches? And how active is Bank in terms of non-deliverable products permitted by RBI to Entities operating in offshore locations? Shri Rajneesh Karnatak, MD & CEO We are very much having a GIFT city IBU branch",
+          "source_chunk_id": "chunk_17",
+          "score": 5.0,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "cost",
+          "excerpt": "The key focus area will remain low cost deposit mobilization for protecting our NIM and increasing high yielding advances for consistent growth in business with emphasis on digital initiatives, improvement in the asset quality, and arresting the fresh slippages",
+          "source_chunk_id": "chunk_3",
+          "score": 4.17,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "efficiency",
+          "excerpt": "And lot of underwriting, guardrails we have already placed in our MSME book right from sourcing of the MSME account until the underwriting which happens and, till the monitoring which happens and the collection efficiency for the term loans in MSME which happen",
+          "source_chunk_id": "chunk_8",
+          "score": 4.17,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "cost",
+          "excerpt": "And on the third side, the third dimension being the controlling the cost also, which is overall helping us improve the profitability of the Bank, which you see in this Balance Sheet, we have been able to give operational profit, which is on a YoY basis",
+          "source_chunk_id": "chunk_13",
+          "score": 4.11,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "technology",
+          "excerpt": "So how much is the technology upgradation can be attributed to this growth and how far we have reached on our various models or delivery models on technology, and what kind of budget still do we have for that for further improvement and upgradation",
+          "source_chunk_id": "chunk_4",
+          "score": 4.07,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "efficiency_ratio_pct",
+          "topic": "technology",
+          "excerpt": "So we are very much cognizant of the fact that whatever the investment that we are making in technology for IT and digital, we get back the returns by way of business and finally the other income and the incomes which come for the P&L of the Bank",
+          "source_chunk_id": "chunk_7",
+          "score": 4.05,
+          "match_type": "keyword"
+        }
+      ],
+      "numeric_notes": [
+        "Efficiency Ratio declined from 51.73 in FY24 to 50.84 in FY25."
+      ],
+      "analyst_takeaway": "The Bank of India's Efficiency Ratio stood at 50.84 in FY25, a decline from 51.73 in FY24. This decline suggests an improvement in the bank's operational efficiency. According to management, automation has played a key role in enhancing operational efficiency, reducing costs, and freeing up staff at the branch level from mundane tasks [1]. This is further reinforced by the management's statement that automation leads to operational efficiency, ultimately resulting in more income for the bank [2].\n\nThe bank's focus on low-cost deposit mobilization and increasing high-yielding advances has also contributed to the improvement in efficiency [4]. Additionally, the bank has implemented underwriting and monitoring processes in its MSME book to improve collection efficiency [5]. These initiatives, along with cost control measures, have helped the bank improve its profitability, as evident from the operational profit reported in the balance sheet [6].\n\nThe management's comments suggest that the bank's efforts to improve operational efficiency and control costs are yielding positive results. The decline in the Efficiency Ratio is a testament to the bank's focus on digital initiatives, asset quality improvement, and cost management. Overall, the bank's strategy appears to be paying off, with the Efficiency Ratio trending in the right direction.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "gnpa_pct",
+      "label": "GNPA",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 3.27,
+      "previous_period": "FY25",
+      "previous_value": 21749.0,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "The key focus area will remain low cost deposit mobilization for protecting our NIM and increasing high yielding advances for consistent growth in business with emphasis on digital initiatives, improvement in the asset quality, and arresting the fresh slippages",
+          "source_chunk_id": "chunk_3",
+          "score": 22.18,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "There has also been improvement in the asset quality in the Bank in both gross NPA ratio and also the net NPA ratio",
+          "source_chunk_id": "chunk_3",
+          "score": 20.96,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "provisioning",
+          "excerpt": "So can you please clarify if we have done the complete provisioning for this or not? And what are the chances of recovery over here? Because last time, we discussed about it, and we mentioned that, there is a possibility that this will not go",
+          "source_chunk_id": "chunk_9",
+          "score": 14.02,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "provisioning",
+          "excerpt": "It is not linked to any seasonality attached to it because that was a normal provisioning in the NPA accounts which has happened",
+          "source_chunk_id": "chunk_9",
+          "score": 13.07,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "So all these things together, the ring fencing that we have done on this MSME portfolio, we are seeing a good traction, not only with respect to growth, but also on the asset quality side",
+          "source_chunk_id": "chunk_8",
+          "score": 11.56,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "Arjun, Baroda BNP Parbias MF So just, lastly, again, on the asset quality front, there's been recently a judgment on this Bhushan Power and Steel account",
+          "source_chunk_id": "chunk_8",
+          "score": 11.28,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "Now with respect to profitability and asset quality, our operating profit has improved by 17% on a YoY basis and stood at more than Rs",
+          "source_chunk_id": "chunk_2",
+          "score": 11.12,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "gnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "The asset quality is also, as on date, is good and we are comfortable Q4 FY25 Earnings Call Transcript",
+          "source_chunk_id": "chunk_4",
+          "score": 10.85,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "GNPA declined from 21749.0 in FY25 to 3.27 in FY25."
+      ],
+      "analyst_takeaway": "The Bank of India's Gross Non-Performing Assets (GNPA) stands at 3.27 in FY25, significantly lower than the previously reported 21749.0 in the same fiscal year. This decline is notable, but the explanation is based mainly on numeric decomposition due to the lack of clear causal evidence in the provided transcript.\n\nManagement commentary highlights the focus on improving asset quality, with emphasis on digital initiatives and arresting fresh slippages [1]. There has been an improvement in asset quality, as evident from the decline in both gross and net NPA ratios [2]. However, the transcript does not provide a direct explanation for the significant decline in GNPA from 21749.0 to 3.27 in FY25.\n\nThe bank's efforts to improve asset quality are also reflected in its provisioning practices [3, 4] and the ring-fencing of its MSME portfolio, which has shown good traction in terms of growth and asset quality [5]. Additionally, the bank is closely monitoring specific accounts, such as the Bhushan Power and Steel account, following a recent judgment [6]. While these comments provide context on the bank's asset quality initiatives, they do not directly address the significant decline in GNPA.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "interest_expended_cr",
+      "label": "Interest Expended",
+      "coverage": "fy25",
+      "current_period": "FY25",
+      "current_value": 46432.0,
+      "previous_period": null,
+      "previous_value": null,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "interest_expended_cr",
+          "topic": "interest rates",
+          "excerpt": "So on the Treasury front, Ajmera ji, at the time when the interest rates were high, we have kept a good book with us in the Treasury",
+          "source_chunk_id": "chunk_5",
+          "score": 9.1,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "Interest Expended is available for FY25; no YoY movement is inferred unless the presentation provides more periods."
+      ],
+      "analyst_takeaway": "The Bank of India's Interest Expended for FY25 is reported at 46432.0. This metric represents the total interest paid by the bank on its liabilities, such as deposits and borrowings. As the evidence strength is direct, we can rely on this value without any additional inferences.\n\nManagement's commentary on the Treasury front provides some insight into the bank's strategy during periods of high interest rates. As mentioned in [1], the bank has kept a good book in the Treasury, suggesting that the bank has managed its investments and liabilities effectively. However, this commentary does not directly explain the Interest Expended value, so the explanation is based mainly on numeric decomposition.\n\nThe Interest Expended value of 46432.0 for FY25 is a standalone metric, and without additional context or previous years' data, it is challenging to provide a more detailed analysis. The numeric notes clarify that no YoY movement can be inferred, as only FY25 data is available. Therefore, we can only report the Interest Expended value for FY25 without any further interpretation or comparison.",
+      "needs_analyst_note": false,
+      "verifier_warnings": [
+        "FY25-only metric contains YoY language; review synthesis."
+      ]
+    },
+    {
+      "metric_key": "interest_income_cr",
+      "label": "Interest Income",
+      "coverage": "fy25",
+      "current_period": "FY25",
+      "current_value": 2.82,
+      "previous_period": null,
+      "previous_value": null,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "So there again, as I said that by taking more of retail term deposits, we are trying to maintain, the cost of deposit at a lower side so that we are able to protect our margins, the net interest income, and the NIM in the ensuing quarters",
+          "source_chunk_id": "chunk_11",
+          "score": 11.98,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "So we would like to continue to maintain this number in this financial year also so that, we are able to get deposits at a lower rate and reduce the cost of deposit, thus protect our net interest income and net interest margins in FY '26",
+          "source_chunk_id": "chunk_10",
+          "score": 11.97,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "So majority of the interest income Q4 FY25 Earnings Call Transcript May 09, 2025 Classification: Public Page 16 of 24 in the loan book was coming from the external bench mark rates only where the cut happened, actually",
+          "source_chunk_id": "chunk_11",
+          "score": 11.82,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "So, we have to concentrate as a strategy on non- interest income and also on the recoveries, not only in written off account, but overall recoveries so that the overall profitability of the Bank improves in FY26",
+          "source_chunk_id": "chunk_6",
+          "score": 11.76,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "So as a banker from the Top Management side, we are very clear that in this financial year, only those banks will do well in FY '26 who do better non-interest income and who do better recoveries",
+          "source_chunk_id": "chunk_6",
+          "score": 11.62,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "So MCLR book, in this quarter we had in the Q4 of this financial year, we had been able to grow in the month of March only where the interest income accrued",
+          "source_chunk_id": "chunk_11",
+          "score": 11.3,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "advances growth",
+          "excerpt": "So I actually wanted to check on the, Advances growth and, guidance on that, but I do understand you are holding that back, But just on the corporate front, if you could share a little bit more on the pipeline that we have there, and, what is the nature of entities that are broadly looking for that, and maybe is it greenfield or brownfield or how exactly is that? Shri Rajneesh Karnatak, MD & CEO So as far as the corporate credit growth is concerned, so overall, global credit growth, we have already said that it will be around 12% to 13%",
+          "source_chunk_id": "chunk_7",
+          "score": 11.0,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "interest_income_cr",
+          "topic": "interest income",
+          "excerpt": "Because, margins will be under pressure as far as net interest income and net interest margins overall are concerned",
+          "source_chunk_id": "chunk_6",
+          "score": 10.97,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "Interest Income is available for FY25; no YoY movement is inferred unless the presentation provides more periods."
+      ],
+      "analyst_takeaway": "The Bank of India reported interest income of 2.82 in FY25. Management's discussion on interest income is focused on maintaining lower cost of deposits to protect margins and net interest income. As mentioned in [1], the bank aims to maintain a lower cost of deposit by taking more retail term deposits, which would help protect net interest income and net interest margins.\n\nThe management also emphasized the importance of non-interest income and recoveries in improving the bank's overall profitability, as stated in [2] and [4]. However, the direct discussion on interest income is limited, and the explanation is based mainly on numeric decomposition. The bank's interest income is influenced by external benchmark rates, as noted in [3], where the majority of interest income in the loan book came from these rates.\n\nManagement's strategy for FY26, as mentioned in [2] and [5], is to focus on non-interest income and recoveries to improve profitability. While the interest income for FY25 is reported, the management's discussion is more focused on the future strategy and the importance of maintaining lower deposit costs, as noted in [1] and [2]. Overall, the bank's interest income is an important aspect of its financial performance, and management is working to maintain and improve it through various strategies.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "nnpa_pct",
+      "label": "NNPA",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 82.0,
+      "previous_period": "FY25",
+      "previous_value": 5359.0,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "There has also been improvement in the asset quality in the Bank in both gross NPA ratio and also the net NPA ratio",
+          "source_chunk_id": "chunk_3",
+          "score": 20.96,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "The key focus area will remain low cost deposit mobilization for protecting our NIM and increasing high yielding advances for consistent growth in business with emphasis on digital initiatives, improvement in the asset quality, and arresting the fresh slippages",
+          "source_chunk_id": "chunk_3",
+          "score": 12.18,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "So all these things together, the ring fencing that we have done on this MSME portfolio, we are seeing a good traction, not only with respect to growth, but also on the asset quality side",
+          "source_chunk_id": "chunk_8",
+          "score": 11.56,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "Arjun, Baroda BNP Parbias MF So just, lastly, again, on the asset quality front, there's been recently a judgment on this Bhushan Power and Steel account",
+          "source_chunk_id": "chunk_8",
+          "score": 11.28,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "Now with respect to profitability and asset quality, our operating profit has improved by 17% on a YoY basis and stood at more than Rs",
+          "source_chunk_id": "chunk_2",
+          "score": 11.12,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "asset quality",
+          "excerpt": "The asset quality is also, as on date, is good and we are comfortable Q4 FY25 Earnings Call Transcript",
+          "source_chunk_id": "chunk_4",
+          "score": 10.85,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "net npa",
+          "excerpt": "27% in FY25, and net NPA ratio has improved by 40 basis point on a YoY basis to 0",
+          "source_chunk_id": "chunk_3",
+          "score": 10.68,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "nnpa_pct",
+          "topic": "provision coverage",
+          "excerpt": "As regards the PCR is there, the provision coverage ratio, it has improved to 92",
+          "source_chunk_id": "chunk_3",
+          "score": 10.67,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "NNPA declined from 5359.0 in FY25 to 82.0 in FY25."
+      ],
+      "analyst_takeaway": "The Net Non-Performing Assets (NNPA) of Bank of India has been reported as 82.0 in FY25, significantly lower than the previously stated 5359.0 in the same fiscal year. This discrepancy suggests an error in the previous reporting, rather than an actual decline in NNPA.\n\nManagement has highlighted the improvement in asset quality as a key area of focus [1]. They aim to protect their Net Interest Margin (NIM) through low-cost deposit mobilization and increase high-yielding advances, while emphasizing digital initiatives and improving asset quality [2]. This suggests that the bank is actively working to manage and reduce its non-performing assets.\n\nThe exact reason for the discrepancy in NNPA values is unclear, but management's emphasis on asset quality improvement [1] and their efforts to arrest fresh slippages [2] indicate a focus on managing and reducing non-performing assets. However, without further information, the explanation for the NNPA value is based mainly on numeric decomposition.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "operating_expenses_cr",
+      "label": "Operating Expenses",
+      "coverage": "fy25",
+      "current_period": "FY25",
+      "current_value": 16975.0,
+      "previous_period": null,
+      "previous_value": null,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "operational efficiency",
+          "excerpt": "All these kinds of automation are helping us in the Bank in not only operational efficiency, but also reducing the cost and freeing the staff at the branch level from all these kind of mundane works which used to happen and which is now being taken care by the digital platforms which are there",
+          "source_chunk_id": "chunk_6",
+          "score": 12.45,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "operational efficiency",
+          "excerpt": "So we are very clear that the automation, whatever we are doing, leads to finally operational efficiency in the Bank and finally more income to the Bank",
+          "source_chunk_id": "chunk_7",
+          "score": 9.27,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "branch",
+          "excerpt": "And, the question is that, is the Bank having an offshore branch in GIFT City? What is Bank's plan for relative growth of GIFT City branch vis a vis other overseas branches? And how active is Bank in terms of non-deliverable products permitted by RBI to Entities operating in offshore locations? Shri Rajneesh Karnatak, MD & CEO We are very much having a GIFT city IBU branch",
+          "source_chunk_id": "chunk_17",
+          "score": 5.0,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "technology",
+          "excerpt": "So how much is the technology upgradation can be attributed to this growth and how far we have reached on our various models or delivery models on technology, and what kind of budget still do we have for that for further improvement and upgradation",
+          "source_chunk_id": "chunk_4",
+          "score": 4.07,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "technology",
+          "excerpt": "So we are very much cognizant of the fact that whatever the investment that we are making in technology for IT and digital, we get back the returns by way of business and finally the other income and the incomes which come for the P&L of the Bank",
+          "source_chunk_id": "chunk_7",
+          "score": 4.05,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "employee",
+          "excerpt": "So there we clearly see that there are good margins for the Bank, and we can go for sole banking and earn the entire income for ourselves by having their promoters\u2019 Saving accounts, CASA accounts, and even the employees' accounts, everything",
+          "source_chunk_id": "chunk_17",
+          "score": 4.01,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "technology",
+          "excerpt": "Another small thing on the technology part, just for example, I would put through transaction banking and direct debits mandates, which we are taking from the corporates and also from NBFCs for their collection",
+          "source_chunk_id": "chunk_13",
+          "score": 3.75,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "operating_expenses_cr",
+          "topic": "technology",
+          "excerpt": "Now all the challenges which you've taken on in the last twelve, twenty four months by rolling out products, technology, adoption of new practices, needs lot of challenges by human resources concerned",
+          "source_chunk_id": "chunk_12",
+          "score": 3.67,
+          "match_type": "keyword"
+        }
+      ],
+      "numeric_notes": [
+        "Operating Expenses is available for FY25; no YoY movement is inferred unless the presentation provides more periods."
+      ],
+      "analyst_takeaway": "The Bank of India's Operating Expenses for FY25 stood at 16975.0. This metric is directly available for FY25, with no previous year's data provided for comparison. \n\nManagement commentary suggests that the bank is focused on operational efficiency, driven by automation and technology upgradation. As mentioned in [1], automation is helping the bank in reducing costs and freeing staff from mundane tasks, which is expected to contribute to operational efficiency. Furthermore, [2] highlights that automation leads to operational efficiency, ultimately resulting in more income for the bank.\n\nThe bank's investment in technology and digital platforms is expected to generate returns in the form of business growth and income. While the exact budget for technology upgradation is not specified, management acknowledges the importance of such investments in driving business and income growth, as seen in [5]. Overall, the bank's operating expenses for FY25 are influenced by its strategic focus on operational efficiency, technology, and digital transformation.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "other_income_cr",
+      "label": "Other Income",
+      "coverage": "fy25",
+      "current_period": "FY25",
+      "current_value": 8994.0,
+      "previous_period": null,
+      "previous_value": null,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "other_income_cr",
+          "topic": "non interest income",
+          "excerpt": "So, we have to concentrate as a strategy on non- interest income and also on the recoveries, not only in written off account, but overall recoveries so that the overall profitability of the Bank improves in FY26",
+          "source_chunk_id": "chunk_6",
+          "score": 9.76,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "non interest income",
+          "excerpt": "So as a banker from the Top Management side, we are very clear that in this financial year, only those banks will do well in FY '26 who do better non-interest income and who do better recoveries",
+          "source_chunk_id": "chunk_6",
+          "score": 9.62,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "non interest income",
+          "excerpt": "As regards to non-interest income is concerned, it has increased by 48% on a YoY basis and stood at Rs",
+          "source_chunk_id": "chunk_2",
+          "score": 8.85,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "treasury",
+          "excerpt": "What is the estimate for current year, and what is the plan to protect portfolio yield? Q4 FY25 Earnings Call Transcript May 09, 2025 Classification: Public Page 17 of 24 Shri Subrat Kumar, Executive Director So, basically, this Treasury profit is dependent on the market conditions, which it was at, during that point of time",
+          "source_chunk_id": "chunk_12",
+          "score": 4.72,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "other income",
+          "excerpt": "So we are very much cognizant of the fact that whatever the investment that we are making in technology for IT and digital, we get back the returns by way of business and finally the other income and the incomes which come for the P&L of the Bank",
+          "source_chunk_id": "chunk_7",
+          "score": 4.05,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "other income",
+          "excerpt": "Other income as you rightly observe that the major components of the other income for us have been with respect to the recovery in the written off accounts",
+          "source_chunk_id": "chunk_5",
+          "score": 3.29,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "treasury",
+          "excerpt": "So on the Treasury front, Ajmera ji, at the time when the interest rates were high, we have kept a good book with us in the Treasury",
+          "source_chunk_id": "chunk_5",
+          "score": 3.1,
+          "match_type": "keyword"
+        },
+        {
+          "metric_key": "other_income_cr",
+          "topic": "treasury",
+          "excerpt": "I think, it's very difficult to give any guidance on the Treasury profit, because it is totally dependent on market conditions",
+          "source_chunk_id": "chunk_12",
+          "score": 3.05,
+          "match_type": "keyword"
+        }
+      ],
+      "numeric_notes": [
+        "Other Income is available for FY25; no YoY movement is inferred unless the presentation provides more periods."
+      ],
+      "analyst_takeaway": "The Bank of India reported Other Income of 8994.0 in FY25. This metric is a component of the bank's non-interest income, which management has identified as a key area of focus for improving profitability. As stated in the transcript, \"we have to concentrate as a strategy on non- interest income and also on the recoveries\" [1], indicating the importance of non-interest income in the bank's overall strategy.\n\nManagement believes that banks that perform well in non-interest income and recoveries will be the ones that do well in FY26 [2]. The bank's Other Income is comprised of various components, including recoveries in written off accounts, which is a major contributor [6]. Additionally, investments in technology and digital initiatives are expected to generate returns in the form of business and other income [5].\n\nThe explanation of the Other Income number is based on direct evidence and management commentary. While the transcript provides some insight into the bank's strategy and expectations for non-interest income, it does not provide a detailed breakdown of the Other Income figure. Therefore, the analysis is based mainly on numeric decomposition and management's general comments on non-interest income.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "profit_after_tax_cr",
+      "label": "PAT",
+      "coverage": "fy25",
+      "current_period": "FY25",
+      "current_value": 9219.0,
+      "previous_period": null,
+      "previous_value": null,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "net interest income",
+          "excerpt": "So we would like to continue to maintain this number in this financial year also so that, we are able to get deposits at a lower rate and reduce the cost of deposit, thus protect our net interest income and net interest margins in FY '26",
+          "source_chunk_id": "chunk_10",
+          "score": 29.98,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "net interest income",
+          "excerpt": "So there again, as I said that by taking more of retail term deposits, we are trying to maintain, the cost of deposit at a lower side so that we are able to protect our margins, the net interest income, and the NIM in the ensuing quarters",
+          "source_chunk_id": "chunk_11",
+          "score": 29.98,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "asset quality",
+          "excerpt": "The key focus area will remain low cost deposit mobilization for protecting our NIM and increasing high yielding advances for consistent growth in business with emphasis on digital initiatives, improvement in the asset quality, and arresting the fresh slippages",
+          "source_chunk_id": "chunk_3",
+          "score": 26.18,
+          "match_type": "expanded"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "net interest income",
+          "excerpt": "Because, margins will be under pressure as far as net interest income and net interest margins overall are concerned",
+          "source_chunk_id": "chunk_6",
+          "score": 24.97,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "non interest income",
+          "excerpt": "So, we have to concentrate as a strategy on non- interest income and also on the recoveries, not only in written off account, but overall recoveries so that the overall profitability of the Bank improves in FY26",
+          "source_chunk_id": "chunk_6",
+          "score": 19.76,
+          "match_type": "expanded"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "provisions",
+          "excerpt": "His question is that there seems some mismatch on specific provisions",
+          "source_chunk_id": "chunk_16",
+          "score": 18.57,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "provisions",
+          "excerpt": "Is there any contingent or non specific provisions in Rs",
+          "source_chunk_id": "chunk_16",
+          "score": 18.47,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "profit_after_tax_cr",
+          "topic": "provisions",
+          "excerpt": "Is there any contingent or nonspecific provisions",
+          "source_chunk_id": "chunk_16",
+          "score": 18.41,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "PAT is available for FY25; no YoY movement is inferred unless the presentation provides more periods."
+      ],
+      "analyst_takeaway": "The Bank of India reported a Profit After Tax (PAT) of 9219.0 in FY25. This metric is a direct measure of the bank's profitability. The management's focus on maintaining low-cost deposit mobilization and increasing high-yielding advances is expected to support the bank's profitability, as stated in the transcript evidence [3].\n\nThe management's strategy to protect net interest income and net interest margins is crucial, as margins are expected to be under pressure, as mentioned in [4]. To mitigate this, the bank plans to concentrate on non-interest income and recoveries, including written-off accounts, to improve overall profitability in FY26, as stated in [5]. The management's emphasis on retail term deposits is also aimed at maintaining a lower cost of deposits, thereby protecting margins, as mentioned in [1] and [2].\n\nThe bank's asset quality and provisions are also key areas of focus. While there is a mention of a mismatch on specific provisions [6], the management's overall strategy is to improve asset quality and arrest fresh slippages, which should have a positive impact on the bank's profitability. However, the explanation of the PAT number is based mainly on numeric decomposition, as there is limited direct commentary on the PAT number itself.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "provisions_contingencies_cr",
+      "label": "Provisions and Contingencies",
+      "coverage": "fy25",
+      "current_period": "FY25",
+      "current_value": 3978.0,
+      "previous_period": null,
+      "previous_value": null,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "provisioning",
+          "excerpt": "So can you please clarify if we have done the complete provisioning for this or not? And what are the chances of recovery over here? Because last time, we discussed about it, and we mentioned that, there is a possibility that this will not go",
+          "source_chunk_id": "chunk_9",
+          "score": 14.02,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "provisioning",
+          "excerpt": "It is not linked to any seasonality attached to it because that was a normal provisioning in the NPA accounts which has happened",
+          "source_chunk_id": "chunk_9",
+          "score": 13.07,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "asset quality",
+          "excerpt": "There has also been improvement in the asset quality in the Bank in both gross NPA ratio and also the net NPA ratio",
+          "source_chunk_id": "chunk_3",
+          "score": 10.96,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "credit cost",
+          "excerpt": "However, I agree that the credit cost has gone up on a quarterly basis, sequential quarter basis, and it was 0",
+          "source_chunk_id": "chunk_9",
+          "score": 10.92,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "credit cost",
+          "excerpt": "The first part of the question is that sequentially, the credit cost has increased this particular quarter",
+          "source_chunk_id": "chunk_9",
+          "score": 10.88,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "credit cost",
+          "excerpt": "Had it not been there, both the credit cost and the slippage ratios would have been much, much better",
+          "source_chunk_id": "chunk_9",
+          "score": 10.84,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "credit cost",
+          "excerpt": "Credit cost, if you see the year on year basis, our credit cost was 0",
+          "source_chunk_id": "chunk_9",
+          "score": 10.57,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "provisions_contingencies_cr",
+          "topic": "recoveries",
+          "excerpt": "With regards to that, how do we look at this NCLT and, recoveries horizon changing? Would there be a material impact? And if so, how is the Bank placed over there? Shri Rajneesh Karnatak, MD & CEO So, specifically, on this account, if I could say for Bank of India, see, we had sold this account to ARC",
+          "source_chunk_id": "chunk_8",
+          "score": 10.52,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "Provisions and Contingencies is available for FY25; no YoY movement is inferred unless the presentation provides more periods."
+      ],
+      "analyst_takeaway": "The Bank of India reported Provisions and Contingencies of 3978.0 in FY25. This metric is directly available for FY25, with no previous year's data provided for comparison. \n\nManagement discussed provisioning in the context of asset quality, with an improvement noted in both gross and net NPA ratios [3]. However, the credit cost increased on a sequential quarter basis [4, 5]. The increase in credit cost was attributed to specific factors, and management suggested that without these factors, both credit cost and slippage ratios would have been better [6].\n\nRegarding provisioning, management was asked to clarify if complete provisioning had been done for certain accounts and the chances of recovery [1]. They noted that the provisioning was a normal process for NPA accounts and not linked to seasonality [2]. Based on the provided evidence, the explanation of the Provisions and Contingencies number is mainly based on numeric decomposition and management's discussion of credit cost and asset quality.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "roa_pct",
+      "label": "ROA",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 90.0,
+      "previous_period": "FY24",
+      "previous_value": 70.0,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "Now with respect to profitability and asset quality, our operating profit has improved by 17% on a YoY basis and stood at more than Rs",
+          "source_chunk_id": "chunk_2",
+          "score": 21.12,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "And on the third side, the third dimension being the controlling the cost also, which is overall helping us improve the profitability of the Bank, which you see in this Balance Sheet, we have been able to give operational profit, which is on a YoY basis",
+          "source_chunk_id": "chunk_13",
+          "score": 14.11,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "So, we have to concentrate as a strategy on non- interest income and also on the recoveries, not only in written off account, but overall recoveries so that the overall profitability of the Bank improves in FY26",
+          "source_chunk_id": "chunk_6",
+          "score": 13.76,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "Now, what have we done in the Bank that emerges as a winner to adopt all the new technologies and new products that they show the profitability path and the gains fructified from all the initiatives",
+          "source_chunk_id": "chunk_12",
+          "score": 13.65,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "return on assets",
+          "excerpt": "Q4 FY25 Earnings Call Transcript May 09, 2025 Classification: Public Page 13 of 24 Shri Rajneesh Karnatak, MD & CEO So Return on Assets, if you see our numbers, our ROA was 0",
+          "source_chunk_id": "chunk_9",
+          "score": 13.45,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "The endeavour of the Bank will be in increasing efficiency and profitability along with focus on compliance and better corporate governance",
+          "source_chunk_id": "chunk_3",
+          "score": 13.16,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "So everyone is now contributing either by way of profitability through income or by way of reducing the cost through controllable cost",
+          "source_chunk_id": "chunk_13",
+          "score": 13.12,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roa_pct",
+          "topic": "profitability",
+          "excerpt": "Now, with respect to the profitability that we have taken, due to the RBI circular on the NARCL, that figure is at around, Rs",
+          "source_chunk_id": "chunk_5",
+          "score": 13.04,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "ROA increased from 70.0 in FY24 to 90.0 in FY25."
+      ],
+      "analyst_takeaway": "The Bank of India's Return on Assets (ROA) stood at 90.0 in FY25, indicating a strong performance in terms of asset utilization. This metric is a key indicator of a bank's profitability and efficiency. As noted in the numeric notes, the ROA increased from 70.0 in FY24 to 90.0 in FY25.\n\nManagement commentary suggests that the bank's focus on improving profitability has been a key driver of this increase. As mentioned in [1] and [2], the bank's operating profit has improved, which is a testament to its efforts to control costs and increase efficiency. The bank's strategy to concentrate on non-interest income and recoveries is also expected to improve profitability in the future, as stated in [3]. \n\nThe bank's management has emphasized the importance of increasing efficiency and profitability, as noted in [6]. While the exact factors contributing to the increase in ROA are not explicitly stated, the overall emphasis on improving profitability and efficiency suggests that these efforts have had a positive impact on the bank's ROA. The explanation is based mainly on numeric decomposition and management commentary, with direct evidence from the numeric notes and supporting evidence from the transcript.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    },
+    {
+      "metric_key": "roe_pct",
+      "label": "ROE",
+      "coverage": "multi-year",
+      "current_period": "FY25",
+      "current_value": 15.27,
+      "previous_period": "FY24",
+      "previous_value": 13.13,
+      "evidence_strength": "direct",
+      "evidence": [
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "And on the third side, the third dimension being the controlling the cost also, which is overall helping us improve the profitability of the Bank, which you see in this Balance Sheet, we have been able to give operational profit, which is on a YoY basis",
+          "source_chunk_id": "chunk_13",
+          "score": 10.11,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "So, we have to concentrate as a strategy on non- interest income and also on the recoveries, not only in written off account, but overall recoveries so that the overall profitability of the Bank improves in FY26",
+          "source_chunk_id": "chunk_6",
+          "score": 9.76,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "Now, what have we done in the Bank that emerges as a winner to adopt all the new technologies and new products that they show the profitability path and the gains fructified from all the initiatives",
+          "source_chunk_id": "chunk_12",
+          "score": 9.65,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "The endeavour of the Bank will be in increasing efficiency and profitability along with focus on compliance and better corporate governance",
+          "source_chunk_id": "chunk_3",
+          "score": 9.16,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "Now with respect to profitability and asset quality, our operating profit has improved by 17% on a YoY basis and stood at more than Rs",
+          "source_chunk_id": "chunk_2",
+          "score": 9.12,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "So everyone is now contributing either by way of profitability through income or by way of reducing the cost through controllable cost",
+          "source_chunk_id": "chunk_13",
+          "score": 9.12,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "Now, with respect to the profitability that we have taken, due to the RBI circular on the NARCL, that figure is at around, Rs",
+          "source_chunk_id": "chunk_5",
+          "score": 9.04,
+          "match_type": "direct"
+        },
+        {
+          "metric_key": "roe_pct",
+          "topic": "profitability",
+          "excerpt": "So on that and then on the profitability front, in order to assess the consistency, how much profit, has accrued",
+          "source_chunk_id": "chunk_3",
+          "score": 8.93,
+          "match_type": "direct"
+        }
+      ],
+      "numeric_notes": [
+        "ROE increased from 13.13 in FY24 to 15.27 in FY25."
+      ],
+      "analyst_takeaway": "The Bank of India's Return on Equity (ROE) stood at 15.27 in FY25, indicating a strong profitability metric. This is a result of the bank's efforts to control costs and improve overall profitability, as mentioned by management in the transcript evidence [1], which highlights the importance of controlling costs to improve profitability.\n\nManagement has also emphasized the need to focus on non-interest income and recoveries to further improve profitability, as stated in [2]. This strategy is expected to contribute to the bank's overall profitability in the future. The bank's ability to adopt new technologies and products has also shown a positive impact on profitability, as mentioned in the transcript evidence.\n\nThe improvement in ROE from 13.13 in FY24 to 15.27 in FY25 is a direct result of the bank's efforts to increase efficiency and profitability, while maintaining a focus on compliance and corporate governance, as stated in the transcript evidence. Overall, the bank's management is committed to improving profitability, and the current ROE metric reflects the progress made in this direction.",
+      "needs_analyst_note": false,
+      "verifier_warnings": []
+    }
+  ],
+  "warnings": []
+}

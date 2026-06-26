@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+httpx
+pydantic
+pypdf
+python-pptx
+python-dotenv
+boto3
+
