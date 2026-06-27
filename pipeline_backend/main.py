@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import httpx
 
-from llm import normalize_json_response
+from pipeline_backend.llm import normalize_json_response
 from pipeline_backend.agents.evidence_linker import EvidenceLinker
 from pipeline_backend.agents.financial_extractor import GeminiFinancialExtractor
 from pipeline_backend.agents.insight_synthesizer import LlamaInsightSynthesizer
