@@ -1,0 +1,19 @@
+app = "ects-analysis-backend"
+primary_region = "ord"
+
+[build]
+  dockerfile = "Dockerfile"
+  context = ".."
+
+[env]
+  PYTHONUNBUFFERED = "1"
+
+[[services]]
+  internal_port = 8000
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = "80"
+
+  [[services.ports]]
+    port = "443"

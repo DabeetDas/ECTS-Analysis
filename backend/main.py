@@ -10,6 +10,7 @@ import httpx
 # Import the LLM clients from the local directory
 # We assume the user runs this from the 'backend' directory
 from llm import normalize_json_response
+from pipeline_backend.main import app as pipeline_app
 
 from datetime import datetime
 load_dotenv()
@@ -23,6 +24,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount the pipeline backend routes under the same app.
+# This lets the backend serve both /api/metric-insight and /api/runs endpoints.
+app.mount("/", pipeline_app)
 
 class MetricDefinition(BaseModel):
     key: Optional[str] = None
