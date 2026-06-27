@@ -1,8 +1,10 @@
 # Agentic Upload Pipeline
 
-Standalone service for the investor-presentation + earnings-call workflow.
+Unified API service for the investor-presentation + earnings-call workflow and
+bank metric insights (`/api/metric-insight`).
 
-It is intentionally separate from the existing `backend/` app.
+Deploy from this directory only. The legacy `backend/` folder re-exports this app
+for local compatibility.
 
 ## Flow
 
@@ -40,3 +42,20 @@ curl -X POST http://localhost:8100/api/runs/{run_id}/run
 ```
 
 For development without Gemini, upload a JSON file as `presentation` using the expected extraction shape; the service will normalize it directly.
+
+## Deploy (Render)
+
+Create a **Web Service** on Render using Docker:
+
+| Setting | Value |
+|---------|--------|
+| Root Directory | *(leave empty — repo root)* |
+| Dockerfile Path | `pipeline_backend/Dockerfile` |
+
+The Dockerfile sets `PYTHONPATH=/app` and starts the app on `$PORT` (Render sets this automatically; defaults to 8000 locally).
+
+**Environment variables:**
+
+- `GROQ_API_KEY` — required for `/api/metric-insight` and insight synthesis
+- `GEMINI_API_KEY` — required for PDF financial extraction
+- `B2_*` / S3 vars — optional; omit to use local disk under `runs/` (ephemeral on Render unless you add a persistent disk)
