@@ -10,3 +10,4 @@ frontend/node_modules/
 pipeline_backend/.env
 pipeline_backend/runs
 pipeline_backend/tests
+backend/.env
