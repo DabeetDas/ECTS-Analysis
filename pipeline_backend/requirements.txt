@@ -11,4 +11,5 @@ groq
 pandas
 openpyxl
 openai
+uvicorn[standard]
 
